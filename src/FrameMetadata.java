@@ -32,6 +32,7 @@ rootPanel.setLayout(new BorderLayout(0, 0));
 JPanel panel = new JPanel();
 panel.setBorder(new TitledBorder(null, "Statistiche sulla connessione", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 rootPanel.add(panel, BorderLayout.CENTER);
+panel.add(new NetworkMonitorPanel());
 
 JPanel panel_1 = new JPanel();
 panel_1.setBorder(new TitledBorder(null, "Informazioni sul media", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -83,6 +84,10 @@ GridBagConstraints gbc_label = new GridBagConstraints();
 gbc_label.gridx = 2;
 gbc_label.gridy = 2;
 panel_1.add(label, gbc_label);
+
+this.setVisible(true);
+this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+this.requestFocus(true);
 }
 
 }
