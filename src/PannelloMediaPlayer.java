@@ -97,5 +97,33 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
         }
 
 
+    public int getAudioBuffersLost()
+        {
+        if (epc.mediaPlayer().media().info() == null | epc.mediaPlayer().media().info().statistics() == null)
+            return 0;
+        return epc.mediaPlayer().media().info().statistics().audioBuffersLost();
+        }
+    public int getPicturesLost()
+        {
+        if (epc.mediaPlayer().media().info() == null | epc.mediaPlayer().media().info().statistics() == null)
+            return 0;
+        return epc.mediaPlayer().media().info().statistics().picturesLost();
+        }
+    public int getDemuxCorrupted()
+        {
+        if (epc.mediaPlayer().media().info() == null | epc.mediaPlayer().media().info().statistics() == null)
+            return 0;
+        return epc.mediaPlayer().media().info().statistics().demuxCorrupted();
+        }
+    public double getInputBitrate()
+        {
+        if (epc.mediaPlayer().media().info() == null)
+            return 0.0;
+        return epc.mediaPlayer().media().info().statistics().inputBitrate();
+        }
+
+
+
+
     //FINE CLASSE PANNELLO MEDIA PLAYER
     }

@@ -17,14 +17,12 @@ public class NetworkMonitorPanel extends JPanel
     {
 
     private TimeSeries series1;
-    private TimeSeries series2;
     private TimeSeriesCollection dataset;
 
     public NetworkMonitorPanel () throws HeadlessException
         {
         this.setLayout(new BorderLayout());
         this.series1 = new TimeSeries("byte/sec input");
-        this.series2 = new TimeSeries("byte/sec output");
         this.dataset =  new TimeSeriesCollection();
         ChartPanel grafico = (ChartPanel)creaPannelloGrafico();
         this.add(grafico);
@@ -56,19 +54,20 @@ public class NetworkMonitorPanel extends JPanel
     {
     //series.add(new Second(), 1.0); //prima inizializzazione per prova
     dataset.addSeries(series1);
-    dataset.addSeries(series2);
+
 
 
     }
 
-    private void aggiornaGrafico(double value, double value2)
+    private void aggiornaGrafico(double value)
         {
-        if ( series1.getItemCount() >= 60 && series2.getItemCount() >= 60) {
-        series1.clear();
-        series2.clear();}
+        if ( series1.getItemCount() >= 60)
+            {
+            series1.clear();
+            }
         Second s = new Second();
         series1.add(s,value);
-        series2.add(s,value2);
+
         this.repaint();
         }
 
@@ -79,9 +78,8 @@ public class NetworkMonitorPanel extends JPanel
             @Override
             public void actionPerformed ( ActionEvent actionEvent )
                 {
-                double d1 = -10.0 + new Random().nextDouble() * 20.0; //versione che crea dei random a scopo di testing
-                double d2 = -10.0 + new Random().nextDouble() * 20.0;
-                aggiornaGrafico(d1,d2);
+                double d1 = Principale.getP().getInputBitrate();
+                aggiornaGrafico(d1);
                 }
             });
         t.start();

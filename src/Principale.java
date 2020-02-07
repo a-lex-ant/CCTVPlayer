@@ -4,6 +4,8 @@ import java.awt.*;
 public class Principale
     {
 
+    private static PannelloMediaPlayer p;
+
     public static void main ( String[] args )
         {
         JFrame frame = new JFrame("Lettore Video da File");
@@ -12,7 +14,7 @@ public class Principale
 
         MenuBarra barraMenu = new MenuBarra();
 
-        PannelloMediaPlayer p = new PannelloMediaPlayer();
+        p = new PannelloMediaPlayer();
         PannelloSinistra pannelloSinistra = new PannelloSinistra();
 
         JSplitPane splitPane = new JSplitPane();
@@ -29,4 +31,8 @@ public class Principale
         }
 
 
+    public static PannelloMediaPlayer getP ()
+        {
+        return p;
+        }
     }
