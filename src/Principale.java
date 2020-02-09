@@ -9,8 +9,17 @@ public class Principale
     public static void main ( String[] args )
         {
         JFrame frame = new JFrame("Lettore Video da File");
+        try
+            {
+            ImageIcon img = new ImageIcon("resources/cast.svg");
+            frame.setIconImage(img.getImage());
+            } catch ( Exception e )
+            {
+            e.printStackTrace();
+            }
         frame.setMinimumSize(new Dimension(200 , 200));
         frame.setLayout(new BorderLayout());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         MenuBarra barraMenu = new MenuBarra();
 
