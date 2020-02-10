@@ -11,7 +11,7 @@ public class Principale
         JFrame frame = new JFrame("Lettore Video da File");
         try
             {
-            ImageIcon img = new ImageIcon("resources/cast.svg");
+            ImageIcon img = new ImageIcon("resources/cast.png");
             frame.setIconImage(img.getImage());
             } catch ( Exception e )
             {

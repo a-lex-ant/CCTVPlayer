@@ -34,6 +34,14 @@ public class PannelloInfoConnessione extends JPanel
         statusTitle.setHorizontalAlignment(SwingConstants.CENTER);
         panelSinistraTitoli.add(statusTitle);
 
+        JLabel toolbarTitle = new JLabel("Toolbar");
+        toolbarTitle.setFont(new Font("DialogInput" , Font.BOLD , 12));
+        toolbarTitle.setBorder(new MatteBorder(1 , 1 , 1 , 0 , new Color(0 , 0 , 0)));
+        toolbarTitle.setHorizontalAlignment(SwingConstants.CENTER);
+        toolbarTitle.setHorizontalTextPosition(SwingConstants.CENTER);
+        panelSinistraTitoli.add(toolbarTitle);
+
+
         JLabel serverAddressTitle = new JLabel("Server IP Address");
         serverAddressTitle.setFont(new Font("DialogInput" , Font.BOLD , 12));
         serverAddressTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -62,6 +70,9 @@ public class PannelloInfoConnessione extends JPanel
         panelDestraDati.add(statusDataTextArea);
         statusDataTextArea.setLineWrap(true);
 
+
+
+
         //aggiunta dello scroll pane alla JTextArea
         JScrollPane sp = new JScrollPane(statusDataTextArea);
         //aggiunta dello scroll pane al pannello che contiene la JTextArea
@@ -69,7 +80,16 @@ public class PannelloInfoConnessione extends JPanel
 
         aggiornaStatusDataLabel();
 
+
         // FINE PANNELLO MESSAGGI
+
+
+
+        JButton takeScreenShotBtn = new JButton("Take screenshot");
+        takeScreenShotBtn.setFont(new Font("DialogInput" , Font.BOLD , 12));
+        takeScreenShotBtn.setBorder(new MatteBorder(1 , 0 , 1 , 1 , new Color(0 , 0 , 0)));
+        takeScreenShotBtn.setHorizontalAlignment(SwingConstants.CENTER);
+        panelDestraDati.add(takeScreenShotBtn);
 
 
         JLabel serverIpDataLabel = new JLabel("---");
