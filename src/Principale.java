@@ -24,7 +24,8 @@ public class Principale
         MenuBarra barraMenu = new MenuBarra();
 
         p = new PannelloMediaPlayer();
-        PannelloSinistra pannelloSinistra = new PannelloSinistra();
+        //PannelloSinistra pannelloSinistra = new PannelloSinistra();
+        LeftMenuBar menubarleft = new LeftMenuBar();
 
         JSplitPane splitPane = new JSplitPane();
         splitPane.setOneTouchExpandable(true);
@@ -32,7 +33,7 @@ public class Principale
         frame.getContentPane().add(splitPane , BorderLayout.CENTER);
 
         splitPane.setRightComponent(p);
-        splitPane.setLeftComponent(pannelloSinistra);
+        splitPane.setLeftComponent(menubarleft);
         frame.getContentPane().add(barraMenu , BorderLayout.NORTH);
 
         frame.getContentPane().add(new PannelloOrologio(),BorderLayout.SOUTH);

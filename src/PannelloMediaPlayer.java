@@ -29,12 +29,12 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
         this.setMinimumSize(new Dimension(0 , 0));
         this.apriFileBottone = new JButton(testoBottoneAvviaStream);
         apriFileBottone.addActionListener(this);
-        this.salvaSnapshotBottone = new JButton(testoBottoneSalvaSnap);
-        salvaSnapshotBottone.addActionListener(this);
+        // this.salvaSnapshotBottone = new JButton(testoBottoneSalvaSnap);
+        //salvaSnapshotBottone.addActionListener(this);
         this.epc = new EmbeddedMediaPlayerComponent();
         this.add(epc , BorderLayout.CENTER);
         this.add(apriFileBottone , BorderLayout.SOUTH);
-        this.add(salvaSnapshotBottone , BorderLayout.EAST);
+       //this.add(salvaSnapshotBottone , BorderLayout.EAST);
         this.setVisible(true);
 
 
@@ -79,14 +79,16 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 
             }
 
+        /*
         if ( actionEvent.getActionCommand().equals(testoBottoneSalvaSnap) )
             {
             SnapshotAndSave();
             }
+        * */
 
         }
 
-    private void SnapshotAndSave ()
+   public void SnapshotAndSave ()
         {
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:ss");
         Date d = new Date();
