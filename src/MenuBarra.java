@@ -59,7 +59,7 @@ public class MenuBarra extends JMenuBar
                     {
                     JOptionPane.showMessageDialog(null,
                             "Nessuno stream video attivo",
-                            "Nessun dato di diagnostica disponibile al momento",
+                            "Nessun dato di diagnostica disponibile",
                             JOptionPane.ERROR_MESSAGE);
                     }
                 }

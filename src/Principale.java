@@ -34,6 +34,11 @@ public class Principale
         splitPane.setRightComponent(p);
         splitPane.setLeftComponent(pannelloSinistra);
         frame.getContentPane().add(barraMenu , BorderLayout.NORTH);
+
+        frame.getContentPane().add(new PannelloOrologio(),BorderLayout.SOUTH);
+
+
+
         frame.setVisible(true);
 
 
