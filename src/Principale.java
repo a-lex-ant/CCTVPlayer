@@ -1,19 +1,34 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+
+//VERSIONE DI SVILUPPO CON INTERNAZIONALIZZAZIONE
 
 public class Principale
     {
 
+    
     private static PannelloMediaPlayer p;
+    
+    protected static String languageChosen;
+    protected static String countryChosen;
+    protected static Locale currentLocale;
+    protected static ResourceBundle bundle_lingua;
 
     public static void main ( String[] args )
         {
-        JFrame frame = new JFrame("Lettore Video da File");
+        
+        initializeLocale();
+
+        JFrame frame = new JFrame(bundle_lingua.getString("LETTORE_VIDEO"));
         try
             {
             ImageIcon img = new ImageIcon("resources/cast.png");
             frame.setIconImage(img.getImage());
             } catch ( Exception e )
+
             {
             e.printStackTrace();
             }
@@ -24,7 +39,6 @@ public class Principale
         MenuBarra barraMenu = new MenuBarra();
 
         p = new PannelloMediaPlayer();
-        //PannelloSinistra pannelloSinistra = new PannelloSinistra();
         LeftMenuBar menubarleft = new LeftMenuBar();
 
         JSplitPane splitPane = new JSplitPane();
@@ -43,6 +57,17 @@ public class Principale
         frame.setVisible(true);
 
 
+        }
+
+    private static void initializeLocale ()
+        {
+        if ((languageChosen == null) && (countryChosen == null))
+            {
+            languageChosen = "it";
+            countryChosen = "IT";
+            }
+        currentLocale = new Locale(languageChosen , countryChosen);
+        bundle_lingua = ResourceBundle.getBundle("LanguageBundles/LanguageBundle" , currentLocale);
         }
 
 

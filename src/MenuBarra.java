@@ -5,15 +5,16 @@ import java.awt.event.ActionListener;
 
 public class MenuBarra extends JMenuBar
     {
+
+
     public MenuBarra ()
         {
 
 
-
-        JMenu menuFile = new JMenu("File");
+        JMenu menuFile = new JMenu(Principale.bundle_lingua.getString("FILE"));
         this.add(menuFile);
-        JMenuItem voceEsci = new JMenuItem("Esci");
-        JMenuItem voceApriDiagnostics = new JMenuItem("Apri Diagnostics");
+        JMenuItem voceEsci = new JMenuItem(Principale.bundle_lingua.getString("ESCI"));
+        JMenuItem voceApriDiagnostics = new JMenuItem(Principale.bundle_lingua.getString("APRI_DIAGNOSTICS"));
         try
             {
             ImageIcon diagnosticsIcon = new ImageIcon("resources/activity.png");
@@ -57,11 +58,11 @@ public class MenuBarra extends JMenuBar
                     FrameMetadata fm = new FrameMetadata();
                     } catch ( NullPointerException e )
                     {
-                    JOptionPane.showMessageDialog(null,
-                            "Nessuno stream video attivo",
-                            "Nessun dato di diagnostica disponibile",
+                    JOptionPane.showMessageDialog(null, Principale.bundle_lingua.getString("NESSUNO_STREAM_VIDEO_ATTIVO") ,
+                            Principale.bundle_lingua.getString("NESSUN_DATO_DI_DIAGNOSTICA_DISPONIBILE") ,
                             JOptionPane.ERROR_MESSAGE);
                     }
+
                 }
             });
 
