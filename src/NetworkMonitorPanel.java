@@ -22,7 +22,7 @@ public class NetworkMonitorPanel extends JPanel
     public NetworkMonitorPanel () throws HeadlessException
         {
         this.setLayout(new BorderLayout());
-        this.series1 = new TimeSeries("byte/sec input");
+        this.series1 = new TimeSeries(Principale.bundle_lingua.getString("BYTE_SEC_INPUT"));
         this.dataset =  new TimeSeriesCollection();
         ChartPanel grafico = (ChartPanel)creaPannelloGrafico();
         this.add(grafico);
@@ -40,7 +40,7 @@ public class NetworkMonitorPanel extends JPanel
 
     private JFreeChart creaGrafico ( XYDataset dataset )  //createChart
     {
-    JFreeChart grafico = ChartFactory.createTimeSeriesChart("Network Monitoring" , "secs" , "date rate" , dataset);
+    JFreeChart grafico = ChartFactory.createTimeSeriesChart(Principale.bundle_lingua.getString("NETWORK_MONITORING") , "secs" , Principale.bundle_lingua.getString("DATA_RATE") , dataset);
 
     XYPlot plot = (XYPlot) grafico.getPlot();
     plot.setDomainGridlinesVisible(false);
