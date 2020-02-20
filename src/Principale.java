@@ -19,14 +19,13 @@ public class Principale
     protected static String countryChosen;
     protected static Locale currentLocale;
     protected static ResourceBundle bundle_lingua;
-    private static JFrame frame;
 
     public static void main ( String[] args )
         {
 
         initializeLocale();
 
-        frame = new JFrame(bundle_lingua.getString("LETTORE_VIDEO"));
+        JFrame frame = new JFrame(bundle_lingua.getString("LETTORE_VIDEO"));
         try
             {
             ImageIcon img = new ImageIcon("resources/cast.png");
