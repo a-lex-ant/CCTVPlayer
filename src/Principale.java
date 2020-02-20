@@ -14,7 +14,6 @@ public class Principale
 
     private static PannelloMediaPlayer p;
 
-
     protected static String languageChosen;
     protected static String countryChosen;
     protected static Locale currentLocale;
