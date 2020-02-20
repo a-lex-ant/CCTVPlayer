@@ -9,20 +9,24 @@ import java.util.ResourceBundle;
 public class Principale
     {
 
-    
+    //TODO: AGGIUNGI ABOUT CON CREDIT OBBLIGATORIO DELLE ICONE!! https://icons8.com/icons/set/usa
+
+
     private static PannelloMediaPlayer p;
-    
+
+
     protected static String languageChosen;
     protected static String countryChosen;
     protected static Locale currentLocale;
     protected static ResourceBundle bundle_lingua;
+    private static JFrame frame;
 
     public static void main ( String[] args )
         {
-        
+
         initializeLocale();
 
-        JFrame frame = new JFrame(bundle_lingua.getString("LETTORE_VIDEO"));
+        frame = new JFrame(bundle_lingua.getString("LETTORE_VIDEO"));
         try
             {
             ImageIcon img = new ImageIcon("resources/cast.png");
@@ -50,8 +54,7 @@ public class Principale
         splitPane.setLeftComponent(menubarleft);
         frame.getContentPane().add(barraMenu , BorderLayout.NORTH);
 
-        frame.getContentPane().add(new PannelloOrologio(),BorderLayout.SOUTH);
-
+        frame.getContentPane().add(new PannelloOrologio() , BorderLayout.SOUTH);
 
 
         frame.setVisible(true);
@@ -59,20 +62,18 @@ public class Principale
 
         }
 
-    private static void initializeLocale ()
+    protected static void initializeLocale ()
         {
-        if ((languageChosen == null) && (countryChosen == null))
-            {
-            languageChosen = "it";
-            countryChosen = "IT";
-            }
-        currentLocale = new Locale(languageChosen , countryChosen);
+        Locale currentLocale = SaveUtilities.loadLocale();
         bundle_lingua = ResourceBundle.getBundle("LanguageBundles/LanguageBundle" , currentLocale);
+
         }
+
 
 
     public static PannelloMediaPlayer getP ()
         {
         return p;
         }
+
     }

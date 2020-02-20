@@ -2,6 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.ObjectOutputStream;
+import java.util.Locale;
 
 public class MenuBarra extends JMenuBar
     {
@@ -13,14 +18,24 @@ public class MenuBarra extends JMenuBar
 
         JMenu menuFile = new JMenu(Principale.bundle_lingua.getString("FILE"));
         this.add(menuFile);
+        JMenu voceLocale = new JMenu(Principale.bundle_lingua.getString("SCEGLI_LINGUA"));
         JMenuItem voceEsci = new JMenuItem(Principale.bundle_lingua.getString("ESCI"));
         JMenuItem voceApriDiagnostics = new JMenuItem(Principale.bundle_lingua.getString("APRI_DIAGNOSTICS"));
+        JMenuItem voceItaliano = new JMenuItem("Italiano");
+        JMenuItem voceInglese = new JMenuItem("English");
         try
             {
             ImageIcon diagnosticsIcon = new ImageIcon("resources/activity.png");
             ImageIcon esciIcon = new ImageIcon("resources/x.png");
+            ImageIcon linguaIcon = new ImageIcon("resources/globe.png");
+            ImageIcon italianoIcon = new ImageIcon("resources/ita.png");
+            ImageIcon ingleseIcon = new ImageIcon("resources/eng.png");
             voceApriDiagnostics.setIcon(diagnosticsIcon);
             voceEsci.setIcon(esciIcon);
+            voceLocale.setIcon(linguaIcon);
+            voceItaliano.setIcon(italianoIcon);
+            voceInglese.setIcon(ingleseIcon);
+
             } catch ( Exception e )
             {
             e.printStackTrace();
@@ -28,6 +43,11 @@ public class MenuBarra extends JMenuBar
 
         menuFile.add(voceEsci);
         menuFile.add(voceApriDiagnostics);
+        voceLocale.add(voceItaliano);
+        voceLocale.add(voceInglese);
+        menuFile.add(voceLocale);
+
+
 
 
 
@@ -67,5 +87,29 @@ public class MenuBarra extends JMenuBar
             });
 
 
+        voceItaliano.addActionListener(new ActionListener()
+            {
+            @Override
+            public void actionPerformed ( ActionEvent actionEvent )
+                {
+                Locale newLocale = new Locale("it", "IT");
+                SaveUtilities.saveLocale(newLocale);
+                JOptionPane.showMessageDialog(null, Principale.bundle_lingua.getString("CAMBIO_LOCALE"));
+                }
+            });
+
+        voceInglese.addActionListener(new ActionListener()
+            {
+            @Override
+            public void actionPerformed ( ActionEvent actionEvent )
+                {
+                Locale newLocale = new Locale("en", "US");
+                SaveUtilities.saveLocale(newLocale);
+                JOptionPane.showMessageDialog(null, Principale.bundle_lingua.getString("CAMBIO_LOCALE"));
+
+                }
+            });
+
         }
+
     }
