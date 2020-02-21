@@ -72,7 +72,8 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
                     {
                     //System.out.println(Thread.currentThread());
                     //ATTENZIONE DOCUMENTAZIONE NON AGGIORNATA: epc.mediaPlayer() sostituisce epc.getMediaPlayer()
-                    epc.mediaPlayer().media().play("udp://@127.0.0.1:9999");
+                    //TODO: aggiungere modo per controllare che lo stream sia stato attivato dall'altra parte, se no si chiude tutto!!
+                    epc.mediaPlayer().media().play("rtsp://192.168.1.17:9998/");
 
                     }
                 });
