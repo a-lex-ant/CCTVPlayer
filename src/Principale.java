@@ -1,19 +1,36 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+
+//VERSIONE DI SVILUPPO CON INTERNAZIONALIZZAZIONE
 
 public class Principale
     {
 
+    //TODO: AGGIUNGI ABOUT CON CREDIT OBBLIGATORIO DELLE ICONE!! https://icons8.com/icons/set/usa
+
+
     private static PannelloMediaPlayer p;
+
+    protected static String languageChosen;
+    protected static String countryChosen;
+    protected static Locale currentLocale;
+    protected static ResourceBundle bundle_lingua;
 
     public static void main ( String[] args )
         {
-        JFrame frame = new JFrame("Lettore Video da File");
+
+        initializeLocale();
+
+        JFrame frame = new JFrame(bundle_lingua.getString("LETTORE_VIDEO"));
         try
             {
             ImageIcon img = new ImageIcon("resources/cast.png");
             frame.setIconImage(img.getImage());
             } catch ( Exception e )
+
             {
             e.printStackTrace();
             }
@@ -24,7 +41,6 @@ public class Principale
         MenuBarra barraMenu = new MenuBarra();
 
         p = new PannelloMediaPlayer();
-        //PannelloSinistra pannelloSinistra = new PannelloSinistra();
         LeftMenuBar menubarleft = new LeftMenuBar();
 
         JSplitPane splitPane = new JSplitPane();
@@ -36,8 +52,7 @@ public class Principale
         splitPane.setLeftComponent(menubarleft);
         frame.getContentPane().add(barraMenu , BorderLayout.NORTH);
 
-        frame.getContentPane().add(new PannelloOrologio(),BorderLayout.SOUTH);
-
+        frame.getContentPane().add(new PannelloOrologio() , BorderLayout.SOUTH);
 
 
         frame.setVisible(true);
@@ -45,9 +60,18 @@ public class Principale
 
         }
 
+    protected static void initializeLocale ()
+        {
+        Locale currentLocale = SaveUtilities.loadLocale();
+        bundle_lingua = ResourceBundle.getBundle("LanguageBundles/LanguageBundle" , currentLocale);
+
+        }
+
+
 
     public static PannelloMediaPlayer getP ()
         {
         return p;
         }
+
     }

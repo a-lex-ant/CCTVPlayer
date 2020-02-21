@@ -6,6 +6,7 @@ import java.io.*;
 public class PannelloInfoConnessione extends JPanel
     {
 
+
     private JLabel clientIPDataLabel;
     private JTextArea statusDataTextArea;
 
@@ -28,13 +29,13 @@ public class PannelloInfoConnessione extends JPanel
         splitPane.setLeftComponent(panelSinistraTitoli);
         panelSinistraTitoli.setLayout(new GridLayout(0 , 1 , 0 , 0));
 
-        JLabel statusTitle = new JLabel("Status");
+        JLabel statusTitle = new JLabel(Principale.bundle_lingua.getString("STATUS"));
         statusTitle.setFont(new Font("DialogInput" , Font.BOLD , 12));
         statusTitle.setBorder(new MatteBorder(1 , 1 , 1 , 0 , new Color(0 , 0 , 0)));
         statusTitle.setHorizontalAlignment(SwingConstants.CENTER);
         panelSinistraTitoli.add(statusTitle);
 
-        JLabel toolbarTitle = new JLabel("Toolbar");
+        JLabel toolbarTitle = new JLabel(Principale.bundle_lingua.getString("TOOLBAR"));
         toolbarTitle.setFont(new Font("DialogInput" , Font.BOLD , 12));
         toolbarTitle.setBorder(new MatteBorder(1 , 1 , 1 , 0 , new Color(0 , 0 , 0)));
         toolbarTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -42,14 +43,14 @@ public class PannelloInfoConnessione extends JPanel
         panelSinistraTitoli.add(toolbarTitle);
 
 
-        JLabel serverAddressTitle = new JLabel("Server IP Address");
+        JLabel serverAddressTitle = new JLabel(Principale.bundle_lingua.getString("SERVER_IP_ADDRESS"));
         serverAddressTitle.setFont(new Font("DialogInput" , Font.BOLD , 12));
         serverAddressTitle.setHorizontalAlignment(SwingConstants.CENTER);
         serverAddressTitle.setHorizontalTextPosition(SwingConstants.CENTER);
         serverAddressTitle.setBorder(new MatteBorder(1 , 1 , 1 , 0 , new Color(0 , 0 , 0)));
         panelSinistraTitoli.add(serverAddressTitle);
 
-        JLabel clientAddressTitle = new JLabel("Client IP Address");
+        JLabel clientAddressTitle = new JLabel(Principale.bundle_lingua.getString("CLIENT_IP_ADDRESS"));
         clientAddressTitle.setFont(new Font("DialogInput" , Font.BOLD , 12));
         clientAddressTitle.setHorizontalAlignment(SwingConstants.CENTER);
         clientAddressTitle.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -85,7 +86,7 @@ public class PannelloInfoConnessione extends JPanel
 
 
 
-        JButton takeScreenShotBtn = new JButton("Take screenshot");
+        JButton takeScreenShotBtn = new JButton(Principale.bundle_lingua.getString("TAKE_SCREENSHOT"));
         takeScreenShotBtn.setFont(new Font("DialogInput" , Font.BOLD , 12));
         takeScreenShotBtn.setBorder(new MatteBorder(1 , 0 , 1 , 1 , new Color(0 , 0 , 0)));
         takeScreenShotBtn.setHorizontalAlignment(SwingConstants.CENTER);
