@@ -29,15 +29,10 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
         this.setMinimumSize(new Dimension(0 , 0));
         this.apriFileBottone = new JButton(testoBottoneAvviaStream);
         apriFileBottone.addActionListener(this);
-        // this.salvaSnapshotBottone = new JButton(testoBottoneSalvaSnap);
-        //salvaSnapshotBottone.addActionListener(this);
         this.epc = new EmbeddedMediaPlayerComponent();
         this.add(epc , BorderLayout.CENTER);
         this.add(apriFileBottone , BorderLayout.SOUTH);
-       //this.add(salvaSnapshotBottone , BorderLayout.EAST);
         this.setVisible(true);
-
-
 
 
         epc.mediaPlayer().events().addMediaPlayerEventListener(new MediaPlayerEventAdapter()
@@ -72,9 +67,11 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
                     {
                     //System.out.println(Thread.currentThread());
                     //ATTENZIONE DOCUMENTAZIONE NON AGGIORNATA: epc.mediaPlayer() sostituisce epc.getMediaPlayer()
-                    //TODO: aggiungere lookup dinamico/richiesta all'utente dell'ip del server perchè può cambiare. Oppure mettere un file
+                    //TODO: aggiungere lookup dinamico/richiesta all'utente dell'ip del server perchè può cambiare.
+                    // Oppure mettere un file
                     //da cui viene letto in modo tale da cambiarlo facilmente
-                    //TODO: aggiungere modo per controllare che lo stream sia stato attivato dall'altra parte, se no si chiude tutto!!
+                    //TODO: aggiungere modo per controllare che lo stream sia stato attivato dall'altra parte, se no
+                    // si chiude tutto!!
                     epc.mediaPlayer().media().play("rtsp://192.168.1.4:8554/");
 
                     }
@@ -82,16 +79,10 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 
             }
 
-        /*
-        if ( actionEvent.getActionCommand().equals(testoBottoneSalvaSnap) )
-            {
-            SnapshotAndSave();
-            }
-        * */
-
         }
 
-   public void SnapshotAndSave ()
+
+    public void SnapshotAndSave ()
         {
         SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:ss");
         Date d = new Date();
@@ -102,32 +93,33 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
         }
 
 
-    public int getAudioBuffersLost()
+    public int getAudioBuffersLost ()
         {
-        if (epc.mediaPlayer().media().info() == null | epc.mediaPlayer().media().info().statistics() == null)
+        if ( epc.mediaPlayer().media().info() == null | epc.mediaPlayer().media().info().statistics() == null )
             return 0;
         return epc.mediaPlayer().media().info().statistics().audioBuffersLost();
         }
-    public int getPicturesLost()
+
+    public int getPicturesLost ()
         {
-        if (epc.mediaPlayer().media().info() == null | epc.mediaPlayer().media().info().statistics() == null)
+        if ( epc.mediaPlayer().media().info() == null | epc.mediaPlayer().media().info().statistics() == null )
             return 0;
         return epc.mediaPlayer().media().info().statistics().picturesLost();
         }
-    public int getDemuxCorrupted()
+
+    public int getDemuxCorrupted ()
         {
-        if (epc.mediaPlayer().media().info() == null | epc.mediaPlayer().media().info().statistics() == null)
+        if ( epc.mediaPlayer().media().info() == null | epc.mediaPlayer().media().info().statistics() == null )
             return 0;
         return epc.mediaPlayer().media().info().statistics().demuxCorrupted();
         }
-    public double getInputBitrate()
+
+    public double getInputBitrate ()
         {
-        if (epc.mediaPlayer().media().info() == null)
+        if ( epc.mediaPlayer().media().info() == null )
             return 0.0;
         return epc.mediaPlayer().media().info().statistics().inputBitrate();
         }
-
-
 
 
     //FINE CLASSE PANNELLO MEDIA PLAYER
