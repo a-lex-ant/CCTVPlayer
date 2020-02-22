@@ -72,7 +72,12 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
                     //da cui viene letto in modo tale da cambiarlo facilmente
                     //TODO: aggiungere modo per controllare che lo stream sia stato attivato dall'altra parte, se no
                     // si chiude tutto!!
-                    epc.mediaPlayer().media().play("rtsp://192.168.1.4:8554/");
+
+                    PannelloRichiestaDati pnlRch;
+                    JOptionPane.showConfirmDialog(null, pnlRch = new PannelloRichiestaDati(), "Inserimento dati",JOptionPane.OK_CANCEL_OPTION,
+                            JOptionPane.PLAIN_MESSAGE);
+                    String[] dati = pnlRch.getDatiInseriti();
+                    epc.mediaPlayer().media().play("rtsp://"+dati[0]+":"+dati[1]+"/");
 
                     }
                 });
