@@ -72,8 +72,10 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
                     {
                     //System.out.println(Thread.currentThread());
                     //ATTENZIONE DOCUMENTAZIONE NON AGGIORNATA: epc.mediaPlayer() sostituisce epc.getMediaPlayer()
+                    //TODO: aggiungere lookup dinamico/richiesta all'utente dell'ip del server perchè può cambiare. Oppure mettere un file
+                    //da cui viene letto in modo tale da cambiarlo facilmente
                     //TODO: aggiungere modo per controllare che lo stream sia stato attivato dall'altra parte, se no si chiude tutto!!
-                    epc.mediaPlayer().media().play("rtsp://192.168.1.17:9998/");
+                    epc.mediaPlayer().media().play("rtsp://192.168.1.4:8554/");
 
                     }
                 });
