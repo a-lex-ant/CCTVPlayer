@@ -1,14 +1,18 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Locale;
 
 public class SaveUtilities
     {
 
-    //TODO: fare sì che i file si salvino in una directory sua
+    private static String userDir = System.getProperty("user.dir");
 
-    public static void saveLocale( Locale newLocale)
+    public static void saveLocale ( Locale newLocale )
         {
-        try ( ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("localeSettings.txt")) )
+        checkForSaveDirectoryExistance();
+        try ( ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(userDir +
+                "/savedData/localeSettings.bin")) )
             {
             objectOutputStream.writeObject(newLocale);
             } catch ( IOException e )
@@ -18,19 +22,35 @@ public class SaveUtilities
         System.out.println("Finito salvare locale");
         }
 
-
-    public static Locale loadLocale()
+    private static void checkForSaveDirectoryExistance ()
         {
+        if ( !Files.exists(Paths.get(System.getProperty("user.dir") + "/savedData")) )
+            {
+            try
+                {
+                Files.createDirectory(Paths.get(userDir + "/savedData"));
+                } catch ( IOException e )
+                {
+                e.printStackTrace();
+                }
+            }
+        }
+
+
+    public static Locale loadLocale ()
+        {
+        checkForSaveDirectoryExistance();
         Locale letto = null;
-        try ( ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("localeSettings.txt")) )
+        try ( ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(userDir + "/savedData" +
+                "/localeSettings.bin")) )
             {
             letto = (Locale) objectInputStream.readObject();
-            objectInputStream.close();
             } catch ( IOException | ClassNotFoundException e )
             {
-            letto = new Locale("it","IT");
+            letto = new Locale("it" , "IT");
             }
-        if (letto == null) letto = new Locale("it","IT");
+        if ( letto == null )
+            letto = new Locale("it" , "IT");
         System.out.println("finito caricare locale");
         return letto;
         }

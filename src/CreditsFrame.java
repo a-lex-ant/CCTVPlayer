@@ -65,21 +65,10 @@ public class CreditsFrame extends javax.swing.JFrame
         editorPaneAbout.setEditable(false);
         editorPaneAbout.setBackground(new java.awt.Color(254 , 254 , 254));
         editorPaneAbout.setContentType("text/html"); // NOI18N
-        editorPaneAbout.setText("<html>\n  <head>\n\n  </head>\n  <body>\n<p style=\"text-align: center;\">Developed " +
-                "with &hearts; by Anna A. Antonini (<a href=\"mailto:a.antonini011@studenti.unibs.it\">a" +
-                ".antonini011@studenti.unibs.it</a>)</p>\n<p style=\"text-align: center;\">Original project available" +
-                " freely on my <a href=\"https://github.com/a-lex-ant\">GitHub profile</a>.</p>\n<p " +
-                "style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: center;\">This program is free " +
-                "software: you can redistribute it and/or modify it under the terms of</p>\n<p style=\"text-align: " +
-                "center;\">the <strong>GNU General Public License</strong> as published by the Free Software " +
-                "Foundation, either</p>\n<p style=\"text-align: center;\">version 3 of the License, or (at your " +
-                "option) any later version. This program is distributed</p>\n<p style=\"text-align: center;\">in the " +
-                "hope that it will be useful, but WITHOUT ANY WARRANTY; without even the</p>\n<p style=\"text-align: " +
-                "center;\">implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p>\n<p " +
-                "style=\"text-align: center;\">See the GNU General Public License for more details.</p>\n<p " +
-                "style=\"text-align: center;\">You should have received a copy of the GNU General Public License " +
-                "along with this</p>\n<p style=\"text-align: center;\">program. If not, see &lt;https://www.gnu" +
-                ".org/licenses/&gt;.</p>\n<p>&nbsp;</p>\n  </body>\n</html>\n");
+        editorPaneAbout.setText("<html>\n  <head>\n\n  </head>\n  <body>\n<p style=\"text-align: center;\">Developed "
+                + "with &hearts; by Anna A. Antonini (<a href=\"mailto:a.antonini011@studenti.unibs.it\">a" +
+                ".antonini011@studenti.unibs.it</a>)</p>\n<p style=\"text-align: center;\">Original project " +
+                "available" + " freely on my <a href=\"https://github.com/a-lex-ant\">GitHub profile</a>.</p>\n<p " + "style=\"text-align: center;\">&nbsp;</p>\n<p style=\"text-align: center;\">This program is free " + "software: you can redistribute it and/or modify it under the terms of</p>\n<p style=\"text-align: " + "center;\">the <strong>GNU General Public License</strong> as published by the Free Software " + "Foundation, either</p>\n<p style=\"text-align: center;\">version 3 of the License, or (at your " + "option) any later version. This program is distributed</p>\n<p style=\"text-align: center;\">in the " + "hope that it will be useful, but WITHOUT ANY WARRANTY; without even the</p>\n<p style=\"text-align: " + "center;\">implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p>\n<p " + "style=\"text-align: center;\">See the GNU General Public License for more details.</p>\n<p " + "style=\"text-align: center;\">You should have received a copy of the GNU General Public License " + "along with this</p>\n<p style=\"text-align: center;\">program. If not, see &lt;https://www.gnu" + ".org/licenses/&gt;.</p>\n<p>&nbsp;</p>\n  </body>\n</html>\n");
         jScrollPane1.setViewportView(editorPaneAbout);
         editorPaneAbout.addHyperlinkListener(new LinkListener());
 
@@ -100,20 +89,12 @@ public class CreditsFrame extends javax.swing.JFrame
 
         editorPaneExtLibraries.setContentType("text/html"); // NOI18N
         editorPaneExtLibraries.setText("<html>\n  <head>\n\n  </head>\n  <body>\n <p style=\"text-align: center;" +
-                "\">This program wouldn't have been possible without this awesome libraries:</p>\n<p " +
-                "style=\"text-align: center;\"><strong>Vlcj<br /></strong><em><span class=\"text-gray-dark " +
-                "mr-2\">Java framework for the vlc media player.</span></em></p>\n<p style=\"text-align: center;\"><a" +
-                " href=\"http://www.capricasoftware.co.uk/projects/vlcj\"><span class=\"text-gray-dark " +
-                "mr-2\">Official page on the Caprica Software website</span></a></p>\n<p style=\"text-align: center;" +
-                "\"><a href=\"https://github.com/caprica/vlcj\"><span class=\"text-gray-dark mr-2\">Official GitHub " +
-                "Repository</span></a></p>\n<p style=\"text-align: center;\"><strong><span class=\"text-gray-dark " +
-                "mr-2\">JFreeChart<br /></span></strong><em><span class=\"text-gray-dark mr-2\">A 2D chart library " +
-                "for Java application.</span></em></p>\n<p style=\"text-align: center;\"><a href=\"A%202D chart " +
-                "library for Java applications \"><span class=\"text-gray-dark mr-2\">Official web " +
-                "page</span></a></p>\n<p style=\"text-align: center;\"><a href=\"https://github" +
-                ".com/jfree/jfreechart\"><span class=\"text-gray-dark mr-2\">Official GitHub " +
-                "Repository</span></a></p>\n<p style=\"text-align: center;\">...And the <a " +
-                "href=\"https://stackoverflow.com/\">StackOverflow</a>'s community :)</p>\n  </body>\n</html>\n");
+                "\">This program wouldn't have been possible without this awesome libraries:</p>\n<p " + "style" +
+                "=\"text-align: center;\"><strong>Vlcj<br /></strong><em><span class=\"text-gray-dark " + "mr-2" +
+                "\">Java framework for the vlc media player.</span></em></p>\n<p style=\"text-align: center;\"><a" +
+                " href=\"http://www.capricasoftware.co.uk/projects/vlcj\"><span class=\"text-gray-dark " + "mr-2" +
+                "\">Official page on the Caprica Software website</span></a></p>\n<p style=\"text-align: center;" +
+                "\"><a href=\"https://github.com/caprica/vlcj\"><span class=\"text-gray-dark mr-2\">Official GitHub " + "Repository</span></a></p>\n<p style=\"text-align: center;\"><strong><span class=\"text-gray-dark " + "mr-2\">JFreeChart<br /></span></strong><em><span class=\"text-gray-dark mr-2\">A 2D chart library " + "for Java application.</span></em></p>\n<p style=\"text-align: center;\"><a href=\"A%202D chart " + "library for Java applications \"><span class=\"text-gray-dark mr-2\">Official web " + "page</span></a></p>\n<p style=\"text-align: center;\"><a href=\"https://github" + ".com/jfree/jfreechart\"><span class=\"text-gray-dark mr-2\">Official GitHub " + "Repository</span></a></p>\n<p style=\"text-align: center;\">...And the <a " + "href=\"https://stackoverflow.com/\">StackOverflow</a>'s community :)</p>\n  </body>\n</html>\n");
         editorPaneExtLibraries.setEditable(false);
         jScrollPane4.setViewportView(editorPaneExtLibraries);
         editorPaneExtLibraries.addHyperlinkListener(new LinkListener());
@@ -134,13 +115,7 @@ public class CreditsFrame extends javax.swing.JFrame
 
         editorPaneIconsCredit.setEditable(false);
         editorPaneIconsCredit.setContentType("text/html"); // NOI18N
-        editorPaneIconsCredit.setText("<html>\n  <head>\n\n  </head>\n  <body>\n    <p style=\"text-align: center;" +
-                "\">Nearly all icons are from the <a href=\"https://feathericons.com/\">Feather Icons project</a> by " +
-                "<a href=\"https://twitter.com/colebemis\">Cole Bemis</a>.</p>\n<p style=\"text-align: center;\"><a " +
-                "href=\"https://icons8.com/icons/set/italy\" target=\"_blank\" rel=\"noopener\">Italy icon</a> and <a" +
-                " href=\"https://icons8.com/icons/set/usa\" target=\"_blank\" rel=\"noopener\">USA icon</a> by <a " +
-                "href=\"https://icons8.com\" target=\"_blank\" rel=\"noopener\">Icons8</a>.</p>\n<p>&nbsp;</p>\n  " +
-                "</body>\n</html>\n");
+        editorPaneIconsCredit.setText("<html>\n  <head>\n\n  </head>\n  <body>\n    <p style=\"text-align: center;" + "\">Nearly all icons are from the <a href=\"https://feathericons.com/\">Feather Icons project</a> by " + "<a href=\"https://twitter.com/colebemis\">Cole Bemis</a>.</p>\n<p style=\"text-align: center;\"><a " + "href=\"https://icons8.com/icons/set/italy\" target=\"_blank\" rel=\"noopener\">Italy icon</a> and <a" + " href=\"https://icons8.com/icons/set/usa\" target=\"_blank\" rel=\"noopener\">USA icon</a> by <a " + "href=\"https://icons8.com\" target=\"_blank\" rel=\"noopener\">Icons8</a>.</p>\n<p>&nbsp;</p>\n  " + "</body>\n</html>\n");
         jScrollPane2.setViewportView(editorPaneIconsCredit);
         editorPaneIconsCredit.addHyperlinkListener(new LinkListener());
 

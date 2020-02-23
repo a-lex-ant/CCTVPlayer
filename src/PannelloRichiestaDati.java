@@ -18,7 +18,8 @@ public class PannelloRichiestaDati extends javax.swing.JPanel
         {
 
         titoloLabel = new javax.swing.JLabel();
-        filler1     = new javax.swing.Box.Filler(new java.awt.Dimension(0 , 0) , new java.awt.Dimension(0 , 0) , new java.awt.Dimension(32767 , 0));
+        filler1     = new javax.swing.Box.Filler(new java.awt.Dimension(0 , 0) , new java.awt.Dimension(0 , 0) ,
+                new java.awt.Dimension(32767 , 0));
         labelIP     = new javax.swing.JLabel();
         textfIP     = new javax.swing.JTextField();
         labelPorta  = new javax.swing.JLabel();
@@ -49,9 +50,12 @@ public class PannelloRichiestaDati extends javax.swing.JPanel
 
     public String[] getDatiInseriti ()
         {
-        if (!textfIP.getText().isEmpty() && !textfPorta.getText().isEmpty())
-            {return new String[]{textfIP.getText(), textfPorta.getText()};}
-            //TODO: prendi, se disponibile, l'indirizzo del server tcp a cui si è attaccati.
-        else return new String[]{"192.168.1.4", "8554"};
+        if ( !textfIP.getText().isEmpty() && !textfPorta.getText().isEmpty() )
+            {
+            return new String[] { textfIP.getText() , textfPorta.getText() };
+            }
+        //TODO: prendi, se disponibile, l'indirizzo del server tcp a cui si è attaccati.
+        else
+            return new String[] { "192.168.1.4" , "8554" };
         }
     }

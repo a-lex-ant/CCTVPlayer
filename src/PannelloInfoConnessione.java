@@ -72,8 +72,6 @@ public class PannelloInfoConnessione extends JPanel
         statusDataTextArea.setLineWrap(true);
 
 
-
-
         //aggiunta dello scroll pane alla JTextArea
         JScrollPane sp = new JScrollPane(statusDataTextArea);
         //aggiunta dello scroll pane al pannello che contiene la JTextArea
@@ -83,7 +81,6 @@ public class PannelloInfoConnessione extends JPanel
 
 
         // FINE PANNELLO MESSAGGI
-
 
 
         JButton takeScreenShotBtn = new JButton(Principale.bundle_lingua.getString("TAKE_SCREENSHOT"));
@@ -133,7 +130,8 @@ public class PannelloInfoConnessione extends JPanel
         //NB: QUESTO FILE APERTO DI LOG È SOLO PER PROVA, non c'entra con il programma
         try
             {
-            statusDataTextArea.read(new BufferedReader(new FileReader(new File("/home/lex/Documenti/laboratorio PAJC/mediaPlayerDaFile/log client"))) , null);
+            statusDataTextArea.read(new BufferedReader(new FileReader(new File("/home/lex/Documenti/laboratorio " +
+                    "PAJC/mediaPlayerDaFile/log client"))) , null);
             } catch ( FileNotFoundException e )
             {
             e.printStackTrace();
