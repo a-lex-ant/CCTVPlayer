@@ -27,7 +27,6 @@ initComponents();
 
 private void initComponents() {
 
-
 jPanel4 = new javax.swing.JPanel();
 jPanel1 = new javax.swing.JPanel();
 About = new java.awt.Label();
@@ -78,7 +77,7 @@ jPanel3.add(About1, java.awt.BorderLayout.NORTH);
 About1.getAccessibleContext().setAccessibleName("External Library Credits");
 
 jEditorPane4.setContentType("text/html"); // NOI18N
-jEditorPane4.setText("<html>\n  <head>\n\n  </head>\n  <body>\n    <p style=\"text-align: center;\">This program wouldn't have been possible without this awesome libraries:</p>\n<p style=\"text-align: center;\"><strong>Vlcj<br /></strong><em><span class=\"text-gray-dark mr-2\">Java framework for the vlc media player.</span></em></p>\n<p style=\"text-align: center;\"><a href=\"http://www.capricasoftware.co.uk/projects/vlcj\"><span class=\"text-gray-dark mr-2\">Official page on the Caprica Software website</span></a><a href=\"https://github.com/caprica/vlcj\"><span class=\"text-gray-dark mr-2\">Official GitHub Repository</span></a></p>\n<p style=\"text-align: center;\"><strong><span class=\"text-gray-dark mr-2\">JFreeChart<br /></span></strong><em><span class=\"text-gray-dark mr-2\">A 2D chart library for Java application.</span></em></p>\n<p style=\"text-align: center;\"><a href=\"A%202D chart library for Java applications \"><span class=\"text-gray-dark mr-2\">Official web page</span></a><a href=\"https://github.com/jfree/jfreechart\"><span class=\"text-gray-dark mr-2\">Official GitHub Repository</span></a></p>\n<p style=\"text-align: center;\">...And the <a href=\"https://stackoverflow.com/\">StackOverflow</a>'s community :)</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>\n  </body>\n</html>\n");
+jEditorPane4.setText("<html>\n  <head>\n\n  </head>\n  <body>\n <p style=\"text-align: center;\">This program wouldn't have been possible without this awesome libraries:</p>\n<p style=\"text-align: center;\"><strong>Vlcj<br /></strong><em><span class=\"text-gray-dark mr-2\">Java framework for the vlc media player.</span></em></p>\n<p style=\"text-align: center;\"><a href=\"http://www.capricasoftware.co.uk/projects/vlcj\"><span class=\"text-gray-dark mr-2\">Official page on the Caprica Software website</span></a></p>\n<p style=\"text-align: center;\"><a href=\"https://github.com/caprica/vlcj\"><span class=\"text-gray-dark mr-2\">Official GitHub Repository</span></a></p>\n<p style=\"text-align: center;\"><strong><span class=\"text-gray-dark mr-2\">JFreeChart<br /></span></strong><em><span class=\"text-gray-dark mr-2\">A 2D chart library for Java application.</span></em></p>\n<p style=\"text-align: center;\"><a href=\"A%202D chart library for Java applications \"><span class=\"text-gray-dark mr-2\">Official web page</span></a></p>\n<p style=\"text-align: center;\"><a href=\"https://github.com/jfree/jfreechart\"><span class=\"text-gray-dark mr-2\">Official GitHub Repository</span></a></p>\n<p style=\"text-align: center;\">...And the <a href=\"https://stackoverflow.com/\">StackOverflow</a>'s community :)</p>\n  </body>\n</html>\n");
 jScrollPane4.setViewportView(jEditorPane4);
 
 scrollPane4.add(jScrollPane4);
@@ -121,6 +120,6 @@ jPanel4.add(jPanel2);
 getContentPane().add(jPanel4, java.awt.BorderLayout.CENTER);
 
 pack();
-}// </editor-fold>
+}
 
 }
