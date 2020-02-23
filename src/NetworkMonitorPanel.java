@@ -11,7 +11,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
 public class NetworkMonitorPanel extends JPanel
     {
@@ -23,24 +22,25 @@ public class NetworkMonitorPanel extends JPanel
         {
         this.setLayout(new BorderLayout());
         this.series1 = new TimeSeries(Principale.bundle_lingua.getString("BYTE_SEC_INPUT"));
-        this.dataset =  new TimeSeriesCollection();
-        ChartPanel grafico = (ChartPanel)creaPannelloGrafico();
+        this.dataset = new TimeSeriesCollection();
+        ChartPanel grafico = (ChartPanel) creaPannelloGrafico();
         this.add(grafico);
         this.setVisible(true);
         runTimer();
         }
 
-    public JPanel creaPannelloGrafico()  //createDemoPanel
+    public JPanel creaPannelloGrafico ()  //createDemoPanel
     {
     linkSeriesAndDataset();
     JFreeChart grafico = creaGrafico(this.dataset);
-    ChartPanel panel = new ChartPanel(grafico, true);
+    ChartPanel panel = new ChartPanel(grafico , true);
     return panel;
     }
 
     private JFreeChart creaGrafico ( XYDataset dataset )  //createChart
     {
-    JFreeChart grafico = ChartFactory.createTimeSeriesChart(Principale.bundle_lingua.getString("NETWORK_MONITORING") , "secs" , Principale.bundle_lingua.getString("DATA_RATE") , dataset);
+    JFreeChart grafico = ChartFactory.createTimeSeriesChart(Principale.bundle_lingua.getString("NETWORK_MONITORING")
+            , "secs" , Principale.bundle_lingua.getString("DATA_RATE") , dataset);
 
     XYPlot plot = (XYPlot) grafico.getPlot();
     plot.setDomainGridlinesVisible(false);
@@ -56,22 +56,21 @@ public class NetworkMonitorPanel extends JPanel
     dataset.addSeries(series1);
 
 
-
     }
 
-    private void aggiornaGrafico(double value)
+    private void aggiornaGrafico ( double value )
         {
-        if ( series1.getItemCount() >= 60)
+        if ( series1.getItemCount() >= 60 )
             {
             series1.clear();
             }
         Second s = new Second();
-        series1.add(s,value);
+        series1.add(s , value);
 
         this.repaint();
         }
 
-    private void runTimer()
+    private void runTimer ()
         {
         Timer t = new Timer(1000 , new ActionListener()
             {
@@ -85,16 +84,7 @@ public class NetworkMonitorPanel extends JPanel
         t.start();
 
 
-
         }
-
-
-
-
-
-
-
-
 
 
     //***************************FINE CLASSE***************************************************************

@@ -9,9 +9,6 @@ import java.util.ResourceBundle;
 public class Principale
     {
 
-    //TODO: AGGIUNGI ABOUT CON CREDIT OBBLIGATORIO DELLE ICONE!! https://icons8.com/icons/set/usa
-
-
     private static PannelloMediaPlayer p;
 
     protected static String languageChosen;
@@ -66,7 +63,6 @@ public class Principale
         bundle_lingua = ResourceBundle.getBundle("LanguageBundles/LanguageBundle" , currentLocale);
 
         }
-
 
 
     public static PannelloMediaPlayer getP ()

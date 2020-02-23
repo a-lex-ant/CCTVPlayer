@@ -1,11 +1,6 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.ObjectOutputStream;
 import java.util.Locale;
 
 public class MenuBarra extends JMenuBar
@@ -17,7 +12,10 @@ public class MenuBarra extends JMenuBar
 
 
         JMenu menuFile = new JMenu(Principale.bundle_lingua.getString("FILE"));
+        JMenu menuHelp = new JMenu(Principale.bundle_lingua.getString("HELP"));
         this.add(menuFile);
+        this.add(menuHelp);
+        JMenuItem voceAbout = new JMenuItem(Principale.bundle_lingua.getString("ABOUT"));
         JMenu voceLocale = new JMenu(Principale.bundle_lingua.getString("SCEGLI_LINGUA"));
         JMenuItem voceEsci = new JMenuItem(Principale.bundle_lingua.getString("ESCI"));
         JMenuItem voceApriDiagnostics = new JMenuItem(Principale.bundle_lingua.getString("APRI_DIAGNOSTICS"));
@@ -25,6 +23,7 @@ public class MenuBarra extends JMenuBar
         JMenuItem voceInglese = new JMenuItem("English");
         try
             {
+            ImageIcon aboutIcon = new ImageIcon("resources/info.png");
             ImageIcon diagnosticsIcon = new ImageIcon("resources/activity.png");
             ImageIcon esciIcon = new ImageIcon("resources/x.png");
             ImageIcon linguaIcon = new ImageIcon("resources/globe.png");
@@ -35,6 +34,7 @@ public class MenuBarra extends JMenuBar
             voceLocale.setIcon(linguaIcon);
             voceItaliano.setIcon(italianoIcon);
             voceInglese.setIcon(ingleseIcon);
+            voceAbout.setIcon(aboutIcon);
 
             } catch ( Exception e )
             {
@@ -46,10 +46,13 @@ public class MenuBarra extends JMenuBar
         voceLocale.add(voceItaliano);
         voceLocale.add(voceInglese);
         menuFile.add(voceLocale);
+        menuHelp.add(voceAbout);
 
 
-
-
+        voceAbout.addActionListener(( e ) ->
+        {
+        new CreditsFrame().setVisible(true);
+        });
 
 
         //aggiunta del comportamento della voce "esci" del menu principale
@@ -61,8 +64,6 @@ public class MenuBarra extends JMenuBar
 
                 //TO DO: aggiungere check prima di chiudere di brutto
                 System.exit(0);
-
-
 
 
                 }
@@ -78,9 +79,9 @@ public class MenuBarra extends JMenuBar
                     FrameMetadata fm = new FrameMetadata();
                     } catch ( NullPointerException e )
                     {
-                    JOptionPane.showMessageDialog(null, Principale.bundle_lingua.getString("NESSUNO_STREAM_VIDEO_ATTIVO") ,
-                            Principale.bundle_lingua.getString("NESSUN_DATO_DI_DIAGNOSTICA_DISPONIBILE") ,
-                            JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null , Principale.bundle_lingua.getString(
+                            "NESSUNO_STREAM_VIDEO_ATTIVO") , Principale.bundle_lingua.getString(
+                                    "NESSUN_DATO_DI_DIAGNOSTICA_DISPONIBILE") , JOptionPane.ERROR_MESSAGE);
                     }
 
                 }
@@ -92,9 +93,9 @@ public class MenuBarra extends JMenuBar
             @Override
             public void actionPerformed ( ActionEvent actionEvent )
                 {
-                Locale newLocale = new Locale("it", "IT");
+                Locale newLocale = new Locale("it" , "IT");
                 SaveUtilities.saveLocale(newLocale);
-                JOptionPane.showMessageDialog(null, Principale.bundle_lingua.getString("CAMBIO_LOCALE"));
+                JOptionPane.showMessageDialog(null , Principale.bundle_lingua.getString("CAMBIO_LOCALE"));
                 }
             });
 
@@ -103,9 +104,9 @@ public class MenuBarra extends JMenuBar
             @Override
             public void actionPerformed ( ActionEvent actionEvent )
                 {
-                Locale newLocale = new Locale("en", "US");
+                Locale newLocale = new Locale("en" , "US");
                 SaveUtilities.saveLocale(newLocale);
-                JOptionPane.showMessageDialog(null, Principale.bundle_lingua.getString("CAMBIO_LOCALE"));
+                JOptionPane.showMessageDialog(null , Principale.bundle_lingua.getString("CAMBIO_LOCALE"));
 
                 }
             });

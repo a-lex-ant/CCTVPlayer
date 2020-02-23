@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="mediaPlayerDaFile:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/mediaPlayerDaFile_jar</output-path>
+    <root id="archive" name="mediaPlayerDaFile.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="mediaPlayerDaFile" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../vlcj-4.1.0/jna-5.2.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../vlcj-4.1.0/vlcj-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../vlcj-4.1.0/vlcj-4.1.0-tests.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../vlcj-4.1.0/jna-platform-5.2.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../vlcj-4.1.0/vlcj-4.1.0-javadoc.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../vlcj-4.1.0/vlcj-4.1.0-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../vlcj-4.1.0/vlcj-natives-4.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../vlcj-4.1.0/vlcj-4.1.0-test-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jfreechart-1.5.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
