@@ -17,7 +17,10 @@ public class MenuBarra extends JMenuBar
 
 
         JMenu menuFile = new JMenu(Principale.bundle_lingua.getString("FILE"));
+        JMenu menuHelp = new JMenu(Principale.bundle_lingua.getString("HELP"));
         this.add(menuFile);
+        this.add(menuHelp);
+        JMenuItem voceAbout = new JMenuItem(Principale.bundle_lingua.getString("ABOUT"));
         JMenu voceLocale = new JMenu(Principale.bundle_lingua.getString("SCEGLI_LINGUA"));
         JMenuItem voceEsci = new JMenuItem(Principale.bundle_lingua.getString("ESCI"));
         JMenuItem voceApriDiagnostics = new JMenuItem(Principale.bundle_lingua.getString("APRI_DIAGNOSTICS"));
@@ -25,6 +28,7 @@ public class MenuBarra extends JMenuBar
         JMenuItem voceInglese = new JMenuItem("English");
         try
             {
+            ImageIcon aboutIcon = new ImageIcon("resources/info.png");
             ImageIcon diagnosticsIcon = new ImageIcon("resources/activity.png");
             ImageIcon esciIcon = new ImageIcon("resources/x.png");
             ImageIcon linguaIcon = new ImageIcon("resources/globe.png");
@@ -35,6 +39,7 @@ public class MenuBarra extends JMenuBar
             voceLocale.setIcon(linguaIcon);
             voceItaliano.setIcon(italianoIcon);
             voceInglese.setIcon(ingleseIcon);
+            voceAbout.setIcon(aboutIcon);
 
             } catch ( Exception e )
             {
@@ -46,10 +51,11 @@ public class MenuBarra extends JMenuBar
         voceLocale.add(voceItaliano);
         voceLocale.add(voceInglese);
         menuFile.add(voceLocale);
+        menuHelp.add(voceAbout);
 
 
 
-
+    voceAbout.addActionListener((e)->{new CreditsFrame().setVisible(true);});
 
 
         //aggiunta del comportamento della voce "esci" del menu principale
