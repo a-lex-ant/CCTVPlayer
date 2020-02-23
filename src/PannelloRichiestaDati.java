@@ -54,7 +54,6 @@ public class PannelloRichiestaDati extends javax.swing.JPanel
             {
             return new String[] { textfIP.getText() , textfPorta.getText() };
             }
-        //TODO: prendi, se disponibile, l'indirizzo del server tcp a cui si è attaccati.
         else
             return new String[] { "192.168.1.4" , "8554" };
         }
