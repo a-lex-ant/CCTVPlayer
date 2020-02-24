@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class PannelloRichiestaDatiPerStream extends javax.swing.JPanel
     {
     private javax.swing.Box.Filler filler1;
@@ -25,7 +27,9 @@ public class PannelloRichiestaDatiPerStream extends javax.swing.JPanel
         labelPorta  = new javax.swing.JLabel();
         textfPorta  = new javax.swing.JTextField();
 
-        setLayout(new java.awt.GridLayout(3 , 2));
+        GridLayout layout = new java.awt.GridLayout(3 , 2);
+        layout.setVgap(3);
+        setLayout(layout);
 
         titoloLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titoloLabel.setText("Inserire indirizzo e porta del server trasmissivo:");

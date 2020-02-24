@@ -17,6 +17,9 @@ public class ClientTCPGUI extends javax.swing.JFrame
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;
 
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler2;
+
     private static javax.swing.JButton spegniBtn;
     private javax.swing.JLabel spegnimentoLabel;
     private static javax.swing.JLabel statodata;
@@ -49,16 +52,22 @@ public class ClientTCPGUI extends javax.swing.JFrame
         jPanel2              = new javax.swing.JPanel();
         spegnimentoLabel     = new javax.swing.JLabel();
         spegniBtn            = new javax.swing.JButton();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 300), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 300), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
+
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(rboundle.getString("STATUS"));
 
         jTabbedPane1.setName("");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(40 , 1 , 10 , 1) , javax.swing.BorderFactory.createEmptyBorder(20 , 20 , 20 , 20)));
-        jPanel1.setLayout(new java.awt.GridLayout(4 , 2 , 10 , 10));
+        jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(40 , 1 , 10 , 1) , javax.swing.BorderFactory.createEmptyBorder(10 , 20 , 20 , 20)));
+        jPanel1.setLayout(new java.awt.GridLayout(4 , 1 , 10 , 5));
 
         avviaBtn.setText(rboundle.getString("AVVIA_CLIENT_TCP"));
+        avviaBtn.setBackground(new java.awt.Color(0, 255, 0));
+        avviaBtn.setBorderPainted(false);
+        avviaBtn.setOpaque(true);
         avviaBtn.addActionListener(event ->
         {
         try
@@ -72,6 +81,9 @@ public class ClientTCPGUI extends javax.swing.JFrame
         jPanel1.add(avviaBtn);
 
         chiudiConnessioneBtn.setText(rboundle.getString("ETICHETTA_CHIUDI_CONNESSIONE"));
+        chiudiConnessioneBtn.setBackground(new java.awt.Color(255, 0, 0));
+        chiudiConnessioneBtn.setBorderPainted(false);
+        chiudiConnessioneBtn.setOpaque(true);
         chiudiConnessioneBtn.setEnabled(false);
         jPanel1.add(chiudiConnessioneBtn);
 
@@ -93,6 +105,9 @@ public class ClientTCPGUI extends javax.swing.JFrame
         jPanel2.add(spegnimentoLabel);
 
         spegniBtn.setText(rboundle.getString("ETICHETTA_ARRESTA_SISTEMA_REMOTO"));
+        spegniBtn.setBackground(new java.awt.Color(255, 214, 0));
+        spegniBtn.setBorderPainted(false);
+        spegniBtn.setOpaque(true);
 
         jPanel2.add(spegniBtn);
 
