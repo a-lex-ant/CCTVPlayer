@@ -1,10 +1,9 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class CreditsFrame extends javax.swing.JFrame
     {
 
-
-    // Variables declaration - do not modify
     private java.awt.Label About;
     private java.awt.Label About1;
     private javax.swing.JEditorPane editorPaneAbout;
@@ -22,7 +21,7 @@ public class CreditsFrame extends javax.swing.JFrame
     private java.awt.ScrollPane scrollPane1;
     private java.awt.ScrollPane scrollPane2;
     private java.awt.ScrollPane scrollPane4;
-    // End of variables declaration
+
 
     public CreditsFrame ()
         {
@@ -31,6 +30,7 @@ public class CreditsFrame extends javax.swing.JFrame
 
     private void initComponents ()
         {
+
 
         jPanel4                = new javax.swing.JPanel();
         jPanel1                = new javax.swing.JPanel();

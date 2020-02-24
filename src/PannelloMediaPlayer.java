@@ -72,8 +72,8 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
                     //TODO: aggiungere modo per controllare che lo stream sia stato attivato dall'altra parte, se no
                     // si chiude tutto!!
 
-                    PannelloRichiestaDati pnlRch;
-                    JOptionPane.showConfirmDialog(null , pnlRch = new PannelloRichiestaDati() , "Inserimento dati" ,
+                    PannelloRichiestaDatiPerStream pnlRch;
+                    JOptionPane.showConfirmDialog(null , pnlRch = new PannelloRichiestaDatiPerStream() , "Inserimento dati" ,
                             JOptionPane.OK_CANCEL_OPTION , JOptionPane.PLAIN_MESSAGE);
                     String[] dati = pnlRch.getDatiInseriti();
                     epc.mediaPlayer().media().play("rtsp://" + dati[0] + ":" + dati[1] + "/");

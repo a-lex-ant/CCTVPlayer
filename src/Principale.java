@@ -19,6 +19,8 @@ public class Principale
     public static void main ( String[] args )
         {
 
+        setLookAndFeel();
+
         initializeLocale();
 
         JFrame frame = new JFrame(bundle_lingua.getString("LETTORE_VIDEO"));
@@ -55,6 +57,17 @@ public class Principale
         frame.setVisible(true);
 
 
+        }
+
+    private static void setLookAndFeel ()
+        {
+        try
+            {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+            } catch ( ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e )
+            {
+            e.printStackTrace();
+            }
         }
 
     protected static void initializeLocale ()

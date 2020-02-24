@@ -1,4 +1,4 @@
-public class PannelloRichiestaDati extends javax.swing.JPanel
+public class PannelloRichiestaDatiPerStream extends javax.swing.JPanel
     {
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel labelIP;
@@ -8,7 +8,7 @@ public class PannelloRichiestaDati extends javax.swing.JPanel
     private javax.swing.JTextField textfPorta;
 
 
-    public PannelloRichiestaDati ()
+    public PannelloRichiestaDatiPerStream ()
         {
         initComponents();
         this.setVisible(true);

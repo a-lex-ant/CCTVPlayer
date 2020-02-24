@@ -2,6 +2,9 @@ import com.sun.jna.platform.unix.X11;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Locale;
 
 public class LeftMenuBar extends JPanel
     {
@@ -32,12 +35,20 @@ public class LeftMenuBar extends JPanel
         this.add(avviaStreamMenu);
         */
 
-        JButton ConnessioneMenu = new JButton(Principale.bundle_lingua.getString("CONNESSIONE"));
-        ConnessioneMenu.setBackground(new Color(255 , 255 , 255));
-        ConnessioneMenu.setOpaque(true);
-        ConnessioneMenu.setIcon(new ImageIcon("/home/lex/Documenti/laboratorio PAJC/mediaPlayerDaFile/resources/database" +
+        JButton connessioneMenu = new JButton(Principale.bundle_lingua.getString("CONNESSIONE"));
+        connessioneMenu.setBackground(new Color(255 , 255 , 255));
+        connessioneMenu.setOpaque(true);
+        connessioneMenu.setIcon(new ImageIcon("/home/lex/Documenti/laboratorio PAJC/mediaPlayerDaFile/resources/database" +
                 ".png"));
-        this.add(ConnessioneMenu);
+        connessioneMenu.addActionListener(new ActionListener()
+            {
+            @Override
+            public void actionPerformed ( ActionEvent actionEvent )
+                {
+                java.awt.EventQueue.invokeLater(() -> new ClientTCPGUI(new Locale("it", "IT")).setVisible(true));
+                }
+            });
+        this.add(connessioneMenu);
 
 
         screenshotMenu.addActionListener(arg0 -> Principale.getP().SnapshotAndSave());
@@ -50,14 +61,10 @@ public class LeftMenuBar extends JPanel
         });
         */
 
-        ConnessioneMenu.addActionListener(arg0 -> JOptionPane.showMessageDialog(null ,
+        statusMenu.addActionListener(arg0 -> JOptionPane.showMessageDialog(null ,
                 Principale.bundle_lingua.getString("IP_DEL_CLIENT_CORRENTE") + NetworkInfo.fornisciIndirizziLocali()
                 , "Info sul client" , JOptionPane.PLAIN_MESSAGE));
 
-        statusMenu.addActionListener(arg0 ->
-        {
-        //open status frame
-        });
 
 
         this.setVisible(true);
