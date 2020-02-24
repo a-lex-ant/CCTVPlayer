@@ -55,7 +55,7 @@ public class Principale
 
 
         frame.setVisible(true);
-
+        frame.pack();
 
         }
 

@@ -16,18 +16,15 @@ import java.util.concurrent.Executors;
 public class PannelloMediaPlayer extends JPanel implements ActionListener
     {
 
-    private static String testoBottoneAvviaStream = "Avvia Stream";
-    private static String testoBottoneSalvaSnap = "Salva Snapshot";
     private EmbeddedMediaPlayerComponent epc;
     private JButton apriFileBottone;
-    private JButton salvaSnapshotBottone;
 
     public PannelloMediaPlayer ()
         {
         this.setLayout(new BorderLayout());
         this.setPreferredSize(new Dimension(500 , 500));
         this.setMinimumSize(new Dimension(0 , 0));
-        this.apriFileBottone = new JButton(testoBottoneAvviaStream);
+        this.apriFileBottone = new JButton(Principale.bundle_lingua.getString("AVVIO_STREAM"));
         apriFileBottone.setBackground(new Color(255 , 255 , 255));
         apriFileBottone.setOpaque(true);
         apriFileBottone.addActionListener(this);
@@ -42,7 +39,7 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
             @Override
             public void finished ( MediaPlayer mediaPlayer )
                 {
-                JOptionPane.showMessageDialog(null , "Output Terminato");
+                JOptionPane.showMessageDialog(null , Principale.bundle_lingua.getString("OUTPUT_TERMINATO"));
                 }
 
             @Override
@@ -59,7 +56,7 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
     @Override
     public void actionPerformed ( ActionEvent actionEvent )
         {
-        if ( actionEvent.getActionCommand().equals(testoBottoneAvviaStream) )
+        if ( actionEvent.getActionCommand().equals(Principale.bundle_lingua.getString("AVVIA_STREAM")) )
             {
             ExecutorService executorServicePlayback = Executors.newFixedThreadPool(1);
             executorServicePlayback.submit(new Runnable()
@@ -74,7 +71,7 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 
                     PannelloRichiestaDatiPerStream pnlRch;
 
-                        int choice = JOptionPane.showConfirmDialog(null , pnlRch = new PannelloRichiestaDatiPerStream() , "Inserimento dati" , JOptionPane.OK_CANCEL_OPTION , JOptionPane.PLAIN_MESSAGE);
+                        int choice = JOptionPane.showConfirmDialog(null , pnlRch = new PannelloRichiestaDatiPerStream() , Principale.bundle_lingua.getString("INSERTING_DATA") , JOptionPane.OK_CANCEL_OPTION , JOptionPane.PLAIN_MESSAGE);
                         if ( choice == 0)
                         {
                         String[] dati = pnlRch.getDatiInseriti();

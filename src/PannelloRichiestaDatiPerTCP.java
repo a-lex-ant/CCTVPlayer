@@ -26,14 +26,14 @@ public class PannelloRichiestaDatiPerTCP extends javax.swing.JPanel
 
         setLayout(new java.awt.GridBagLayout());
 
-        titolo.setText("Creazione di una nuova connessione TCP con il server di trasmissione");
+        titolo.setText(Principale.bundle_lingua.getString("CREAZIONE_TCP"));
         gridBagConstraints        = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx  = 1;
         gridBagConstraints.gridy  = 0;
         gridBagConstraints.insets = new java.awt.Insets(9 , 14 , 9 , 14);
         add(titolo , gridBagConstraints);
 
-        indirizzoLabel.setText("Indirizzo IP del server:");
+        indirizzoLabel.setText(Principale.bundle_lingua.getString("INDIRIZZO_IP_SERVER"));
         gridBagConstraints        = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx  = 0;
         gridBagConstraints.gridy  = 2;
@@ -41,7 +41,7 @@ public class PannelloRichiestaDatiPerTCP extends javax.swing.JPanel
         gridBagConstraints.insets = new java.awt.Insets(7 , 18 , 7 , 19);
         add(indirizzoLabel , gridBagConstraints);
 
-        portaLabel.setText("@ Porta:");
+        portaLabel.setText(Principale.bundle_lingua.getString("PORTA"));
         gridBagConstraints        = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx  = 0;
         gridBagConstraints.gridy  = 3;

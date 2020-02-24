@@ -18,7 +18,7 @@ public class ClientTCP implements ActionListener
 
 
 
-    protected static String inArrivoDalServer = "...In attesa di risposta dal server...";
+    protected static String inArrivoDalServer = Principale.bundle_lingua.getString("INCOMING");
 
     private static String serverString;
     private static int portaInt;
@@ -30,6 +30,7 @@ public class ClientTCP implements ActionListener
 
     public ClientTCP ( String indirizzo , int port )
         {
+
         serverString = indirizzo;
         portaInt     = port;
         if ( avviaClientInvio() )
@@ -74,7 +75,7 @@ public class ClientTCP implements ActionListener
 
     private void cicloRicezione ()
         {
-        System.out.println("inizio ciclo ricezione");
+        System.out.println(Principale.bundle_lingua.getString("INIZIO_CICLO"));
         String inArrivo = "";
         while ( in != null )
             {
@@ -84,7 +85,7 @@ public class ClientTCP implements ActionListener
                 inArrivo = in.readLine();
                 } catch ( IOException e )
                 {
-                System.out.println("Ciclo ricezione interrotto.");
+                System.out.println(Principale.bundle_lingua.getString("CICLO_INTERROTTO"));
                 System.out.println(e.getMessage());
                 break;
                 }
@@ -106,7 +107,7 @@ public class ClientTCP implements ActionListener
     public void actionPerformed ( ActionEvent actionEvent )
         {
         String textBtnClicked = ( (JButton) actionEvent.getSource() ).getText();
-        if ( textBtnClicked.equals(ClientTCPGUI.rboundle.getString("ETICHETTA_CHIUDI_CONNESSIONE")) )
+        if ( textBtnClicked.equals(Principale.bundle_lingua.getString("ETICHETTA_CHIUDI_CONNESSIONE")) )
             {
             inviaMessaggioAlServer(MESSAGGIO_CHIUSURA_CONNESSIONE);
             try
@@ -114,12 +115,11 @@ public class ClientTCP implements ActionListener
                 Thread.sleep(1000);
                 } catch ( InterruptedException e )
                 {
-                System.out.println("4");
                 e.printStackTrace();
                 }
             close();
             }
-        if ( textBtnClicked.equals(ClientTCPGUI.rboundle.getString("ETICHETTA_ARRESTA_SISTEMA_REMOTO" )));
+        if ( textBtnClicked.equals(Principale.bundle_lingua.getString("ETICHETTA_ARRESTA_SISTEMA_REMOTO" )));
         {
         inviaMessaggioAlServer(MESSAGGIO_ARRESTA_SISTEMA_REMOTO);
         try
@@ -155,7 +155,6 @@ public class ClientTCP implements ActionListener
                 in.close();
             } catch ( IOException e )
             {
-            System.out.println("5");
             e.printStackTrace();
             } finally
             {
@@ -173,7 +172,7 @@ public class ClientTCP implements ActionListener
             return true;
             } catch ( IOException ex )
             {
-            JOptionPane.showMessageDialog(null , "Server non disponibile. Controllare se il server è acceso." ,
+            JOptionPane.showMessageDialog(null , Principale.bundle_lingua.getString("SERVER_NON_DISPONIBILE") ,
                     "Errore di connessione" , JOptionPane.ERROR_MESSAGE);
             return false;
             }
