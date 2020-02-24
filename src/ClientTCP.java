@@ -140,7 +140,7 @@ public class ClientTCP implements ActionListener
         out.flush();
         }
 
-    private static void close ()
+    protected void close ()
         {
         try
             {

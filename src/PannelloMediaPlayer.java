@@ -24,7 +24,7 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
         this.setLayout(new BorderLayout());
         this.setPreferredSize(new Dimension(500 , 500));
         this.setMinimumSize(new Dimension(0 , 0));
-        this.apriFileBottone = new JButton(Principale.bundle_lingua.getString("AVVIO_STREAM"));
+        this.apriFileBottone = new JButton(Principale.bundle_lingua.getString("AVVIA_STREAM"));
         apriFileBottone.setBackground(new Color(255 , 255 , 255));
         apriFileBottone.setOpaque(true);
         apriFileBottone.addActionListener(this);
@@ -66,8 +66,6 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
                     {
                     //ATTENZIONE DOCUMENTAZIONE NON AGGIORNATA: epc.mediaPlayer() sostituisce epc.getMediaPlayer()
 
-                    //TODO: aggiungere modo per controllare che lo stream sia stato attivato dall'altra parte, se no
-                    // si chiude tutto!!
 
                     PannelloRichiestaDatiPerStream pnlRch;
 
@@ -126,6 +124,11 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
             return 0.0;
         return epc.mediaPlayer().media().info().statistics().inputBitrate();
         }
+
+protected void releaseMediaPlayer()
+    {
+    epc.mediaPlayer().release();
+    }
 
 
     //FINE CLASSE PANNELLO MEDIA PLAYER

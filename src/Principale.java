@@ -10,6 +10,7 @@ public class Principale
     {
 
     private static PannelloMediaPlayer p;
+    private static LeftMenuBar menubarleft;
 
     protected static String languageChosen;
     protected static String countryChosen;
@@ -40,7 +41,7 @@ public class Principale
         MenuBarra barraMenu = new MenuBarra();
 
         p = new PannelloMediaPlayer();
-        LeftMenuBar menubarleft = new LeftMenuBar();
+        menubarleft = new LeftMenuBar();
 
         JSplitPane splitPane = new JSplitPane();
         splitPane.setOneTouchExpandable(true);
@@ -81,6 +82,11 @@ public class Principale
     public static PannelloMediaPlayer getP ()
         {
         return p;
+        }
+
+    public static LeftMenuBar getMenuBarLeft ()
+        {
+        return menubarleft;
         }
 
     }

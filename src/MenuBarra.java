@@ -64,7 +64,9 @@ public class MenuBarra extends JMenuBar
             public void actionPerformed ( ActionEvent actionEvent )
                 {
 
-                //TODO: aggiungere check prima di chiudere di brutto
+
+                Principale.getP().releaseMediaPlayer();
+                Principale.getMenuBarLeft().closeCtg();
                 System.exit(0);
 
 

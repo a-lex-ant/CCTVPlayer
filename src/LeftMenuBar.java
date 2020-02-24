@@ -8,6 +8,7 @@ import java.util.Locale;
 
 public class LeftMenuBar extends JPanel
     {
+    private ClientTCPGUI ctg;
 
     public LeftMenuBar ()
         {
@@ -17,13 +18,13 @@ public class LeftMenuBar extends JPanel
         JButton statusMenu = new JButton(Principale.bundle_lingua.getString("STATUS"));
         statusMenu.setBackground(new Color(255 , 255 , 255));
         statusMenu.setOpaque(true);
-        statusMenu.setIcon(new ImageIcon("/home/lex/Documenti/laboratorio PAJC/mediaPlayerDaFile/resources/book.png"));
+        statusMenu.setIcon(new ImageIcon("resources/book.png"));
         this.add(statusMenu);
 
         JButton screenshotMenu = new JButton(Principale.bundle_lingua.getString("SCREENSHOT"));
         screenshotMenu.setBackground(new Color(255 , 255 , 255));
         screenshotMenu.setOpaque(true);
-        screenshotMenu.setIcon(new ImageIcon("/home/lex/Documenti/laboratorio PAJC/mediaPlayerDaFile/resources/camera" +
+        screenshotMenu.setIcon(new ImageIcon("resources/camera" +
                 ".png"));
         this.add(screenshotMenu);
 
@@ -45,7 +46,9 @@ public class LeftMenuBar extends JPanel
             @Override
             public void actionPerformed ( ActionEvent actionEvent )
                 {
-                java.awt.EventQueue.invokeLater(() -> new ClientTCPGUI(new Locale("it", "IT")).setVisible(true));
+
+                java.awt.EventQueue.invokeLater(() -> {ctg = new ClientTCPGUI(new Locale("it", "IT"));
+                ctg.setVisible(true);});
                 }
             });
         this.add(connessioneMenu);
@@ -69,5 +72,16 @@ public class LeftMenuBar extends JPanel
 
         this.setVisible(true);
 
+        }
+
+    public void closeCtg ()
+        {
+        try
+            {
+            ctg.closeClient();
+            } catch ( Exception e )
+            {
+            ;
+            }
         }
     }

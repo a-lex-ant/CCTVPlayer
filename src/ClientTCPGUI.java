@@ -9,7 +9,6 @@ public class ClientTCPGUI extends javax.swing.JFrame
 
     //VERSIONE DI SVILUPPO con refactoring per internazionalizzazione
 
-
     private static javax.swing.JButton chiudiConnessioneBtn;
     private static javax.swing.JButton avviaBtn;
 
@@ -169,5 +168,10 @@ public class ClientTCPGUI extends javax.swing.JFrame
         statodata.setText(ClientTCP.inArrivoDalServer);
         }
 
+
+    protected void closeClient()
+        {
+        client.close();
+        }
 
     }
