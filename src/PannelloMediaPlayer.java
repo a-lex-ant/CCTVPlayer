@@ -73,12 +73,15 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
                     // si chiude tutto!!
 
                     PannelloRichiestaDatiPerStream pnlRch;
-                    JOptionPane.showConfirmDialog(null , pnlRch = new PannelloRichiestaDatiPerStream() , "Inserimento dati" ,
-                            JOptionPane.OK_CANCEL_OPTION , JOptionPane.PLAIN_MESSAGE);
-                    String[] dati = pnlRch.getDatiInseriti();
-                    if(NetworkInfo.checkIfServerAvailable(dati))
+
+                        int choice = JOptionPane.showConfirmDialog(null , pnlRch = new PannelloRichiestaDatiPerStream() , "Inserimento dati" , JOptionPane.OK_CANCEL_OPTION , JOptionPane.PLAIN_MESSAGE);
+                        if ( choice == 0)
                         {
-                        epc.mediaPlayer().media().play("rtsp://" + dati[0] + ":" + dati[1] + "/");
+                        String[] dati = pnlRch.getDatiInseriti();
+                        if ( NetworkInfo.checkIfServerAvailable(dati) )
+                            {
+                            epc.mediaPlayer().media().play("rtsp://" + dati[0] + ":" + dati[1] + "/");
+                            }
                         }
                     }
                 });

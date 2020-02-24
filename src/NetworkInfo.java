@@ -10,6 +10,7 @@
  * */
 
 
+import javax.swing.*;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.Socket;
@@ -59,6 +60,10 @@ public final class NetworkInfo
             }
         catch (Exception e)
             {
+            JOptionPane.showMessageDialog(null,
+                    e.getMessage(),
+                    e.getLocalizedMessage(),
+                    JOptionPane.ERROR_MESSAGE);
             System.out.println(e.getMessage());
             if(e.getMessage().contains("Host unreachable")) return false;
             }
