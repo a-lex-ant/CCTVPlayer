@@ -12,6 +12,7 @@
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.net.Socket;
 import java.net.SocketException;
 import java.util.Enumeration;
 
@@ -49,4 +50,20 @@ public final class NetworkInfo
             }
         return "---";
         }
+
+    public static boolean checkIfServerAvailable(String[] datiDaControllare)
+        {
+        try(Socket clientSocketDiProva = new Socket(datiDaControllare[0],Integer.parseInt(datiDaControllare[1]));)
+            {
+            ;
+            }
+        catch (Exception e)
+            {
+            System.out.println(e.getMessage());
+            if(e.getMessage().contains("Host unreachable")) return false;
+            }
+        return true;
+        }
+
+
     }
