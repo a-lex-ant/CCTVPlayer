@@ -66,7 +66,7 @@ public class MenuBarra extends JMenuBar
 
 
                 Principale.getP().releaseMediaPlayer();
-                Principale.getMenuBarLeft().closeCtg();
+                //Principale.getMenuBarLeft().closeCtg();
                 System.exit(0);
 
 

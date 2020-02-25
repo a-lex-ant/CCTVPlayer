@@ -8,7 +8,7 @@ import java.util.Locale;
 
 public class LeftMenuBar extends JPanel
     {
-    private ClientTCPGUI ctg;
+    //private ClientTCPGUI ctg;
 
     public LeftMenuBar ()
         {
@@ -36,7 +36,7 @@ public class LeftMenuBar extends JPanel
         this.add(avviaStreamMenu);
         */
 
-        JButton connessioneMenu = new JButton(Principale.bundle_lingua.getString("CONNESSIONE"));
+        /*JButton connessioneMenu = new JButton(Principale.bundle_lingua.getString("CONNESSIONE"));
         connessioneMenu.setBackground(new Color(255 , 255 , 255));
         connessioneMenu.setOpaque(true);
         connessioneMenu.setIcon(new ImageIcon("/home/lex/Documenti/laboratorio PAJC/mediaPlayerDaFile/resources/database" +
@@ -52,6 +52,7 @@ public class LeftMenuBar extends JPanel
                 }
             });
         this.add(connessioneMenu);
+        */
 
 
         screenshotMenu.addActionListener(arg0 -> Principale.getP().SnapshotAndSave());
@@ -74,7 +75,7 @@ public class LeftMenuBar extends JPanel
 
         }
 
-    public void closeCtg ()
+   /* public void closeCtg ()
         {
         try
             {
@@ -84,4 +85,6 @@ public class LeftMenuBar extends JPanel
             ;
             }
         }
+        */
+
     }
