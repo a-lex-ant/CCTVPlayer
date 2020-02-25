@@ -10,6 +10,7 @@ public class Principale
     {
 
     private static PannelloMediaPlayer p;
+    private static LeftMenuBar menubarleft;
 
     protected static String languageChosen;
     protected static String countryChosen;
@@ -18,6 +19,8 @@ public class Principale
 
     public static void main ( String[] args )
         {
+
+        setLookAndFeel();
 
         initializeLocale();
 
@@ -38,7 +41,7 @@ public class Principale
         MenuBarra barraMenu = new MenuBarra();
 
         p = new PannelloMediaPlayer();
-        LeftMenuBar menubarleft = new LeftMenuBar();
+        menubarleft = new LeftMenuBar();
 
         JSplitPane splitPane = new JSplitPane();
         splitPane.setOneTouchExpandable(true);
@@ -53,8 +56,19 @@ public class Principale
 
 
         frame.setVisible(true);
+        frame.pack();
 
+        }
 
+    private static void setLookAndFeel ()
+        {
+        try
+            {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+            } catch ( ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e )
+            {
+            e.printStackTrace();
+            }
         }
 
     protected static void initializeLocale ()
@@ -68,6 +82,11 @@ public class Principale
     public static PannelloMediaPlayer getP ()
         {
         return p;
+        }
+
+    public static LeftMenuBar getMenuBarLeft ()
+        {
+        return menubarleft;
         }
 
     }

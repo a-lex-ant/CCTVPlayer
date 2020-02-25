@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Locale;
@@ -10,6 +11,7 @@ public class MenuBarra extends JMenuBar
     public MenuBarra ()
         {
 
+        this.setBackground(new Color(255 , 255 , 255));
 
         JMenu menuFile = new JMenu(Principale.bundle_lingua.getString("FILE"));
         JMenu menuHelp = new JMenu(Principale.bundle_lingua.getString("HELP"));
@@ -62,7 +64,9 @@ public class MenuBarra extends JMenuBar
             public void actionPerformed ( ActionEvent actionEvent )
                 {
 
-                //TO DO: aggiungere check prima di chiudere di brutto
+
+                Principale.getP().releaseMediaPlayer();
+                //Principale.getMenuBarLeft().closeCtg();
                 System.exit(0);
 
 

@@ -1,4 +1,6 @@
-public class PannelloRichiestaDati extends javax.swing.JPanel
+import java.awt.*;
+
+public class PannelloRichiestaDatiPerStream extends javax.swing.JPanel
     {
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel labelIP;
@@ -8,7 +10,7 @@ public class PannelloRichiestaDati extends javax.swing.JPanel
     private javax.swing.JTextField textfPorta;
 
 
-    public PannelloRichiestaDati ()
+    public PannelloRichiestaDatiPerStream ()
         {
         initComponents();
         this.setVisible(true);
@@ -25,20 +27,22 @@ public class PannelloRichiestaDati extends javax.swing.JPanel
         labelPorta  = new javax.swing.JLabel();
         textfPorta  = new javax.swing.JTextField();
 
-        setLayout(new java.awt.GridLayout(3 , 2));
+        GridLayout layout = new java.awt.GridLayout(3 , 2);
+        layout.setVgap(3);
+        setLayout(layout);
 
         titoloLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titoloLabel.setText("Inserire indirizzo e porta del server trasmissivo:");
+        titoloLabel.setText(Principale.bundle_lingua.getString("INSERIRE_SERVER_TITOLO"));
         add(titoloLabel);
         add(filler1);
 
-        labelIP.setText("Indirizzo IP");
+        labelIP.setText(Principale.bundle_lingua.getString("SERVER_IP_ADDRESS"));
         add(labelIP);
 
         textfIP.setText("192.168.1.4");
         add(textfIP);
 
-        labelPorta.setText("Porta:");
+        labelPorta.setText(Principale.bundle_lingua.getString("PORTA"));
         add(labelPorta);
 
         textfPorta.setText("8554");

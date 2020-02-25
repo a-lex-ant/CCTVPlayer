@@ -16,18 +16,15 @@ import java.util.concurrent.Executors;
 public class PannelloMediaPlayer extends JPanel implements ActionListener
     {
 
-    private static String testoBottoneAvviaStream = "Avvia Stream";
-    private static String testoBottoneSalvaSnap = "Salva Snapshot";
     private EmbeddedMediaPlayerComponent epc;
     private JButton apriFileBottone;
-    private JButton salvaSnapshotBottone;
 
     public PannelloMediaPlayer ()
         {
         this.setLayout(new BorderLayout());
         this.setPreferredSize(new Dimension(500 , 500));
         this.setMinimumSize(new Dimension(0 , 0));
-        this.apriFileBottone = new JButton(testoBottoneAvviaStream);
+        this.apriFileBottone = new JButton(Principale.bundle_lingua.getString("AVVIA_STREAM"));
         apriFileBottone.setBackground(new Color(255 , 255 , 255));
         apriFileBottone.setOpaque(true);
         apriFileBottone.addActionListener(this);
@@ -42,7 +39,7 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
             @Override
             public void finished ( MediaPlayer mediaPlayer )
                 {
-                JOptionPane.showMessageDialog(null , "Output Terminato");
+                JOptionPane.showMessageDialog(null , Principale.bundle_lingua.getString("OUTPUT_TERMINATO"));
                 }
 
             @Override
@@ -59,7 +56,7 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
     @Override
     public void actionPerformed ( ActionEvent actionEvent )
         {
-        if ( actionEvent.getActionCommand().equals(testoBottoneAvviaStream) )
+        if ( actionEvent.getActionCommand().equals(Principale.bundle_lingua.getString("AVVIA_STREAM")) )
             {
             ExecutorService executorServicePlayback = Executors.newFixedThreadPool(1);
             executorServicePlayback.submit(new Runnable()
@@ -69,15 +66,18 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
                     {
                     //ATTENZIONE DOCUMENTAZIONE NON AGGIORNATA: epc.mediaPlayer() sostituisce epc.getMediaPlayer()
 
-                    //TODO: aggiungere modo per controllare che lo stream sia stato attivato dall'altra parte, se no
-                    // si chiude tutto!!
 
-                    PannelloRichiestaDati pnlRch;
-                    JOptionPane.showConfirmDialog(null , pnlRch = new PannelloRichiestaDati() , "Inserimento dati" ,
-                            JOptionPane.OK_CANCEL_OPTION , JOptionPane.PLAIN_MESSAGE);
-                    String[] dati = pnlRch.getDatiInseriti();
-                    epc.mediaPlayer().media().play("rtsp://" + dati[0] + ":" + dati[1] + "/");
+                    PannelloRichiestaDatiPerStream pnlRch;
 
+                        int choice = JOptionPane.showConfirmDialog(null , pnlRch = new PannelloRichiestaDatiPerStream() , Principale.bundle_lingua.getString("INSERTING_DATA") , JOptionPane.OK_CANCEL_OPTION , JOptionPane.PLAIN_MESSAGE);
+                        if ( choice == 0)
+                        {
+                        String[] dati = pnlRch.getDatiInseriti();
+                        if ( NetworkInfo.checkIfServerAvailable(dati) )
+                            {
+                            epc.mediaPlayer().media().play("rtsp://" + dati[0] + ":" + dati[1] + "/");
+                            }
+                        }
                     }
                 });
 
@@ -124,6 +124,11 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
             return 0.0;
         return epc.mediaPlayer().media().info().statistics().inputBitrate();
         }
+
+protected void releaseMediaPlayer()
+    {
+    epc.mediaPlayer().release();
+    }
 
 
     //FINE CLASSE PANNELLO MEDIA PLAYER
