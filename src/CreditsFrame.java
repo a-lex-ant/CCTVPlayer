@@ -51,17 +51,15 @@ public class CreditsFrame extends javax.swing.JFrame
         jPanel5                = new javax.swing.JPanel();
 
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
 
-     jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(new java.awt.GridLayout(3, 1));
 
-       jPanel1.setBackground(new java.awt.Color(246, 246, 246));
+
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
       About.setAlignment(java.awt.Label.CENTER);
-      About.setBackground(new java.awt.Color(246, 246, 246));
+
         About.setText("About");
         jPanel1.add(About, java.awt.BorderLayout.NORTH);
 
@@ -75,7 +73,7 @@ public class CreditsFrame extends javax.swing.JFrame
 
         jPanel4.add(jPanel1);
 
-       jPanel3.setBackground(new java.awt.Color(246, 246, 246));
+
         jPanel3.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         jPanel3.setLayout(new java.awt.BorderLayout());
 
@@ -83,7 +81,7 @@ public class CreditsFrame extends javax.swing.JFrame
         About1.setText("External Library Credits");
         jPanel3.add(About1, java.awt.BorderLayout.NORTH);
 
-       scrollPane4.setBackground(new java.awt.Color(246, 246, 246));
+
 
         editorPaneExtLibraries.setContentType("text/html"); // NOI18N
         editorPaneExtLibraries.setText("<html>\n  <head>\n<style>\nbody {\n      background-color: #ffffff;\n      }\n</style>\n  </head>\n  <body>\n <p style=\"text-align: center;\">This program wouldn't have been possible without this awesome libraries:</p>\n<p style=\"text-align: center;\"><strong>Vlcj<br /></strong><em><span class=\"text-gray-dark mr-2\">Java framework for the vlc media player.</span></em></p>\n<p style=\"text-align: center;\"><a href=\"http://www.capricasoftware.co.uk/projects/vlcj\"><span class=\"text-gray-dark mr-2\">Official page on the Caprica Software website</span></a></p>\n<p style=\"text-align: center;\"><a href=\"https://github.com/caprica/vlcj\"><span class=\"text-gray-dark mr-2\">Official GitHub Repository</span></a></p>\n<p style=\"text-align: center;\"><strong><span class=\"text-gray-dark mr-2\">JFreeChart<br /></span></strong><em><span class=\"text-gray-dark mr-2\">A 2D chart library for Java application.</span></em></p>\n<p style=\"text-align: center;\"><a href=\"A%202D chart library for Java applications \"><span class=\"text-gray-dark mr-2\">Official web page</span></a></p>\n<p style=\"text-align: center;\"><a href=\"https://github.com/jfree/jfreechart\"><span class=\"text-gray-dark mr-2\">Official GitHub Repository</span></a></p>\n<p style=\"text-align: center;\">...And the <a href=\"https://stackoverflow.com/\">StackOverflow</a>'s community :)</p>\n  </body>\n</html>\n");
@@ -95,7 +93,6 @@ public class CreditsFrame extends javax.swing.JFrame
 
         jPanel4.add(jPanel3);
 
-    jPanel2.setBackground(new java.awt.Color(246, 246, 246));
         jPanel2.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
@@ -103,7 +100,7 @@ public class CreditsFrame extends javax.swing.JFrame
         label2.setText("Icon Credits");
         jPanel2.add(label2, java.awt.BorderLayout.NORTH);
 
-       scrollPane2.setBackground(new java.awt.Color(246, 246, 246));
+
 
         editorPaneIconsCredit.setEditable(false);
         editorPaneIconsCredit.setContentType("text/html"); // NOI18N

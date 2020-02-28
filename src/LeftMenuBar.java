@@ -16,13 +16,13 @@ public class LeftMenuBar extends JPanel
         this.setLayout(grid);
 
         JButton statusMenu = new JButton(Principale.bundle_lingua.getString("STATUS"));
-        statusMenu.setBackground(new Color(255 , 255 , 255));
+//        statusMenu.setBackground(new Color(255 , 255 , 255));
         statusMenu.setOpaque(true);
         statusMenu.setIcon(new ImageIcon("resources/book.png"));
         this.add(statusMenu);
 
         JButton screenshotMenu = new JButton(Principale.bundle_lingua.getString("SCREENSHOT"));
-        screenshotMenu.setBackground(new Color(255 , 255 , 255));
+ //       screenshotMenu.setBackground(new Color(255 , 255 , 255));
         screenshotMenu.setOpaque(true);
         screenshotMenu.setIcon(new ImageIcon("resources/camera" +
                 ".png"));
@@ -37,7 +37,7 @@ public class LeftMenuBar extends JPanel
         */
 
         JButton connessioneMenu = new JButton(Principale.bundle_lingua.getString("CONNESSIONE"));
-        connessioneMenu.setBackground(new Color(255 , 255 , 255));
+ //       connessioneMenu.setBackground(new Color(255 , 255 , 255));
         connessioneMenu.setOpaque(true);
         connessioneMenu.setIcon(new ImageIcon("/home/lex/Documenti/laboratorio PAJC/mediaPlayerDaFile/resources/database" +
                 ".png"));
@@ -73,16 +73,5 @@ public class LeftMenuBar extends JPanel
 
         }
 
-   /* public void closeCtg ()
-        {
-        try
-            {
-            ctg.closeClient();
-            } catch ( Exception e )
-            {
-            ;
-            }
-        }
-        */
 
     }
