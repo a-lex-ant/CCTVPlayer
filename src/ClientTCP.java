@@ -19,7 +19,7 @@ public class ClientTCP implements ActionListener
     public static final String MESSAGGIO_ARRESTA_SISTEMA_REMOTO = "SPEGNI";
 
 
-    protected static String inArrivoDalServer = "...In attesa di risposta dal server...";
+    protected static String inArrivoDalServer = "...";
 
     private static String serverString;
     private static int portaInt;
@@ -62,8 +62,8 @@ public class ClientTCP implements ActionListener
                 }
             } catch ( ConnectException e )
             {
-            System.out.println("Server non raggiungibile");
-            JOptionPane.showMessageDialog(parentComponent, "Server non raggiungibile", "Server non raggiungibile", JOptionPane.ERROR_MESSAGE);
+            System.out.println(Principale.bundle_lingua.getString("SERVER_NON_RAGGIUNGIBILE"));
+            JOptionPane.showMessageDialog(parentComponent, Principale.bundle_lingua.getString("SERVER_NON_RAGGIUNGIBILE"), Principale.bundle_lingua.getString("SERVER_NON_RAGGIUNGIBILE"), JOptionPane.ERROR_MESSAGE);
             return false;
             } catch ( IOException e )
             {
@@ -77,7 +77,7 @@ public class ClientTCP implements ActionListener
 
     private void cicloRicezione ()
         {
-        System.out.println("inizio ciclo ricezione");
+        System.out.println(Principale.bundle_lingua.getString("INIZIO_RICEZIONE"));
         String inArrivo = "";
         while ( in != null )
             {
@@ -87,7 +87,7 @@ public class ClientTCP implements ActionListener
                 inArrivo = in.readLine();
                 } catch ( IOException e )
                 {
-                System.out.println("Ciclo ricezione interrotto.");
+                System.out.println(Principale.bundle_lingua.getString("FINE_RICEZIONE"));
                 System.out.println(e.getMessage());
                 break;
                 }
@@ -97,7 +97,7 @@ public class ClientTCP implements ActionListener
                 if(!(b.length >= 1000))
                     {
                     inArrivoDalServer = inArrivo;
-                    System.out.println("In arrivo: " + inArrivoDalServer);
+                    System.out.println(Principale.bundle_lingua.getString("INCOMING_FROM_SERVER")+ " " + inArrivoDalServer);
                     FrameConnessione.refreshStatusLabel();
                     }
                 }
