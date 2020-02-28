@@ -1,3 +1,7 @@
+import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.FlatIntelliJLaf;
+import com.formdev.flatlaf.FlatLightLaf;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Locale;
@@ -64,9 +68,16 @@ public class Principale
         {
         try
             {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-            } catch ( ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e )
+            UIManager.setLookAndFeel(new FlatIntelliJLaf());
+            } catch ( Exception e )
             {
+            try
+                {
+                UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+                } catch ( ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex )
+                {
+                ex.printStackTrace();
+                }
             e.printStackTrace();
             }
         }

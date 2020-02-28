@@ -49,8 +49,7 @@ public class MenuBarra extends JMenuBar
         voceLocale.add(voceInglese);
         menuFile.add(voceLocale);
         menuHelp.add(voceAbout);
-
-
+        
         voceAbout.addActionListener(( e ) ->
         {
         new CreditsFrame().setVisible(true);

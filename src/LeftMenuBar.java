@@ -36,7 +36,7 @@ public class LeftMenuBar extends JPanel
         this.add(avviaStreamMenu);
         */
 
-        /*JButton connessioneMenu = new JButton(Principale.bundle_lingua.getString("CONNESSIONE"));
+        JButton connessioneMenu = new JButton(Principale.bundle_lingua.getString("CONNESSIONE"));
         connessioneMenu.setBackground(new Color(255 , 255 , 255));
         connessioneMenu.setOpaque(true);
         connessioneMenu.setIcon(new ImageIcon("/home/lex/Documenti/laboratorio PAJC/mediaPlayerDaFile/resources/database" +
@@ -46,13 +46,11 @@ public class LeftMenuBar extends JPanel
             @Override
             public void actionPerformed ( ActionEvent actionEvent )
                 {
-
-                java.awt.EventQueue.invokeLater(() -> {ctg = new ClientTCPGUI(new Locale("it", "IT"));
-                ctg.setVisible(true);});
+                    new FrameConnessione().setVisible(true);
                 }
             });
         this.add(connessioneMenu);
-        */
+
 
 
         screenshotMenu.addActionListener(arg0 -> Principale.getP().SnapshotAndSave());
