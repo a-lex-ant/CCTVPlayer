@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Locale;
 
+
+//colore arancione: #E06234
+
 public class LeftMenuBar extends JPanel
     {
     //private ClientTCPGUI ctg;
@@ -18,7 +21,7 @@ public class LeftMenuBar extends JPanel
         JButton statusMenu = new JButton(Principale.bundle_lingua.getString("STATUS"));
 //        statusMenu.setBackground(new Color(255 , 255 , 255));
         statusMenu.setOpaque(true);
-        statusMenu.setIcon(new ImageIcon("resources/book.png"));
+        statusMenu.setIcon(new ImageIcon("resources/home.png"));
         this.add(statusMenu);
 
         JButton screenshotMenu = new JButton(Principale.bundle_lingua.getString("SCREENSHOT"));
@@ -39,8 +42,7 @@ public class LeftMenuBar extends JPanel
         JButton connessioneMenu = new JButton(Principale.bundle_lingua.getString("CONNESSIONE"));
  //       connessioneMenu.setBackground(new Color(255 , 255 , 255));
         connessioneMenu.setOpaque(true);
-        connessioneMenu.setIcon(new ImageIcon("/home/lex/Documenti/laboratorio PAJC/mediaPlayerDaFile/resources/database" +
-                ".png"));
+        connessioneMenu.setIcon(new ImageIcon("resources/database.png"));
         connessioneMenu.addActionListener(new ActionListener()
             {
             @Override

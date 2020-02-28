@@ -1,7 +1,4 @@
-import com.formdev.flatlaf.FlatDarculaLaf;
-import com.formdev.flatlaf.FlatDarkLaf;
-import com.formdev.flatlaf.FlatIntelliJLaf;
-import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -69,7 +66,10 @@ public class Principale
         {
         try
             {
-            UIManager.setLookAndFeel(new FlatIntelliJLaf());
+            //IntelliJTheme.install(Principale.class.getResourceAsStream("Material Lighter Contrast.theme.json"));
+            IntelliJTheme.install(Principale.class.getResourceAsStream("Atom One Dark Contrast.theme.json")); //magari aggiungere icone arancioni??
+            //IntelliJTheme.install(Principale.class.getResourceAsStream("Atom One Light.theme.json"));
+            //UIManager.setLookAndFeel(new FlatIntelliJLaf());
             } catch ( Exception e )
             {
             try
