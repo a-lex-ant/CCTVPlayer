@@ -25,8 +25,8 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
         this.setPreferredSize(new Dimension(500 , 500));
         this.setMinimumSize(new Dimension(0 , 0));
         this.apriFileBottone = new JButton(Principale.bundle_lingua.getString("AVVIA_STREAM"));
-        apriFileBottone.setBackground(new Color(255 , 255 , 255));
         apriFileBottone.setOpaque(true);
+        apriFileBottone.setIcon(new ImageIcon("resources/play.png"));
         apriFileBottone.addActionListener(this);
         this.epc = new EmbeddedMediaPlayerComponent();
         this.add(epc , BorderLayout.CENTER);

@@ -1,3 +1,5 @@
+import com.formdev.flatlaf.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Locale;
@@ -64,9 +66,19 @@ public class Principale
         {
         try
             {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-            } catch ( ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e )
+            //IntelliJTheme.install(Principale.class.getResourceAsStream("Material Lighter Contrast.theme.json"));
+            IntelliJTheme.install(Principale.class.getResourceAsStream("Atom One Dark Contrast.theme.json")); //magari aggiungere icone arancioni??
+            //IntelliJTheme.install(Principale.class.getResourceAsStream("Atom One Light.theme.json"));
+            //UIManager.setLookAndFeel(new FlatIntelliJLaf());
+            } catch ( Exception e )
             {
+            try
+                {
+                UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+                } catch ( ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex )
+                {
+                ex.printStackTrace();
+                }
             e.printStackTrace();
             }
         }

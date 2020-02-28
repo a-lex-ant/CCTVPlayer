@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Locale;
 
+
+//colore arancione: #E06234
+
 public class LeftMenuBar extends JPanel
     {
     //private ClientTCPGUI ctg;
@@ -16,13 +19,13 @@ public class LeftMenuBar extends JPanel
         this.setLayout(grid);
 
         JButton statusMenu = new JButton(Principale.bundle_lingua.getString("STATUS"));
-        statusMenu.setBackground(new Color(255 , 255 , 255));
+//        statusMenu.setBackground(new Color(255 , 255 , 255));
         statusMenu.setOpaque(true);
-        statusMenu.setIcon(new ImageIcon("resources/book.png"));
+        statusMenu.setIcon(new ImageIcon("resources/home.png"));
         this.add(statusMenu);
 
         JButton screenshotMenu = new JButton(Principale.bundle_lingua.getString("SCREENSHOT"));
-        screenshotMenu.setBackground(new Color(255 , 255 , 255));
+ //       screenshotMenu.setBackground(new Color(255 , 255 , 255));
         screenshotMenu.setOpaque(true);
         screenshotMenu.setIcon(new ImageIcon("resources/camera" +
                 ".png"));
@@ -36,23 +39,20 @@ public class LeftMenuBar extends JPanel
         this.add(avviaStreamMenu);
         */
 
-        /*JButton connessioneMenu = new JButton(Principale.bundle_lingua.getString("CONNESSIONE"));
-        connessioneMenu.setBackground(new Color(255 , 255 , 255));
+        JButton connessioneMenu = new JButton(Principale.bundle_lingua.getString("CONNESSIONE"));
+ //       connessioneMenu.setBackground(new Color(255 , 255 , 255));
         connessioneMenu.setOpaque(true);
-        connessioneMenu.setIcon(new ImageIcon("/home/lex/Documenti/laboratorio PAJC/mediaPlayerDaFile/resources/database" +
-                ".png"));
+        connessioneMenu.setIcon(new ImageIcon("resources/database.png"));
         connessioneMenu.addActionListener(new ActionListener()
             {
             @Override
             public void actionPerformed ( ActionEvent actionEvent )
                 {
-
-                java.awt.EventQueue.invokeLater(() -> {ctg = new ClientTCPGUI(new Locale("it", "IT"));
-                ctg.setVisible(true);});
+                    new FrameConnessione().setVisible(true);
                 }
             });
         this.add(connessioneMenu);
-        */
+
 
 
         screenshotMenu.addActionListener(arg0 -> Principale.getP().SnapshotAndSave());
@@ -75,16 +75,5 @@ public class LeftMenuBar extends JPanel
 
         }
 
-   /* public void closeCtg ()
-        {
-        try
-            {
-            ctg.closeClient();
-            } catch ( Exception e )
-            {
-            ;
-            }
-        }
-        */
 
     }

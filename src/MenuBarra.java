@@ -11,7 +11,7 @@ public class MenuBarra extends JMenuBar
     public MenuBarra ()
         {
 
-        this.setBackground(new Color(255 , 255 , 255));
+ //       this.setBackground(new Color(255 , 255 , 255));
 
         JMenu menuFile = new JMenu(Principale.bundle_lingua.getString("FILE"));
         JMenu menuHelp = new JMenu(Principale.bundle_lingua.getString("HELP"));
@@ -49,8 +49,7 @@ public class MenuBarra extends JMenuBar
         voceLocale.add(voceInglese);
         menuFile.add(voceLocale);
         menuHelp.add(voceAbout);
-
-
+        
         voceAbout.addActionListener(( e ) ->
         {
         new CreditsFrame().setVisible(true);
