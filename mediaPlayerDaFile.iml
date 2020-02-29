@@ -22,5 +22,6 @@
     </orderEntry>
     <orderEntry type="library" name="org.jfree:jfreechart:1.5.0" level="project" />
     <orderEntry type="library" name="com.formdev:flatlaf:0.27" level="project" />
+    <orderEntry type="library" name="uk.co.caprica:vlcj:4.3.0" level="project" />
   </component>
 </module>

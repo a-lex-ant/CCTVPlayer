@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +15,9 @@ public class MenuBarra extends JMenuBar
  //       this.setBackground(new Color(255 , 255 , 255));
 
         JMenu menuFile = new JMenu(Principale.bundle_lingua.getString("FILE"));
+        menuFile.setIcon(new ImageIcon("resources/file.png"));
         JMenu menuHelp = new JMenu(Principale.bundle_lingua.getString("HELP"));
+        menuHelp.setIcon(new ImageIcon("resources/help.png"));
         this.add(menuFile);
         this.add(menuHelp);
         JMenuItem voceAbout = new JMenuItem(Principale.bundle_lingua.getString("ABOUT"));
@@ -113,6 +116,26 @@ public class MenuBarra extends JMenuBar
 
                 }
             });
+
+
+        this.add( Box.createHorizontalGlue());
+
+
+        JButton maximize = new JButton();
+        JButton minimize = new JButton();
+        maximize.setIcon(new ImageIcon("resources/maximize.png"));
+        maximize.setBorderPainted(false);
+        maximize.addActionListener(actionEvent -> Principale.massimizzaFrame());
+        maximize.setToolTipText(Principale.bundle_lingua.getString("MASSIMIZZA"));
+        minimize.setIcon(new ImageIcon("resources/minimize.png"));
+        minimize.setBackground(new Color(33,37,43));
+        maximize.setBackground(new Color(33,37,43));
+        minimize.setToolTipText(Principale.bundle_lingua.getString("MINIMIZZA"));
+        minimize.addActionListener(actionEvent -> Principale.rimpicciolisciFrame());
+        minimize.setBorderPainted(false);
+        this.add(maximize);
+        this.add(minimize);
+
 
         }
 

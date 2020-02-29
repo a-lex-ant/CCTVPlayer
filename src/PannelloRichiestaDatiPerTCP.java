@@ -27,6 +27,7 @@ public class PannelloRichiestaDatiPerTCP extends javax.swing.JPanel
         setLayout(new java.awt.GridBagLayout());
 
         titolo.setText(Principale.bundle_lingua.getString("CREAZIONE_TCP"));
+        titolo.setForeground(new java.awt.Color(224, 98, 52));
         gridBagConstraints        = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx  = 1;
         gridBagConstraints.gridy  = 0;
