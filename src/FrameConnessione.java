@@ -57,8 +57,9 @@ public class FrameConnessione extends javax.swing.JFrame
         jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(40 , 1 , 10 , 1) , javax.swing.BorderFactory.createEmptyBorder(20 , 20 , 20 , 20)));
         jPanel1.setLayout(new java.awt.GridLayout(4 , 2 , 10 , 10));
 
-        avviaBtn.setBackground(new java.awt.Color(0, 255, 0));
+        avviaBtn.setBackground(new java.awt.Color(183, 254, 193));
         avviaBtn.setText(rboundle.getString("AVVIA_CLIENT_TCP"));
+        avviaBtn.setForeground(new java.awt.Color(46,64,48));
         avviaBtn.addActionListener(event ->
         {
         try
@@ -71,7 +72,8 @@ public class FrameConnessione extends javax.swing.JFrame
         });
         jPanel1.add(avviaBtn);
 
-        chiudiConnessioneBtn.setBackground(new java.awt.Color(255, 0, 0));
+        chiudiConnessioneBtn.setBackground(new java.awt.Color(255, 145, 145));
+        chiudiConnessioneBtn.setForeground(new java.awt.Color(64, 36, 36));
         chiudiConnessioneBtn.setText(rboundle.getString("ETICHETTA_CHIUDI_CONNESSIONE"));
         chiudiConnessioneBtn.setEnabled(false);
         jPanel1.add(chiudiConnessioneBtn);

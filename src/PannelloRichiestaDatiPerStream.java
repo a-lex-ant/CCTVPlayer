@@ -32,6 +32,7 @@ public class PannelloRichiestaDatiPerStream extends javax.swing.JPanel
         setLayout(layout);
 
         titoloLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titoloLabel.setForeground(new java.awt.Color(224, 98, 52));
         titoloLabel.setText(Principale.bundle_lingua.getString("INSERIRE_SERVER_TITOLO"));
         add(titoloLabel);
         add(filler1);
