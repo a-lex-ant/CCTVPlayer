@@ -117,9 +117,14 @@ public class MenuBarra extends JMenuBar
                 }
             });
 
+
+        this.add( Box.createHorizontalGlue());
+
+
         JButton maximize = new JButton();
         JButton minimize = new JButton();
         maximize.setIcon(new ImageIcon("resources/maximize.png"));
+        maximize.setBorderPainted(false);
         maximize.addActionListener(actionEvent -> Principale.massimizzaFrame());
         maximize.setToolTipText(Principale.bundle_lingua.getString("MASSIMIZZA"));
         minimize.setIcon(new ImageIcon("resources/minimize.png"));
@@ -127,6 +132,7 @@ public class MenuBarra extends JMenuBar
         maximize.setBackground(new Color(33,37,43));
         minimize.setToolTipText(Principale.bundle_lingua.getString("MINIMIZZA"));
         minimize.addActionListener(actionEvent -> Principale.rimpicciolisciFrame());
+        minimize.setBorderPainted(false);
         this.add(maximize);
         this.add(minimize);
 

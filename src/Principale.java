@@ -142,7 +142,9 @@ public class Principale
         }
 
     public static void rimpicciolisciFrame()
-        {frame.pack();}
+        {
+        frame.setExtendedState(JFrame.NORMAL);
+        }
     public static void massimizzaFrame()
         {frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         }
