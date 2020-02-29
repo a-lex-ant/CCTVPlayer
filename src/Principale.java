@@ -27,6 +27,8 @@ public class Principale
     private static PannelloMediaPlayer p;
     private static LeftMenuBar menubarleft;
 
+    private static JFrame frame;
+
     protected static ResourceBundle bundle_lingua;
 
     public static void main ( String[] args )
@@ -39,7 +41,7 @@ public class Principale
               registerAndSetFont();
         initializeLocale();
 
-        JFrame frame = new JFrame(bundle_lingua.getString("LETTORE_VIDEO"));
+        frame = new JFrame(bundle_lingua.getString("LETTORE_VIDEO"));
         try
             {
             ImageIcon img = new ImageIcon("resources/cast.png");
@@ -137,6 +139,12 @@ public class Principale
     public static LeftMenuBar getMenuBarLeft ()
         {
         return menubarleft;
+        }
+
+    public static void rimpicciolisciFrame()
+        {frame.pack();}
+    public static void massimizzaFrame()
+        {frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         }
 
 

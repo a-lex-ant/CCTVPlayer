@@ -96,7 +96,8 @@ public class FrameConnessione extends javax.swing.JFrame
         jPanel2.add(spegnimentoLabel);
 
         spegniBtn.setText(rboundle.getString("ETICHETTA_ARRESTA_SISTEMA_REMOTO"));
-        spegniBtn.setBackground(new java.awt.Color(255, 214, 0));
+        spegniBtn.setBackground(new java.awt.Color(255, 239, 148));
+        spegniBtn.setForeground(new java.awt.Color(128, 113, 38));
 
         jPanel2.add(spegniBtn);
         jPanel2.add(filler1);
