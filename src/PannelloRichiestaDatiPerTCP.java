@@ -4,11 +4,8 @@
 public class PannelloRichiestaDatiPerTCP extends javax.swing.JPanel
 	{
 
-	private javax.swing.JLabel     indirizzoLabel;
 	private javax.swing.JTextField ipInput;
 	private javax.swing.JTextField portaInput;
-	private javax.swing.JLabel     portaLabel;
-	private javax.swing.JLabel     titolo;
 
 	/**
 	 * Instantiates the panel.
@@ -25,9 +22,9 @@ public class PannelloRichiestaDatiPerTCP extends javax.swing.JPanel
 		{
 		java.awt.GridBagConstraints gridBagConstraints;
 
-		titolo         = new javax.swing.JLabel();
-		indirizzoLabel = new javax.swing.JLabel();
-		portaLabel     = new javax.swing.JLabel();
+		javax.swing.JLabel titolo         = new javax.swing.JLabel();
+		javax.swing.JLabel indirizzoLabel = new javax.swing.JLabel();
+		javax.swing.JLabel portaLabel     = new javax.swing.JLabel();
 		ipInput        = new javax.swing.JTextField();
 		portaInput     = new javax.swing.JTextField();
 

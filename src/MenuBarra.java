@@ -55,10 +55,7 @@ public class MenuBarra extends JMenuBar
 		menuFile.add(voceLocale);
 		menuHelp.add(voceAbout);
 
-		voceAbout.addActionListener((e) ->
-		                            {
-		                            new CreditsFrame().setVisible(true);
-		                            });
+		voceAbout.addActionListener((e) -> new CreditsFrame().setVisible(true));
 
 		//aggiunta del comportamento della voce "esci" del menu principale
 		voceEsci.addActionListener(actionEvent ->
@@ -74,7 +71,7 @@ public class MenuBarra extends JMenuBar
 		                                      {
 		                                      try
 			                                      {
-			                                      FrameMetadata fm = new FrameMetadata();
+			                                      new FrameMetadata();
 			                                      }
 		                                      catch (NullPointerException e)
 			                                      {

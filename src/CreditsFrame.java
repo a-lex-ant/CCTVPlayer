@@ -6,24 +6,6 @@ import javax.swing.*;
 public class CreditsFrame extends javax.swing.JFrame
 	{
 
-	private java.awt.Label          aboutLbl;
-	private java.awt.Label          extLibLbl;
-	private javax.swing.JEditorPane editorPaneAbout;
-	private javax.swing.JEditorPane editorPaneIconsCredit;
-	private javax.swing.JEditorPane editorPaneExtLibraries;
-	private javax.swing.JPanel      jPanel1;
-	private javax.swing.JPanel      jPanel2;
-	private javax.swing.JPanel      jPanel3;
-	private javax.swing.JPanel      jPanel4;
-	private javax.swing.JPanel      jPanel5;
-	private javax.swing.JScrollPane jScrollPane1;
-	private javax.swing.JScrollPane jScrollPane2;
-	private javax.swing.JScrollPane jScrollPane4;
-	private java.awt.Label          iconCreditsLabel;
-	private java.awt.ScrollPane     scrollPane1;
-	private java.awt.ScrollPane     scrollPane2;
-	private java.awt.ScrollPane     scrollPane4;
-
 	/**
 	 * Instantiates a new Credits frame.
 	 */
@@ -39,23 +21,25 @@ public class CreditsFrame extends javax.swing.JFrame
 	private void initComponents()
 		{
 
-		jPanel4                = new javax.swing.JPanel();
-		jPanel1                = new javax.swing.JPanel();
-		aboutLbl               = new java.awt.Label();
-		scrollPane1            = new java.awt.ScrollPane();
-		jScrollPane1           = new javax.swing.JScrollPane();
-		editorPaneAbout        = new javax.swing.JEditorPane();
-		jPanel3                = new javax.swing.JPanel();
-		extLibLbl              = new java.awt.Label();
-		scrollPane4            = new java.awt.ScrollPane();
-		jScrollPane4           = new javax.swing.JScrollPane();
-		editorPaneExtLibraries = new javax.swing.JEditorPane();
-		jPanel2                = new javax.swing.JPanel();
-		iconCreditsLabel       = new java.awt.Label();
-		scrollPane2            = new java.awt.ScrollPane();
-		jScrollPane2           = new javax.swing.JScrollPane();
-		editorPaneIconsCredit  = new javax.swing.JEditorPane();
-		jPanel5                = new javax.swing.JPanel();
+		LinkListener linkListener = new LinkListener();
+
+		JPanel         jPanel4  = new JPanel();
+		JPanel jPanel1 = new JPanel();
+		java.awt.Label aboutLbl = new java.awt.Label();
+		java.awt.ScrollPane scrollPane1 = new java.awt.ScrollPane();
+		JScrollPane jScrollPane1    = new JScrollPane();
+		JEditorPane editorPaneAbout = new JEditorPane();
+		JPanel      jPanel3         = new JPanel();
+		java.awt.Label extLibLbl = new java.awt.Label();
+		java.awt.ScrollPane scrollPane4 = new java.awt.ScrollPane();
+		JScrollPane    jScrollPane4        = new JScrollPane();
+		JEditorPane editorPaneExtLibraries = new JEditorPane();
+		JPanel      jPanel2                = new JPanel();
+		java.awt.Label iconCreditsLabel    = new java.awt.Label();
+		java.awt.ScrollPane scrollPane2    = new java.awt.ScrollPane();
+		JScrollPane jScrollPane2          = new JScrollPane();
+		JEditorPane editorPaneIconsCredit = new JEditorPane();
+		JPanel      jPanel5               = new JPanel();
 
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -86,6 +70,8 @@ public class CreditsFrame extends javax.swing.JFrame
 		                        "should have received a copy of the GNU General Public License along with this</p>\n<p " +
 		                        "style=\"text-align: center;\">program. If not, see &lt;https://www.gnu.org/licenses/&gt;" +
 		                        ".</p>\n<p>&nbsp;</p>\n  </body>\n</html>\n");
+		editorPaneAbout.setEditable(false);
+		editorPaneAbout.addHyperlinkListener(linkListener);
 		jScrollPane1.setViewportView(editorPaneAbout);
 
 		scrollPane1.add(jScrollPane1);
@@ -124,6 +110,9 @@ public class CreditsFrame extends javax.swing.JFrame
 		                               ".com/mallowigi/\">Elior Boukhobza (mallowigi)</a>)</p>\n<p style=\"text-align: center;\">&nbsp;" +
 		                               "</p>\n<p style=\"text-align: center;\">...And the <a href=\"https://stackoverflow" +
 		                               ".com/\">StackOverflow</a>'s community :)</p>\n  </body>\n</html>\n");
+		editorPaneExtLibraries.setEditable(false);
+		editorPaneExtLibraries.addHyperlinkListener(linkListener);
+
 		jScrollPane4.setViewportView(editorPaneExtLibraries);
 
 		scrollPane4.add(jScrollPane4);
@@ -140,7 +129,6 @@ public class CreditsFrame extends javax.swing.JFrame
 		iconCreditsLabel.setForeground(new java.awt.Color(224, 98, 52));
 		jPanel2.add(iconCreditsLabel, java.awt.BorderLayout.NORTH);
 
-		editorPaneIconsCredit.setEditable(false);
 		editorPaneIconsCredit.setContentType("text/html");
 		editorPaneIconsCredit.setText("<html>\n  <head>\n<style>\n</style>\n  </head>\n  <body>\n    <p style=\"text-align: center;\">Nearly" +
 		                              " all icons are from the <a href=\"https://feathericons.com/\">Feather Icons project</a> by <a " +
@@ -151,6 +139,9 @@ public class CreditsFrame extends javax.swing.JFrame
 		                              "</body>\n</html>\n");
 		editorPaneIconsCredit.setMaximumSize(new java.awt.Dimension(91, 30));
 		editorPaneIconsCredit.setMinimumSize(new java.awt.Dimension(91, 30));
+		editorPaneIconsCredit.setEditable(false);
+		editorPaneIconsCredit.addHyperlinkListener(linkListener);
+
 		jScrollPane2.setViewportView(editorPaneIconsCredit);
 
 		scrollPane2.add(jScrollPane2);

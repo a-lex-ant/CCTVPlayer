@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -36,14 +34,7 @@ public class PannelloOrologio extends JPanel
 		@Override
 		public void run()
 			{
-			Timer timer = new Timer(1000, new ActionListener()
-				{
-				@Override
-				public void actionPerformed(ActionEvent actionEvent)
-					{
-					clock.setText((new Date().toString()));
-					}
-				});
+			Timer timer = new Timer(1000, actionEvent -> clock.setText((new Date().toString())));
 
 			timer.start();
 			}

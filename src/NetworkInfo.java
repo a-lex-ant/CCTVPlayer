@@ -42,8 +42,8 @@ public final class NetworkInfo
 				while (enumInetAddresses.hasMoreElements())
 					{
 					InetAddress currentInetAddress = enumInetAddresses.nextElement();
-					if ((currentInetAddress.getHostAddress()
-					                       .contains(":") == false) && (currentInetAddress.isLoopbackAddress() == false))
+					if ((!currentInetAddress.getHostAddress()
+					                        .contains(":")) && (!currentInetAddress.isLoopbackAddress()))
 						{
 						return currentNetInterface.getName() + " " + currentInetAddress.getHostAddress();
 						}
@@ -64,6 +64,7 @@ public final class NetworkInfo
 		{
 		try (Socket clientSocketDiProva = new Socket(datiDaControllare[0], Integer.parseInt(datiDaControllare[1])))
 			{
+			;
 			}
 		catch (Exception e)
 			{

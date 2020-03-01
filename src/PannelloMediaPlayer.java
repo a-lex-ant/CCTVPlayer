@@ -24,8 +24,6 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 	 */
 	private EmbeddedMediaPlayerComponent epc;
 
-	private JButton                      apriFileBottone;
-
 	/**
 	 * Instantiates a new media player panel.
 	 */
@@ -34,7 +32,7 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 		this.setLayout(new BorderLayout());
 		this.setPreferredSize(new Dimension(500, 500));
 		this.setMinimumSize(new Dimension(0, 0));
-		this.apriFileBottone = new JButton(CCTVPlayer.bundle_lingua.getString("AVVIA_STREAM"));
+		JButton apriFileBottone = new JButton(CCTVPlayer.bundle_lingua.getString("AVVIA_STREAM"));
 		apriFileBottone.setOpaque(true);
 		apriFileBottone.setIcon(new ImageIcon("resources/play.png"));
 		apriFileBottone.addActionListener(this);
@@ -70,30 +68,26 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 		               .equals(CCTVPlayer.bundle_lingua.getString("AVVIA_STREAM")))
 			{
 			ExecutorService executorServicePlayback = Executors.newFixedThreadPool(1);
-			executorServicePlayback.submit(new Runnable()
-				{
-				@Override
-				public void run()
-					{
-					//ATTENZIONE DOCUMENTAZIONE NON AGGIORNATA: epc.mediaPlayer() sostituisce epc.getMediaPlayer()
+			executorServicePlayback.submit(() ->
+			                               {
+			                               //ATTENZIONE DOCUMENTAZIONE NON AGGIORNATA: epc.mediaPlayer() sostituisce epc.getMediaPlayer()
 
-					PannelloRichiestaDatiPerStream pnlRch;
+			                               PannelloRichiestaDatiPerStream pnlRch;
 
-					int choice = JOptionPane.showConfirmDialog(null, pnlRch = new PannelloRichiestaDatiPerStream(),
-					                                           CCTVPlayer.bundle_lingua.getString("INSERTING_DATA"), JOptionPane.OK_CANCEL_OPTION,
-					                                           JOptionPane.PLAIN_MESSAGE);
-					if (choice == 0)
-						{
-						String[] dati = pnlRch.getDatiInseriti();
-						if (NetworkInfo.checkIfServerAvailable(dati))
-							{
-							epc.mediaPlayer()
-							   .media()
-							   .play("rtsp://" + dati[0] + ":" + dati[1] + "/");
-							}
-						}
-					}
-				});
+			                               int choice = JOptionPane.showConfirmDialog(null, pnlRch = new PannelloRichiestaDatiPerStream(),
+			                                                                          CCTVPlayer.bundle_lingua.getString("INSERTING_DATA"), JOptionPane.OK_CANCEL_OPTION,
+			                                                                          JOptionPane.PLAIN_MESSAGE);
+			                               if (choice == 0)
+				                               {
+				                               String[] dati = pnlRch.getDatiInseriti();
+				                               if (NetworkInfo.checkIfServerAvailable(dati))
+					                               {
+					                               epc.mediaPlayer()
+					                                  .media()
+					                                  .play("rtsp://" + dati[0] + ":" + dati[1] + "/");
+					                               }
+				                               }
+			                               });
 
 			}
 

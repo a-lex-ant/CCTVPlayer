@@ -24,11 +24,7 @@ public class LinkListener implements HyperlinkListener
 					       .browse(hyperlinkEvent.getURL()
 					                             .toURI());
 					}
-				catch (IOException e)
-					{
-					e.printStackTrace();
-					}
-				catch (URISyntaxException e)
+				catch (IOException | URISyntaxException e)
 					{
 					e.printStackTrace();
 					}

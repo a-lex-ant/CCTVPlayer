@@ -22,7 +22,7 @@ public class NetworkMonitorPanel extends JPanel
 	/**
 	 * Instantiates a new Network monitor panel.
 	 *
-	 * @throws HeadlessException
+	 * @throws HeadlessException When code that is dependent on a keyboard, display, or mouse is called in an environment that does not support them.
 	 */
 	public NetworkMonitorPanel() throws HeadlessException
 		{
@@ -44,8 +44,7 @@ public class NetworkMonitorPanel extends JPanel
 	{
 	linkSeriesAndDataset();
 	JFreeChart grafico = creaGrafico(this.dataset);
-	ChartPanel panel   = new ChartPanel(grafico, true);
-	return panel;
+	return new ChartPanel(grafico, true);
 	}
 
 	/**

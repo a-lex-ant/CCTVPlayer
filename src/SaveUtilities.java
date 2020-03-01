@@ -61,7 +61,7 @@ public class SaveUtilities
 	public static Locale loadLocale()
 		{
 		checkForSaveDirectoryExistance();
-		Locale letto = null;
+		Locale letto;
 		try (
 				ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(userDir + "/savedData" + "/localeSettings.bin"))
 		)

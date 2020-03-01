@@ -6,10 +6,6 @@ import java.awt.*;
 public class PannelloRichiestaDatiPerStream extends javax.swing.JPanel
 	{
 
-	private javax.swing.Box.Filler filler1;
-	private javax.swing.JLabel     labelIP;
-	private javax.swing.JLabel     labelPorta;
-	private javax.swing.JLabel     titoloLabel;
 	private javax.swing.JTextField textfIP;
 	private javax.swing.JTextField textfPorta;
 
@@ -28,11 +24,11 @@ public class PannelloRichiestaDatiPerStream extends javax.swing.JPanel
 	private void initComponents()
 		{
 
-		titoloLabel = new javax.swing.JLabel();
-		filler1     = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
-		labelIP     = new javax.swing.JLabel();
+		javax.swing.JLabel     titoloLabel = new javax.swing.JLabel();
+		javax.swing.Box.Filler filler1 = new javax.swing.Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(32767, 0));
+		javax.swing.JLabel     labelIP = new javax.swing.JLabel();
 		textfIP     = new javax.swing.JTextField();
-		labelPorta  = new javax.swing.JLabel();
+		javax.swing.JLabel labelPorta = new javax.swing.JLabel();
 		textfPorta  = new javax.swing.JTextField();
 
 		GridLayout layout = new java.awt.GridLayout(3, 2);
