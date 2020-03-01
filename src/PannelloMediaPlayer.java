@@ -13,123 +13,184 @@ import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * The Media Player panel class.
+ */
 public class PannelloMediaPlayer extends JPanel implements ActionListener
-    {
+	{
 
-    private EmbeddedMediaPlayerComponent epc;
-    private JButton apriFileBottone;
+	/**
+	 * The embedded media player component.
+	 */
+	private EmbeddedMediaPlayerComponent epc;
 
-    public PannelloMediaPlayer ()
-        {
-        this.setLayout(new BorderLayout());
-        this.setPreferredSize(new Dimension(500 , 500));
-        this.setMinimumSize(new Dimension(0 , 0));
-        this.apriFileBottone = new JButton(Principale.bundle_lingua.getString("AVVIA_STREAM"));
-        apriFileBottone.setOpaque(true);
-        apriFileBottone.setIcon(new ImageIcon("resources/play.png"));
-        apriFileBottone.addActionListener(this);
-        this.epc = new EmbeddedMediaPlayerComponent();
-        this.add(epc , BorderLayout.CENTER);
-        this.add(apriFileBottone , BorderLayout.SOUTH);
-        this.setVisible(true);
+	/**
+	 * Instantiates a new media player panel.
+	 */
+	public PannelloMediaPlayer()
+		{
+		this.setLayout(new BorderLayout());
+		this.setPreferredSize(new Dimension(500, 500));
+		this.setMinimumSize(new Dimension(0, 0));
+		JButton apriFileBottone = new JButton(CCTVPlayer.bundle_lingua.getString("AVVIA_STREAM"));
+		apriFileBottone.setOpaque(true);
+		apriFileBottone.setIcon(new ImageIcon("resources/play.png"));
+		apriFileBottone.addActionListener(this);
+		this.epc = new EmbeddedMediaPlayerComponent();
+		this.add(epc, BorderLayout.CENTER);
+		this.add(apriFileBottone, BorderLayout.SOUTH);
+		this.setVisible(true);
 
+		epc.mediaPlayer()
+		   .events()
+		   .addMediaPlayerEventListener(new MediaPlayerEventAdapter()
+			   {
+			   @Override
+			   public void finished(MediaPlayer mediaPlayer)
+				   {
+				   JOptionPane.showMessageDialog(null, CCTVPlayer.bundle_lingua.getString("OUTPUT_TERMINATO"));
+				   }
 
-        epc.mediaPlayer().events().addMediaPlayerEventListener(new MediaPlayerEventAdapter()
-            {
-            @Override
-            public void finished ( MediaPlayer mediaPlayer )
-                {
-                JOptionPane.showMessageDialog(null , Principale.bundle_lingua.getString("OUTPUT_TERMINATO"));
-                }
+			   @Override
+			   public void error(MediaPlayer mediaPlayer)
+				   {
+				   System.exit(1);
+				   }
+			   });
 
-            @Override
-            public void error ( MediaPlayer mediaPlayer )
-                {
-                System.exit(1);
-                }
-            });
+		//END CONSTRUCTOR
+		}
 
+	@Override
+	public void actionPerformed(ActionEvent actionEvent)
+		{
+		if (actionEvent.getActionCommand()
+		               .equals(CCTVPlayer.bundle_lingua.getString("AVVIA_STREAM")))
+			{
+			ExecutorService executorServicePlayback = Executors.newFixedThreadPool(1);
+			executorServicePlayback.submit(() ->
+			                               {
+			                               //ATTENZIONE DOCUMENTAZIONE NON AGGIORNATA: epc.mediaPlayer() sostituisce epc.getMediaPlayer()
 
-        //FINE COSTRUTTORE
-        }
+			                               PannelloRichiestaDatiPerStream pnlRch;
 
-    @Override
-    public void actionPerformed ( ActionEvent actionEvent )
-        {
-        if ( actionEvent.getActionCommand().equals(Principale.bundle_lingua.getString("AVVIA_STREAM")) )
-            {
-            ExecutorService executorServicePlayback = Executors.newFixedThreadPool(1);
-            executorServicePlayback.submit(new Runnable()
-                {
-                @Override
-                public void run ()
-                    {
-                    //ATTENZIONE DOCUMENTAZIONE NON AGGIORNATA: epc.mediaPlayer() sostituisce epc.getMediaPlayer()
+			                               int choice = JOptionPane.showConfirmDialog(null, pnlRch = new PannelloRichiestaDatiPerStream(),
+			                                                                          CCTVPlayer.bundle_lingua.getString("INSERTING_DATA"), JOptionPane.OK_CANCEL_OPTION,
+			                                                                          JOptionPane.PLAIN_MESSAGE);
+			                               if (choice == 0)
+				                               {
+				                               String[] dati = pnlRch.getDatiInseriti();
+				                               if (NetworkInfo.checkIfServerAvailable(dati))
+					                               {
+					                               epc.mediaPlayer()
+					                                  .media()
+					                                  .play("rtsp://" + dati[0] + ":" + dati[1] + "/");
+					                               }
+				                               }
+			                               });
 
+			}
 
-                    PannelloRichiestaDatiPerStream pnlRch;
+		}
 
-                        int choice = JOptionPane.showConfirmDialog(null , pnlRch = new PannelloRichiestaDatiPerStream() , Principale.bundle_lingua.getString("INSERTING_DATA") , JOptionPane.OK_CANCEL_OPTION , JOptionPane.PLAIN_MESSAGE);
-                        if ( choice == 0)
-                        {
-                        String[] dati = pnlRch.getDatiInseriti();
-                        if ( NetworkInfo.checkIfServerAvailable(dati) )
-                            {
-                            epc.mediaPlayer().media().play("rtsp://" + dati[0] + ":" + dati[1] + "/");
-                            }
-                        }
-                    }
-                });
+	/**
+	 * Take a snapshot and save.
+	 */
+	public void SnapshotAndSave()
+		{
+		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:ss");
+		Date             d  = new Date();
 
-            }
+		MediaPlayer mp        = epc.mediaPlayer();
+		SnapshotApi snapshots = mp.snapshots();
+		snapshots.save(new File("snapshot_" + df.format(d) + "_.png"));
+		}
 
-        }
+	/**
+	 * Gets the audio buffers lost.
+	 *
+	 * @return the audio buffers lost
+	 */
+	public int getAudioBuffersLost()
+		{
+		if (epc.mediaPlayer()
+		       .media()
+		       .info() == null | epc.mediaPlayer()
+		                            .media()
+		                            .info()
+		                            .statistics() == null) { return 0; }
+		return epc.mediaPlayer()
+		          .media()
+		          .info()
+		          .statistics()
+		          .audioBuffersLost();
+		}
 
+	/**
+	 * Gets the pictures lost.
+	 *
+	 * @return the pictures lost
+	 */
+	public int getPicturesLost()
+		{
+		if (epc.mediaPlayer()
+		       .media()
+		       .info() == null | epc.mediaPlayer()
+		                            .media()
+		                            .info()
+		                            .statistics() == null) { return 0; }
+		return epc.mediaPlayer()
+		          .media()
+		          .info()
+		          .statistics()
+		          .picturesLost();
+		}
 
-    public void SnapshotAndSave ()
-        {
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:ss");
-        Date d = new Date();
+	/**
+	 * Gets the demux corrupted.
+	 *
+	 * @return the demux corrupted
+	 */
+	public int getDemuxCorrupted()
+		{
+		if (epc.mediaPlayer()
+		       .media()
+		       .info() == null | epc.mediaPlayer()
+		                            .media()
+		                            .info()
+		                            .statistics() == null) { return 0; }
+		return epc.mediaPlayer()
+		          .media()
+		          .info()
+		          .statistics()
+		          .demuxCorrupted();
+		}
 
-        MediaPlayer mp = epc.mediaPlayer();
-        SnapshotApi snapshots = mp.snapshots();
-        snapshots.save(new File("snapshot_" + df.format(d) + "_.png"));
-        }
+	/**
+	 * Gets the input bitrate.
+	 *
+	 * @return the input bitrate
+	 */
+	public double getInputBitrate()
+		{
+		if (epc.mediaPlayer()
+		       .media()
+		       .info() == null) { return 0.0; }
+		return epc.mediaPlayer()
+		          .media()
+		          .info()
+		          .statistics()
+		          .inputBitrate();
+		}
 
+	/**
+	 * Release the media player.
+	 */
+	protected void releaseMediaPlayer()
+		{
+		epc.mediaPlayer()
+		   .release();
+		}
 
-    public int getAudioBuffersLost ()
-        {
-        if ( epc.mediaPlayer().media().info() == null | epc.mediaPlayer().media().info().statistics() == null )
-            return 0;
-        return epc.mediaPlayer().media().info().statistics().audioBuffersLost();
-        }
-
-    public int getPicturesLost ()
-        {
-        if ( epc.mediaPlayer().media().info() == null | epc.mediaPlayer().media().info().statistics() == null )
-            return 0;
-        return epc.mediaPlayer().media().info().statistics().picturesLost();
-        }
-
-    public int getDemuxCorrupted ()
-        {
-        if ( epc.mediaPlayer().media().info() == null | epc.mediaPlayer().media().info().statistics() == null )
-            return 0;
-        return epc.mediaPlayer().media().info().statistics().demuxCorrupted();
-        }
-
-    public double getInputBitrate ()
-        {
-        if ( epc.mediaPlayer().media().info() == null )
-            return 0.0;
-        return epc.mediaPlayer().media().info().statistics().inputBitrate();
-        }
-
-protected void releaseMediaPlayer()
-    {
-    epc.mediaPlayer().release();
-    }
-
-
-    //FINE CLASSE PANNELLO MEDIA PLAYER
-    }
+	//END OF CLASS
+	}
