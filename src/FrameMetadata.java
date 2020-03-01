@@ -1,5 +1,5 @@
+
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 
@@ -19,86 +19,73 @@ public class FrameMetadata extends JFrame
 	 */
 	public FrameMetadata()
 		{
+		
 		setTitle(l10n.getString("STATISTICHE"));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		JPanel contentPanel = new JPanel();
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPanel.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPanel);
-
-		JPanel rootPanel = new JPanel();
-		contentPanel.add(rootPanel, BorderLayout.CENTER);
-		rootPanel.setLayout(new BorderLayout(0, 0));
-
-		/*panelStatisticheConnessione = new JPanel();
-		panelStatisticheConnessione.setBorder(
-				new TitledBorder(null, l10n.getString("STAT_SULLA_CONNESSIONE"), TitledBorder.LEADING, TitledBorder.TOP, null,
-				                 null));
-		rootPanel.add(panelStatisticheConnessione, BorderLayout.CENTER);
-		//panelStatisticheConnessione.add(new NetworkMonitorPanel());
-
-		 */
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(
-				new TitledBorder(null, l10n.getString("INFORMAZIONI_SUL_MEDIA"), TitledBorder.LEADING, TitledBorder.TOP, null,
-				                 null));
-		contentPanel.add(panel_1, BorderLayout.SOUTH);
-		GridBagLayout gbLayout_panel_1 = new GridBagLayout();
-		gbLayout_panel_1.columnWidths  = new int[]{2, 0, 0, 0};
-		gbLayout_panel_1.rowHeights    = new int[]{2, 0, 0, 0};
-		gbLayout_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbLayout_panel_1.rowWeights    = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panel_1.setLayout(gbLayout_panel_1);
+		JLabel lbl_AUDIO_BUFFERS_LOST = new JLabel();
+		lblDataAudioBuffers = new JLabel();
+		JLabel lblPicturesLost = new JLabel();
+		lblDataPicturesLost = new JLabel();
+		JLabel lblDemuxCorrupted = new JLabel();
+		lblDataDemuxCorrupted = new JLabel();
 
 
+		contentPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		contentPanel.setLayout(new BorderLayout());
 
-		JLabel             lbl_AUDIO_BUFFERS_LOST = new JLabel(l10n.getString("AUDIO_BUFFERS_LOST"));
-		GridBagConstraints gbConstraints_lblNewLabel        = new GridBagConstraints();
-		gbConstraints_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbConstraints_lblNewLabel.gridx  = 0;
-		gbConstraints_lblNewLabel.gridy  = 0;
-		panel_1.add(lbl_AUDIO_BUFFERS_LOST, gbConstraints_lblNewLabel);
+		TitledBorder titledBorder = BorderFactory.createTitledBorder(l10n.getString("INFORMAZIONI_SUL_MEDIA"));
+		titledBorder.setTitleJustification(TitledBorder.CENTER);
+		titledBorder.setTitlePosition(TitledBorder.DEFAULT_POSITION);
+		titledBorder.setTitleColor(new java.awt.Color(224, 98, 52));
+		panel_1.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5),titledBorder ));
+		panel_1.setLayout(new GridLayout(3, 2, 30, 5));
 
-		lblDataAudioBuffers = new JLabel("" + DataUtility
-		                                                .getAudioBuffersLost());
-		GridBagConstraints gbConstraints_lblAaa = new GridBagConstraints();
-		gbConstraints_lblAaa.insets = new Insets(0, 0, 5, 0);
-		gbConstraints_lblAaa.gridx  = 2;
-		gbConstraints_lblAaa.gridy  = 0;
-		panel_1.add(lblDataAudioBuffers, gbConstraints_lblAaa);
+		lbl_AUDIO_BUFFERS_LOST.setForeground(new Color(224, 98, 52));
+		lbl_AUDIO_BUFFERS_LOST.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_AUDIO_BUFFERS_LOST.setText(l10n.getString("AUDIO_BUFFERS_LOST"));
+		lbl_AUDIO_BUFFERS_LOST.setVerticalAlignment(SwingConstants.BOTTOM);
+		lbl_AUDIO_BUFFERS_LOST.setBorder(BorderFactory.createCompoundBorder(null, BorderFactory.createEmptyBorder(10, 10, 1, 10)));
+		panel_1.add(lbl_AUDIO_BUFFERS_LOST);
 
-		JLabel             lblPicturesLost     = new JLabel(l10n.getString("PICTURES_LOST"));
-		GridBagConstraints gbConstraints_lblPicturesLost = new GridBagConstraints();
-		gbConstraints_lblPicturesLost.insets = new Insets(0, 0, 5, 5);
-		gbConstraints_lblPicturesLost.gridx  = 0;
-		gbConstraints_lblPicturesLost.gridy  = 1;
-		panel_1.add(lblPicturesLost, gbConstraints_lblPicturesLost);
+		lblDataAudioBuffers.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDataAudioBuffers.setText("0");
+		lblDataAudioBuffers.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblDataAudioBuffers.setBorder(BorderFactory.createCompoundBorder(null, BorderFactory.createEmptyBorder(10, 10, 1, 10)));
+		panel_1.add(lblDataAudioBuffers);
 
-		lblDataPicturesLost = new JLabel("" + DataUtility
-		                                                .getPicturesLost());
-		GridBagConstraints gbConstraints_lblAaa_1 = new GridBagConstraints();
-		gbConstraints_lblAaa_1.insets = new Insets(0, 0, 5, 0);
-		gbConstraints_lblAaa_1.gridx  = 2;
-		gbConstraints_lblAaa_1.gridy  = 1;
-		panel_1.add(lblDataPicturesLost, gbConstraints_lblAaa_1);
+		lblPicturesLost.setForeground(new Color(224, 98, 52));
+		lblPicturesLost.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPicturesLost.setText(l10n.getString("PICTURES_LOST"));
+		lblPicturesLost.setBorder(BorderFactory.createCompoundBorder(null, BorderFactory.createEmptyBorder(1, 10, 1, 10)));
+		panel_1.add(lblPicturesLost);
 
-		JLabel             lblDemuxCorrupted     = new JLabel(l10n.getString("DEMUX_CORRUPTED"));
-		GridBagConstraints gbConstraints_lblDemuxCorrupted = new GridBagConstraints();
-		gbConstraints_lblDemuxCorrupted.insets = new Insets(0, 0, 0, 5);
-		gbConstraints_lblDemuxCorrupted.gridx  = 0;
-		gbConstraints_lblDemuxCorrupted.gridy  = 2;
-		panel_1.add(lblDemuxCorrupted, gbConstraints_lblDemuxCorrupted);
+		lblDataPicturesLost.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDataPicturesLost.setText("0");
+		lblDataPicturesLost.setBorder(BorderFactory.createCompoundBorder(null, BorderFactory.createEmptyBorder(1, 10, 1, 10)));
+		panel_1.add(lblDataPicturesLost);
 
-		lblDataDemuxCorrupted = new JLabel("" + DataUtility.getDemuxCorrupted());
-		GridBagConstraints gbConstraintsonstraints_label = new GridBagConstraints();
-		gbConstraintsonstraints_label.gridx = 2;
-		gbConstraintsonstraints_label.gridy = 2;
-		panel_1.add(lblDataDemuxCorrupted, gbConstraintsonstraints_label);
+		lblDemuxCorrupted.setForeground(new Color(224, 98, 52));
+		lblDemuxCorrupted.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDemuxCorrupted.setText(l10n.getString("DEMUX_CORRUPTED"));
+		lblDemuxCorrupted.setVerticalAlignment(SwingConstants.TOP);
+		lblDemuxCorrupted.setBorder(BorderFactory.createCompoundBorder(null, BorderFactory.createEmptyBorder(1, 10, 10, 10)));
+		panel_1.add(lblDemuxCorrupted);
+
+		lblDataDemuxCorrupted.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDataDemuxCorrupted.setText("0");
+		lblDataDemuxCorrupted.setVerticalAlignment(SwingConstants.TOP);
+		lblDataDemuxCorrupted.setBorder(BorderFactory.createCompoundBorder(null, BorderFactory.createEmptyBorder(1, 10, 10, 10)));
+		panel_1.add(lblDataDemuxCorrupted);
+
+		contentPanel.add(panel_1, BorderLayout.CENTER);
+
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+
+		pack();
 
 		this.setVisible(true);
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.requestFocus(true);
 
 		runTimer();
 
@@ -149,6 +136,16 @@ public class FrameMetadata extends JFrame
 		t.start();
 
 		}
+
+
+
+	private void inizializza()
+		{
+		
+		}
+
+
+
 
 
 	}
