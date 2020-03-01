@@ -1,11 +1,13 @@
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
 
 /**
  * The Credits frame.
  */
 public class CreditsFrame extends javax.swing.JFrame
 	{
-
+	
 	/**
 	 * Instantiates a new Credits frame.
 	 */
@@ -20,43 +22,44 @@ public class CreditsFrame extends javax.swing.JFrame
 	 */
 	private void initComponents()
 		{
+		Color arancio = new Color(224, 98, 52);
 
 		LinkListener linkListener = new LinkListener();
 
-		JPanel         jPanel4  = new JPanel();
-		JPanel jPanel1 = new JPanel();
-		java.awt.Label aboutLbl = new java.awt.Label();
-		java.awt.ScrollPane scrollPane1 = new java.awt.ScrollPane();
-		JScrollPane jScrollPane1    = new JScrollPane();
-		JEditorPane editorPaneAbout = new JEditorPane();
-		JPanel      jPanel3         = new JPanel();
-		java.awt.Label extLibLbl = new java.awt.Label();
-		java.awt.ScrollPane scrollPane4 = new java.awt.ScrollPane();
-		JScrollPane    jScrollPane4        = new JScrollPane();
+		JPanel      contenitore                = new JPanel();
+		JPanel      panelAbout                = new JPanel();
+		ScrollPane  scrollPane1            = new ScrollPane();
+		JScrollPane jScrollPane1           = new JScrollPane();
+		JEditorPane editorPaneAbout        = new JEditorPane();
+		JPanel      panelExtLib                = new JPanel();
+		ScrollPane  scrollPane4            = new ScrollPane();
+		JScrollPane jScrollPane4           = new JScrollPane();
 		JEditorPane editorPaneExtLibraries = new JEditorPane();
-		JPanel      jPanel2                = new JPanel();
-		java.awt.Label iconCreditsLabel    = new java.awt.Label();
-		java.awt.ScrollPane scrollPane2    = new java.awt.ScrollPane();
+		JPanel      panelIcons                = new JPanel();
+		Label       iconCreditsLabel       = new Label();
+		ScrollPane scrollPane2    = new ScrollPane();
 		JScrollPane jScrollPane2          = new JScrollPane();
 		JEditorPane editorPaneIconsCredit = new JEditorPane();
-		JPanel      jPanel5               = new JPanel();
+		JPanel      spacerPanel               = new JPanel();
 
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-		jPanel4.setLayout(new java.awt.GridLayout(3, 1));
+		contenitore.setLayout(new GridLayout(3, 1));
 
-		jPanel1.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-		jPanel1.setLayout(new java.awt.BorderLayout());
+		TitledBorder borderAbout = BorderFactory.createTitledBorder("About");
+		TitledBorder borderExtLib =  BorderFactory.createTitledBorder("External Library Credits");
+		TitledBorder borderIcon = BorderFactory.createTitledBorder("Icon Credits");
+		borderAbout.setTitleColor(arancio);
+		borderExtLib.setTitleColor(arancio);
+		borderIcon.setTitleColor(arancio);
 
-		aboutLbl.setAlignment(java.awt.Label.CENTER);
+		panelAbout.setBorder(javax.swing.BorderFactory.createCompoundBorder(borderAbout, javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+		panelAbout.setLayout(new BorderLayout());
 
-		aboutLbl.setText("About");
-		aboutLbl.setForeground(new java.awt.Color(224, 98, 52));
-		jPanel1.add(aboutLbl, java.awt.BorderLayout.NORTH);
 
 		editorPaneAbout.setContentType("text/html");
 		editorPaneAbout.setText("<html>\n  <head>\n<style>\n</style>\n  </head>\n  <body>\n<p style=\"text-align: center;\">Developed " +
-		                        "with &hearts; by Anna A. Antonini (<a href=\"mailto:a.antonini011@studenti.unibs.it\">a" +
+		                        "by Anna A. Antonini (<a href=\"mailto:a.antonini011@studenti.unibs.it\">a" +
 		                        ".antonini011@studenti.unibs.it</a>)</p>\n<p style=\"text-align: center;\">Original project available " +
 		                        "freely on my <a href=\"https://github.com/a-lex-ant\">GitHub profile</a>.</p>\n<p style=\"text-align:" +
 		                        " center;\">&nbsp;</p>\n<p style=\"text-align: center;\">This program is free software: you can " +
@@ -76,17 +79,13 @@ public class CreditsFrame extends javax.swing.JFrame
 
 		scrollPane1.add(jScrollPane1);
 
-		jPanel1.add(scrollPane1, java.awt.BorderLayout.CENTER);
+		panelAbout.add(scrollPane1, BorderLayout.CENTER);
 
-		jPanel4.add(jPanel1);
+		contenitore.add(panelAbout);
 
-		jPanel3.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-		jPanel3.setLayout(new java.awt.BorderLayout());
+		panelExtLib.setBorder(javax.swing.BorderFactory.createCompoundBorder(borderExtLib, javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+		panelExtLib.setLayout(new BorderLayout());
 
-		extLibLbl.setAlignment(java.awt.Label.CENTER);
-		extLibLbl.setText("External Library Credits");
-		extLibLbl.setForeground(new java.awt.Color(224, 98, 52));
-		jPanel3.add(extLibLbl, java.awt.BorderLayout.NORTH);
 
 		editorPaneExtLibraries.setContentType("text/html");
 		editorPaneExtLibraries.setText("<html>\n  <head>\n<style>\n</style>\n  </head>\n  <body>\n<p style=\"text-align: center;\">This " +
@@ -117,17 +116,14 @@ public class CreditsFrame extends javax.swing.JFrame
 
 		scrollPane4.add(jScrollPane4);
 
-		jPanel3.add(scrollPane4, java.awt.BorderLayout.CENTER);
+		panelExtLib.add(scrollPane4, BorderLayout.CENTER);
 
-		jPanel4.add(jPanel3);
+		contenitore.add(panelExtLib);
 
-		jPanel2.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-		jPanel2.setLayout(new java.awt.BorderLayout());
+		panelIcons.setBorder(javax.swing.BorderFactory.createCompoundBorder(borderIcon, javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+		panelIcons.setLayout(new BorderLayout());
 
-		iconCreditsLabel.setAlignment(java.awt.Label.CENTER);
-		iconCreditsLabel.setText("Icon Credits");
-		iconCreditsLabel.setForeground(new java.awt.Color(224, 98, 52));
-		jPanel2.add(iconCreditsLabel, java.awt.BorderLayout.NORTH);
+		panelIcons.add(iconCreditsLabel, BorderLayout.NORTH);
 
 		editorPaneIconsCredit.setContentType("text/html");
 		editorPaneIconsCredit.setText("<html>\n  <head>\n<style>\n</style>\n  </head>\n  <body>\n    <p style=\"text-align: center;\">Nearly" +
@@ -137,8 +133,8 @@ public class CreditsFrame extends javax.swing.JFrame
 		                              "href=\"https://icons8.com/icons/set/usa\" target=\"_blank\" rel=\"noopener\">USA icon</a> by <a " +
 		                              "href=\"https://icons8.com\" target=\"_blank\" rel=\"noopener\">Icons8</a>.</p>\n<p>&nbsp;</p>\n  " +
 		                              "</body>\n</html>\n");
-		editorPaneIconsCredit.setMaximumSize(new java.awt.Dimension(91, 30));
-		editorPaneIconsCredit.setMinimumSize(new java.awt.Dimension(91, 30));
+		editorPaneIconsCredit.setMaximumSize(new Dimension(91, 30));
+		editorPaneIconsCredit.setMinimumSize(new Dimension(91, 30));
 		editorPaneIconsCredit.setEditable(false);
 		editorPaneIconsCredit.addHyperlinkListener(linkListener);
 
@@ -146,20 +142,20 @@ public class CreditsFrame extends javax.swing.JFrame
 
 		scrollPane2.add(jScrollPane2);
 
-		jPanel2.add(scrollPane2, java.awt.BorderLayout.CENTER);
+		panelIcons.add(scrollPane2, BorderLayout.CENTER);
 
-		javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-		jPanel5.setLayout(jPanel5Layout);
-		jPanel5Layout.setHorizontalGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		javax.swing.GroupLayout spacerPanelLayout = new javax.swing.GroupLayout(spacerPanel);
+		spacerPanel.setLayout(spacerPanelLayout);
+		spacerPanelLayout.setHorizontalGroup(spacerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 		                                              .addGap(0, 524, Short.MAX_VALUE));
-		jPanel5Layout.setVerticalGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		spacerPanelLayout.setVerticalGroup(spacerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 		                                            .addGap(0, 100, Short.MAX_VALUE));
 
-		jPanel2.add(jPanel5, java.awt.BorderLayout.PAGE_END);
+		panelIcons.add(spacerPanel, BorderLayout.PAGE_END);
 
-		jPanel4.add(jPanel2);
+		contenitore.add(panelIcons);
 
-		getContentPane().add(jPanel4, java.awt.BorderLayout.CENTER);
+		getContentPane().add(contenitore, BorderLayout.CENTER);
 
 		pack();
 		}

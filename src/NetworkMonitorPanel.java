@@ -19,6 +19,8 @@ public class NetworkMonitorPanel extends JPanel
 	private TimeSeries           series1;
 	private TimeSeriesCollection dataset;
 
+
+
 	/**
 	 * Instantiates a new Network monitor panel.
 	 *
@@ -26,11 +28,12 @@ public class NetworkMonitorPanel extends JPanel
 	 */
 	public NetworkMonitorPanel() throws HeadlessException
 		{
-		this.setLayout(new BorderLayout());
-		this.series1 = new TimeSeries(CCTVPlayer.bundle_lingua.getString("BYTE_SEC_INPUT"));
+
+		this.setLayout(new GridLayout());
+		this.series1 = new TimeSeries(l10n.getString("BYTE_SEC_INPUT"));
 		this.dataset = new TimeSeriesCollection();
-		ChartPanel grafico = (ChartPanel) creaPannelloGrafico();
-		this.add(grafico);
+		ChartPanel graficoPanel = (ChartPanel) creaPannelloGrafico();
+		this.add(graficoPanel);
 		this.setVisible(true);
 		runTimer();
 		}
@@ -44,7 +47,7 @@ public class NetworkMonitorPanel extends JPanel
 	{
 	linkSeriesAndDataset();
 	JFreeChart grafico = creaGrafico(this.dataset);
-	return new ChartPanel(grafico, true);
+	return new ChartPanel(grafico,true);
 	}
 
 	/**
@@ -56,8 +59,8 @@ public class NetworkMonitorPanel extends JPanel
 	 */
 	private JFreeChart creaGrafico(XYDataset dataset)  //createChart
 	{
-	JFreeChart grafico = ChartFactory.createTimeSeriesChart(CCTVPlayer.bundle_lingua.getString("NETWORK_MONITORING"), "secs",
-	                                                        CCTVPlayer.bundle_lingua.getString("DATA_RATE"), dataset);
+	JFreeChart grafico = ChartFactory.createTimeSeriesChart(l10n.getString("NETWORK_MONITORING"), "secs",
+	                                                        l10n.getString("DATA_RATE"), dataset);
 
 	XYPlot plot = (XYPlot) grafico.getPlot();
 	plot.setDomainGridlinesVisible(false);
@@ -82,7 +85,7 @@ public class NetworkMonitorPanel extends JPanel
 	 */
 	private void aggiornaGrafico(double value)
 		{
-		if (series1.getItemCount() >= 60)
+		if (series1.getItemCount() >= 10)
 			{
 			series1.clear();
 			}
@@ -99,7 +102,7 @@ public class NetworkMonitorPanel extends JPanel
 		{
 		Timer t = new Timer(1000, actionEvent ->
 		{
-		double d1 = CCTVPlayer.getPannelloMediaPlayer()
+		double d1 = DataUtility
 		                      .getInputBitrate();
 		aggiornaGrafico(d1);
 		});

@@ -15,16 +15,16 @@ public class MenuBarra extends JMenuBar
 		{
 
 
-		JMenu menuFile = new JMenu(CCTVPlayer.bundle_lingua.getString("FILE"));
+		JMenu menuFile = new JMenu(l10n.getString("FILE"));
 		menuFile.setIcon(new ImageIcon("resources/file.png"));
-		JMenu menuHelp = new JMenu(CCTVPlayer.bundle_lingua.getString("HELP"));
+		JMenu menuHelp = new JMenu(l10n.getString("HELP"));
 		menuHelp.setIcon(new ImageIcon("resources/help.png"));
 		this.add(menuFile);
 		this.add(menuHelp);
-		JMenuItem voceAbout           = new JMenuItem(CCTVPlayer.bundle_lingua.getString("ABOUT"));
-		JMenu     voceLocale          = new JMenu(CCTVPlayer.bundle_lingua.getString("SCEGLI_LINGUA"));
-		JMenuItem voceEsci            = new JMenuItem(CCTVPlayer.bundle_lingua.getString("ESCI"));
-		JMenuItem voceApriDiagnostics = new JMenuItem(CCTVPlayer.bundle_lingua.getString("APRI_DIAGNOSTICS"));
+		JMenuItem voceAbout           = new JMenuItem(l10n.getString("ABOUT"));
+		JMenu     voceLocale          = new JMenu(l10n.getString("SCEGLI_LINGUA"));
+		JMenuItem voceEsci            = new JMenuItem(l10n.getString("ESCI"));
+		JMenuItem voceApriDiagnostics = new JMenuItem(l10n.getString("APRI_DIAGNOSTICS"));
 		JMenuItem voceItaliano        = new JMenuItem("Italiano");
 		JMenuItem voceInglese         = new JMenuItem("English");
 		try
@@ -60,7 +60,6 @@ public class MenuBarra extends JMenuBar
 		//aggiunta del comportamento della voce "esci" del menu principale
 		voceEsci.addActionListener(actionEvent ->
 		                           {
-
 		                           CCTVPlayer.getPannelloMediaPlayer()
 		                                     .releaseMediaPlayer();
 		                           System.exit(0);
@@ -75,8 +74,8 @@ public class MenuBarra extends JMenuBar
 			                                      }
 		                                      catch (NullPointerException e)
 			                                      {
-			                                      JOptionPane.showMessageDialog(null, CCTVPlayer.bundle_lingua.getString("NESSUNO_STREAM_VIDEO_ATTIVO"),
-			                                                                    CCTVPlayer.bundle_lingua.getString("NESSUN_DATO_DI_DIAGNOSTICA_DISPONIBILE"),
+			                                      JOptionPane.showMessageDialog(null, l10n.getString("NESSUNO_STREAM_VIDEO_ATTIVO"),
+			                                                                    l10n.getString("NESSUN_DATO_DI_DIAGNOSTICA_DISPONIBILE"),
 			                                                                    JOptionPane.ERROR_MESSAGE);
 			                                      }
 
@@ -84,16 +83,14 @@ public class MenuBarra extends JMenuBar
 
 		voceItaliano.addActionListener(actionEvent ->
 		                               {
-		                               Locale newLocale = new Locale("it", "IT");
-		                               SaveUtilities.saveLocale(newLocale);
-		                               JOptionPane.showMessageDialog(null, CCTVPlayer.bundle_lingua.getString("CAMBIO_LOCALE"));
+		                               SaveUtilities.saveLocale("it","IT");
+		                               JOptionPane.showMessageDialog(null, l10n.getString("CAMBIO_LOCALE"));
 		                               });
 
 		voceInglese.addActionListener(actionEvent ->
 		                              {
-		                              Locale newLocale = new Locale("en", "US");
-		                              SaveUtilities.saveLocale(newLocale);
-		                              JOptionPane.showMessageDialog(null, CCTVPlayer.bundle_lingua.getString("CAMBIO_LOCALE"));
+		                              SaveUtilities.saveLocale("en","US");
+		                              JOptionPane.showMessageDialog(null, l10n.getString("CAMBIO_LOCALE"));
 
 		                              });
 
@@ -104,11 +101,11 @@ public class MenuBarra extends JMenuBar
 		maximize.setIcon(new ImageIcon("resources/maximize.png"));
 		maximize.setBorderPainted(false);
 		maximize.addActionListener(actionEvent -> CCTVPlayer.massimizzaFrame());
-		maximize.setToolTipText(CCTVPlayer.bundle_lingua.getString("MASSIMIZZA"));
+		maximize.setToolTipText(l10n.getString("MASSIMIZZA"));
 		minimize.setIcon(new ImageIcon("resources/minimize.png"));
 		minimize.setBackground(new Color(33, 37, 43));
 		maximize.setBackground(new Color(33, 37, 43));
-		minimize.setToolTipText(CCTVPlayer.bundle_lingua.getString("MINIMIZZA"));
+		minimize.setToolTipText(l10n.getString("MINIMIZZA"));
 		minimize.addActionListener(actionEvent -> CCTVPlayer.rimpicciolisciFrame());
 		minimize.setBorderPainted(false);
 		this.add(maximize);

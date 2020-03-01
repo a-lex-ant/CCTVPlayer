@@ -12,7 +12,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * The type Client tcp.
+ * The Client tcp class.
  * Implements the behaviour of the TCP client.
  */
 public class ClientTCP implements ActionListener
@@ -25,19 +25,20 @@ public class ClientTCP implements ActionListener
 	 * The constant MESSAGGIO_ARRESTA_SISTEMA_REMOTO.
 	 */
 	public static final String MESSAGGIO_ARRESTA_SISTEMA_REMOTO = "SPEGNI";
-	protected static String inArrivoDalServer = "...";
+
+	private String inArrivoDalServer = "...";
 	/**
 	 * Contains the Ip address of the server in String form.
 	 */
-	private static String serverString;
+	private String serverString;
 	/**
 	 * The integer that stores the port number of the server
 	 */
-	private static int    portaInt;
+	private int portaInt;
 	/**
 	 * The PrintWriter that will write the messages for the server
 	 */
-	private static PrintWriter    out;
+	private static PrintWriter    out; //TODO: togliere static ove possibile, qui e per socketConIlServer ed per in (vedi sotto)
 	/**
 	 * The Socket used to talk to the server
 	 */
@@ -49,7 +50,7 @@ public class ClientTCP implements ActionListener
 	/**
 	 * The parent component that started the tcp client.
 	 */
-	private static FrameConnessione parentComponent;
+	private FrameConnessione parentComponent;
 
 	/**
 	 * Instantiates a new Client tcp.
@@ -67,7 +68,7 @@ public class ClientTCP implements ActionListener
 			{
 			ExecutorService executorService = Executors.newFixedThreadPool(1);
 			executorService.submit(this::cicloRicezione);
-			FrameConnessione.chiudiSetEnabled();
+			parentComponent.chiudiSetEnabled();
 			}
 
 		}// end of constructor
@@ -81,7 +82,7 @@ public class ClientTCP implements ActionListener
 		{
 		try
 			{
-			if (hostAvailabilityCheck())
+			if (hostAvailabilityCheck(serverString))
 				{
 				socketConIlServer = new Socket(serverString, portaInt);
 				out               = new PrintWriter(socketConIlServer.getOutputStream());
@@ -95,9 +96,9 @@ public class ClientTCP implements ActionListener
 			}
 		catch (ConnectException e)
 			{
-			System.out.println(CCTVPlayer.bundle_lingua.getString("SERVER_NON_RAGGIUNGIBILE"));
-			JOptionPane.showMessageDialog(parentComponent, CCTVPlayer.bundle_lingua.getString("SERVER_NON_RAGGIUNGIBILE"),
-			                              CCTVPlayer.bundle_lingua.getString("SERVER_NON_RAGGIUNGIBILE"), JOptionPane.ERROR_MESSAGE);
+			System.out.println(l10n.getString("SERVER_NON_RAGGIUNGIBILE"));
+			JOptionPane.showMessageDialog(parentComponent, l10n.getString("SERVER_NON_RAGGIUNGIBILE"),
+			                              l10n.getString("SERVER_NON_RAGGIUNGIBILE"), JOptionPane.ERROR_MESSAGE);
 			return false;
 			}
 		catch (IOException e)
@@ -113,7 +114,7 @@ public class ClientTCP implements ActionListener
 	 */
 	private void cicloRicezione()
 		{
-		System.out.println(CCTVPlayer.bundle_lingua.getString("INIZIO_RICEZIONE"));
+		System.out.println(l10n.getString("INIZIO_RICEZIONE"));
 		String inArrivo;
 		while (in != null)
 			{
@@ -124,7 +125,7 @@ public class ClientTCP implements ActionListener
 				}
 			catch (IOException e)
 				{
-				System.out.println(CCTVPlayer.bundle_lingua.getString("FINE_RICEZIONE"));
+				System.out.println(l10n.getString("FINE_RICEZIONE"));
 				System.out.println(e.getMessage());
 				break;
 				}
@@ -134,12 +135,13 @@ public class ClientTCP implements ActionListener
 				if (!(b.length >= 1000))
 					{
 					inArrivoDalServer = inArrivo;
-					System.out.println(CCTVPlayer.bundle_lingua.getString("INCOMING_FROM_SERVER") + " " + inArrivoDalServer);
-					FrameConnessione.refreshStatusLabel();
+					System.out.println(l10n.getString("INCOMING_FROM_SERVER") + " " + inArrivoDalServer);
+					parentComponent.updateStatusLabel();
 					}
 				}
 
 			}
+		//TODO: forse togliere?
 		Thread.currentThread()
 		      .interrupt();
 
@@ -149,7 +151,7 @@ public class ClientTCP implements ActionListener
 	public void actionPerformed(ActionEvent actionEvent)
 		{
 		String textBtnClicked = ((JButton) actionEvent.getSource()).getText();
-		if (textBtnClicked.equals(FrameConnessione.rboundle.getString("ETICHETTA_CHIUDI_CONNESSIONE")))
+		if (textBtnClicked.equals(l10n.getString("ETICHETTA_CHIUDI_CONNESSIONE")))
 			{
 			inviaMessaggioAlServer(MESSAGGIO_CHIUSURA_CONNESSIONE);
 			try
@@ -158,12 +160,11 @@ public class ClientTCP implements ActionListener
 				}
 			catch (InterruptedException e)
 				{
-				System.out.println("4");
 				e.printStackTrace();
 				}
 			close();
 			}
-		if (textBtnClicked.equals(FrameConnessione.rboundle.getString("ETICHETTA_ARRESTA_SISTEMA_REMOTO")))
+		if (textBtnClicked.equals(l10n.getString("ETICHETTA_ARRESTA_SISTEMA_REMOTO")))
 		{
 		inviaMessaggioAlServer(MESSAGGIO_ARRESTA_SISTEMA_REMOTO);
 		try
@@ -193,7 +194,7 @@ public class ClientTCP implements ActionListener
 	/**
 	 * Close method. Closes the used resources.
 	 */
-	private static void close()
+	private void close()
 		{
 		try
 			{
@@ -209,7 +210,7 @@ public class ClientTCP implements ActionListener
 			}
 		finally
 			{
-			FrameConnessione.avviaSetEnabled();
+			parentComponent.avviaSetEnabled();
 			}
 
 		}
@@ -221,10 +222,15 @@ public class ClientTCP implements ActionListener
 	 *
 	 * @throws IOException IOException
 	 */
-	public static boolean hostAvailabilityCheck() throws IOException
+	public static boolean hostAvailabilityCheck(String serverStringPassata) throws IOException
 		{
-		return InetAddress.getByName(serverString)
+		return InetAddress.getByName(serverStringPassata)
 		                  .isReachable(2000);
+		}
+
+	public String getInArrivoDalServer()
+		{
+		return inArrivoDalServer;
 		}
 
 	} //end of ClientTCP class

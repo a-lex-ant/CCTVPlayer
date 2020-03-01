@@ -1,5 +1,5 @@
 import javax.swing.*;
-import java.util.ResourceBundle;
+import javax.swing.Box.Filler;
 
 /**
  * The type Frame connessione.
@@ -7,19 +7,15 @@ import java.util.ResourceBundle;
 public class FrameConnessione extends javax.swing.JFrame
 	{
 
-	private static javax.swing.JButton chiudiConnessioneBtn;
-	private static javax.swing.JButton avviaBtn;
-	private static javax.swing.JButton spegniBtn;
-	private static javax.swing.JLabel  statodata;
+	private JButton chiudiConnessioneBtn;
+	private JButton avviaBtn;
+	private JButton spegniBtn;
+	private JLabel statodata;
 
 	/**
 	 * The TCP client created after clicking on the avviaBtn.
 	 */
-	private static   ClientTCP      client;
-	/**
-	 * The resource boundle for localization
-	 */
-	protected static ResourceBundle rboundle;
+	private ClientTCP      client;
 
 	/**
 	 * Instantiates a new Connection Frame.
@@ -27,7 +23,6 @@ public class FrameConnessione extends javax.swing.JFrame
 	public FrameConnessione()
 		{
 
-		rboundle = CCTVPlayer.bundle_lingua;
 		initComponents();
 
 		}
@@ -40,27 +35,26 @@ public class FrameConnessione extends javax.swing.JFrame
 
 		JTabbedPane jTabbedPane1 = new JTabbedPane();
 		JPanel connectionPanel = new JPanel();
-		avviaBtn             = new javax.swing.JButton();
-		chiudiConnessioneBtn = new javax.swing.JButton();
+		avviaBtn             = new JButton();
+		chiudiConnessioneBtn = new JButton();
 		JLabel statotitolo = new JLabel();
-		statodata            = new javax.swing.JLabel();
+		statodata            = new JLabel();
 		JPanel remoteControlPanel = new JPanel();
 		JLabel spegnimentoLabel   = new JLabel();
-		spegniBtn            = new javax.swing.JButton();
-		Box.Filler filler1 = new Box.Filler(new java.awt.Dimension(0, 300), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
-		Box.Filler filler2 = new Box.Filler(new java.awt.Dimension(0, 300), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
+		spegniBtn            = new JButton();
+		Filler filler1 = new Filler(new java.awt.Dimension(0, 300), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
+		Filler filler2 = new Filler(new java.awt.Dimension(0, 300), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
 
 		setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-		setTitle(rboundle.getString("STATUS"));
+		setTitle(l10n.getString("STATUS"));
 
-		jTabbedPane1.setName("");
 
 		connectionPanel.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(40, 1, 10, 1),
 		                                                                         javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20)));
 		connectionPanel.setLayout(new java.awt.GridLayout(4, 2, 10, 10));
 
 		avviaBtn.setBackground(new java.awt.Color(183, 254, 193));
-		avviaBtn.setText(rboundle.getString("AVVIA_CLIENT_TCP"));
+		avviaBtn.setText(l10n.getString("AVVIA_CLIENT_TCP"));
 		avviaBtn.setForeground(new java.awt.Color(46, 64, 48));
 		avviaBtn.addActionListener(event ->
 		                           {
@@ -77,27 +71,27 @@ public class FrameConnessione extends javax.swing.JFrame
 
 		chiudiConnessioneBtn.setBackground(new java.awt.Color(255, 145, 145));
 		chiudiConnessioneBtn.setForeground(new java.awt.Color(64, 36, 36));
-		chiudiConnessioneBtn.setText(rboundle.getString("ETICHETTA_CHIUDI_CONNESSIONE"));
+		chiudiConnessioneBtn.setText(l10n.getString("ETICHETTA_CHIUDI_CONNESSIONE"));
 		chiudiConnessioneBtn.setEnabled(false);
 		connectionPanel.add(chiudiConnessioneBtn);
 
 		statotitolo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-		statotitolo.setText(rboundle.getString("STATO_CONNESSIONE"));
+		statotitolo.setText(l10n.getString("STATO_CONNESSIONE"));
 		connectionPanel.add(statotitolo);
 
 		statodata.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		statodata.setText("---");
 		connectionPanel.add(statodata);
 
-		jTabbedPane1.addTab(rboundle.getString("CONNESSIONE"), connectionPanel);
+		jTabbedPane1.addTab(l10n.getString("CONNESSIONE"), connectionPanel);
 
 		remoteControlPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 10, 180, 10));
 		remoteControlPanel.setLayout(new java.awt.GridLayout(3, 2, 5, 0));
 
-		spegnimentoLabel.setText(rboundle.getString("SPEGNIMENTO_REMOTO_SERVER"));
+		spegnimentoLabel.setText(l10n.getString("SPEGNIMENTO_REMOTO_SERVER"));
 		remoteControlPanel.add(spegnimentoLabel);
 
-		spegniBtn.setText(rboundle.getString("ETICHETTA_ARRESTA_SISTEMA_REMOTO"));
+		spegniBtn.setText(l10n.getString("ETICHETTA_ARRESTA_SISTEMA_REMOTO"));
 		spegniBtn.setBackground(new java.awt.Color(255, 239, 148));
 		spegniBtn.setForeground(new java.awt.Color(128, 113, 38));
 
@@ -105,7 +99,7 @@ public class FrameConnessione extends javax.swing.JFrame
 		remoteControlPanel.add(filler1);
 		remoteControlPanel.add(filler2);
 
-		jTabbedPane1.addTab(rboundle.getString("CONTROLLO_REMOTO"), remoteControlPanel);
+		jTabbedPane1.addTab(l10n.getString("CONTROLLO_REMOTO"), remoteControlPanel);
 
 		getContentPane().add(jTabbedPane1, java.awt.BorderLayout.CENTER);
 
@@ -120,7 +114,7 @@ public class FrameConnessione extends javax.swing.JFrame
 		{
 		PannelloRichiestaDatiPerTCP pannelloInput;
 		int risp = JOptionPane.showConfirmDialog(this, pannelloInput = new PannelloRichiestaDatiPerTCP(),
-		                                         rboundle.getString("INSERIMENTO") + rboundle.getString("INDIRIZZO_SERVER"),
+		                                         l10n.getString("INSERIMENTO") + l10n.getString("INDIRIZZO_SERVER"),
 		                                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 		if (risp == JOptionPane.OK_OPTION)
 			{
@@ -134,9 +128,9 @@ public class FrameConnessione extends javax.swing.JFrame
 				}
 			catch (NumberFormatException e)
 				{
-				JOptionPane.showMessageDialog(null, rboundle.getString("INPUT_NON_VALIDO_ERRORE") + e.getMessage(),
-				                              rboundle.getString("INPUT_NON_VALIDO"), JOptionPane.ERROR_MESSAGE);
-				}
+				JOptionPane.showMessageDialog(null, l10n.getString("INPUT_NON_VALIDO_ERRORE") + e.getMessage(),
+				                              l10n.getString("INPUT_NON_VALIDO"), JOptionPane.ERROR_MESSAGE);
+				} //TODO: aggiungere ulteriore gestione dell'input, nel caso si mettano cose senza senso. Fare prove!
 			catch (Exception e)
 				{
 				e.printStackTrace();
@@ -158,7 +152,7 @@ public class FrameConnessione extends javax.swing.JFrame
 	/**
 	 * Enables the avviaBtn after closing the previous connection
 	 */
-	static void avviaSetEnabled()
+	void avviaSetEnabled()
 		{
 		chiudiConnessioneBtn.setEnabled(false);
 		avviaBtn.setEnabled(true);
@@ -167,18 +161,18 @@ public class FrameConnessione extends javax.swing.JFrame
 	/**
 	 * Enables the chiudiConnessioneBtn for closing a connection after opening one
 	 */
-	static void chiudiSetEnabled()
+	void chiudiSetEnabled()
 		{
 		chiudiConnessioneBtn.setEnabled(true);
 		avviaBtn.setEnabled(false);
 		}
 
 	/**
-	 * Sets status label.
+	 * Updates status label.
 	 */
-	public static void refreshStatusLabel()
+	public void updateStatusLabel()
 		{
-		statodata.setText(ClientTCP.inArrivoDalServer);
+		statodata.setText(client.getInArrivoDalServer());
 		}
 
 	}

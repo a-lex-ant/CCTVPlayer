@@ -6,8 +6,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 import static java.util.Collections.list;
 
@@ -20,15 +18,12 @@ public class CCTVPlayer
 	/**
 	 * the media player panel
 	 */
-	private static PannelloMediaPlayer pannelloMediaPlayer;
+	private static PannelloMediaPlayer pannelloMediaPlayer; //TODO: possibilmente rendere non statico il pannello
 	/**
 	 * The main frame.
 	 */
 	private static JFrame frame;
-	/**
-	 * The language bundle for internationalization.
-	 */
-	protected static ResourceBundle bundle_lingua;
+
 
 	/**
 	 * The entry point of the application.
@@ -38,41 +33,28 @@ public class CCTVPlayer
 	public static void main(String[] args)
 		{
 
+		new l10n();
+
 		System.setProperty("awt.useSystemAAFontSettings", "on");
 
 		setLookAndFeel();
 		registerAndSetFont();
-		initializeLocale();
 
-		frame = new JFrame(bundle_lingua.getString("LETTORE_VIDEO"));
-		try
-			{
-			ImageIcon img = new ImageIcon("resources/cast.png");
-			frame.setIconImage(img.getImage());
-			}
-		catch (Exception e)
-
-			{
-			e.printStackTrace();
-			}
-		frame.setMinimumSize(new Dimension(200, 200));
-		frame.setLayout(new BorderLayout());
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame = createFrame();
 
 		MenuBarra barraMenu = new MenuBarra();
 
 		pannelloMediaPlayer = new PannelloMediaPlayer();
 
+		new DataUtility(pannelloMediaPlayer);
+
 		LeftMenuBar menubarleft = new LeftMenuBar(); // The left menu bar.
 
-		JSplitPane splitPane = new JSplitPane();
-		splitPane.setOneTouchExpandable(true);
-		splitPane.setDividerLocation(150);
+		JSplitPane splitPane = createSplitPane(menubarleft);
+
 		frame.getContentPane()
 		     .add(splitPane, BorderLayout.CENTER);
 
-		splitPane.setRightComponent(pannelloMediaPlayer);
-		splitPane.setLeftComponent(menubarleft);
 		frame.getContentPane()
 		     .add(barraMenu, BorderLayout.NORTH);
 
@@ -80,8 +62,38 @@ public class CCTVPlayer
 		     .add(new PannelloOrologio(), BorderLayout.SOUTH);
 
 		frame.setVisible(true);
+
 		frame.pack();
 
+		}
+
+	private static JSplitPane createSplitPane(LeftMenuBar menubarleft)
+		{
+		JSplitPane splitPaneCreato = new JSplitPane();
+		splitPaneCreato.setOneTouchExpandable(true);
+		splitPaneCreato.setDividerLocation(150);
+		splitPaneCreato.setRightComponent(pannelloMediaPlayer);
+		splitPaneCreato.setLeftComponent(menubarleft);
+		return splitPaneCreato;
+		}
+
+	private static JFrame createFrame()
+		{
+		JFrame frameCreata = new JFrame(l10n.getString("LETTORE_VIDEO"));
+		try
+			{
+			ImageIcon img = new ImageIcon("resources/cast.png");
+			frameCreata.setIconImage(img.getImage());
+			}
+		catch (Exception e)
+
+			{
+			e.printStackTrace();
+			}
+		frameCreata.setMinimumSize(new Dimension(200, 200));
+		frameCreata.setLayout(new BorderLayout());
+		frameCreata.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		return frameCreata;
 		}
 
 	/**
@@ -141,17 +153,8 @@ public class CCTVPlayer
 
 		}
 
-	/**
-	 * Initializes the locale, loading it from the HDD.
-	 */
-	protected static void initializeLocale()
-		{
-		Locale currentLocale = SaveUtilities.loadLocale();
-		bundle_lingua = ResourceBundle.getBundle("LanguageBundles/LanguageBundle", currentLocale);
 
-		}
-
-
+//TODO: Possibilmente togliere questo metodo
 	public static PannelloMediaPlayer getPannelloMediaPlayer()
 		{
 		return pannelloMediaPlayer;

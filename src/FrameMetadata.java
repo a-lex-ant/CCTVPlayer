@@ -12,13 +12,16 @@ public class FrameMetadata extends JFrame
 	private JLabel lblDataAudioBuffers;
 	private JLabel lblDataPicturesLost;
 	private JLabel lblDataDemuxCorrupted;
+	private JPanel panelStatisticheConnessione;
 
 	/**
 	 * Instantiates the new frame.
 	 */
 	public FrameMetadata()
 		{
-		setTitle(CCTVPlayer.bundle_lingua.getString("STATISTICHE"));
+		this.setMinimumSize(new Dimension(1058,940));
+
+		setTitle(l10n.getString("STATISTICHE"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		JPanel contentPanel = new JPanel();
@@ -30,68 +33,67 @@ public class FrameMetadata extends JFrame
 		contentPanel.add(rootPanel, BorderLayout.CENTER);
 		rootPanel.setLayout(new BorderLayout(0, 0));
 
-		JPanel panel = new JPanel();
-		panel.setBorder(
-				new TitledBorder(null, CCTVPlayer.bundle_lingua.getString("STAT_SULLA_CONNESSIONE"), TitledBorder.LEADING, TitledBorder.TOP, null,
+		panelStatisticheConnessione = new JPanel();
+		panelStatisticheConnessione.setBorder(
+				new TitledBorder(null, l10n.getString("STAT_SULLA_CONNESSIONE"), TitledBorder.LEADING, TitledBorder.TOP, null,
 				                 null));
-		rootPanel.add(panel, BorderLayout.CENTER);
-		panel.add(new NetworkMonitorPanel());
+		rootPanel.add(panelStatisticheConnessione, BorderLayout.CENTER);
+		panelStatisticheConnessione.add(new NetworkMonitorPanel());
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(
-				new TitledBorder(null, CCTVPlayer.bundle_lingua.getString("INFORMAZIONI_SUL_MEDIA"), TitledBorder.LEADING, TitledBorder.TOP, null,
+				new TitledBorder(null, l10n.getString("INFORMAZIONI_SUL_MEDIA"), TitledBorder.LEADING, TitledBorder.TOP, null,
 				                 null));
 		contentPanel.add(panel_1, BorderLayout.SOUTH);
-		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths  = new int[]{2, 0, 0, 0};
-		gbl_panel_1.rowHeights    = new int[]{2, 0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights    = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panel_1.setLayout(gbl_panel_1);
+		GridBagLayout gbLayout_panel_1 = new GridBagLayout();
+		gbLayout_panel_1.columnWidths  = new int[]{2, 0, 0, 0};
+		gbLayout_panel_1.rowHeights    = new int[]{2, 0, 0, 0};
+		gbLayout_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbLayout_panel_1.rowWeights    = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		panel_1.setLayout(gbLayout_panel_1);
 
-		JLabel             lbl_AUDIO_BUFFERS_LOST = new JLabel(CCTVPlayer.bundle_lingua.getString("AUDIO_BUFFERS_LOST"));
-		GridBagConstraints gbc_lblNewLabel        = new GridBagConstraints();
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx  = 0;
-		gbc_lblNewLabel.gridy  = 0;
-		panel_1.add(lbl_AUDIO_BUFFERS_LOST, gbc_lblNewLabel);
+		JLabel             lbl_AUDIO_BUFFERS_LOST = new JLabel(l10n.getString("AUDIO_BUFFERS_LOST"));
+		GridBagConstraints gbConstraints_lblNewLabel        = new GridBagConstraints();
+		gbConstraints_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbConstraints_lblNewLabel.gridx  = 0;
+		gbConstraints_lblNewLabel.gridy  = 0;
+		panel_1.add(lbl_AUDIO_BUFFERS_LOST, gbConstraints_lblNewLabel);
 
-		lblDataAudioBuffers = new JLabel("" + CCTVPlayer.getPannelloMediaPlayer()
+		lblDataAudioBuffers = new JLabel("" + DataUtility
 		                                                .getAudioBuffersLost());
-		GridBagConstraints gbc_lblAaa = new GridBagConstraints();
-		gbc_lblAaa.insets = new Insets(0, 0, 5, 0);
-		gbc_lblAaa.gridx  = 2;
-		gbc_lblAaa.gridy  = 0;
-		panel_1.add(lblDataAudioBuffers, gbc_lblAaa);
+		GridBagConstraints gbConstraints_lblAaa = new GridBagConstraints();
+		gbConstraints_lblAaa.insets = new Insets(0, 0, 5, 0);
+		gbConstraints_lblAaa.gridx  = 2;
+		gbConstraints_lblAaa.gridy  = 0;
+		panel_1.add(lblDataAudioBuffers, gbConstraints_lblAaa);
 
-		JLabel             lblPicturesLost     = new JLabel(CCTVPlayer.bundle_lingua.getString("PICTURES_LOST"));
-		GridBagConstraints gbc_lblPicturesLost = new GridBagConstraints();
-		gbc_lblPicturesLost.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPicturesLost.gridx  = 0;
-		gbc_lblPicturesLost.gridy  = 1;
-		panel_1.add(lblPicturesLost, gbc_lblPicturesLost);
+		JLabel             lblPicturesLost     = new JLabel(l10n.getString("PICTURES_LOST"));
+		GridBagConstraints gbConstraints_lblPicturesLost = new GridBagConstraints();
+		gbConstraints_lblPicturesLost.insets = new Insets(0, 0, 5, 5);
+		gbConstraints_lblPicturesLost.gridx  = 0;
+		gbConstraints_lblPicturesLost.gridy  = 1;
+		panel_1.add(lblPicturesLost, gbConstraints_lblPicturesLost);
 
-		lblDataPicturesLost = new JLabel("" + CCTVPlayer.getPannelloMediaPlayer()
+		lblDataPicturesLost = new JLabel("" + DataUtility
 		                                                .getPicturesLost());
-		GridBagConstraints gbc_lblAaa_1 = new GridBagConstraints();
-		gbc_lblAaa_1.insets = new Insets(0, 0, 5, 0);
-		gbc_lblAaa_1.gridx  = 2;
-		gbc_lblAaa_1.gridy  = 1;
-		panel_1.add(lblDataPicturesLost, gbc_lblAaa_1);
+		GridBagConstraints gbConstraints_lblAaa_1 = new GridBagConstraints();
+		gbConstraints_lblAaa_1.insets = new Insets(0, 0, 5, 0);
+		gbConstraints_lblAaa_1.gridx  = 2;
+		gbConstraints_lblAaa_1.gridy  = 1;
+		panel_1.add(lblDataPicturesLost, gbConstraints_lblAaa_1);
 
-		JLabel             lblDemuxCorrupted     = new JLabel(CCTVPlayer.bundle_lingua.getString("DEMUX_CORRUPTED"));
-		GridBagConstraints gbc_lblDemuxCorrupted = new GridBagConstraints();
-		gbc_lblDemuxCorrupted.insets = new Insets(0, 0, 0, 5);
-		gbc_lblDemuxCorrupted.gridx  = 0;
-		gbc_lblDemuxCorrupted.gridy  = 2;
-		panel_1.add(lblDemuxCorrupted, gbc_lblDemuxCorrupted);
+		JLabel             lblDemuxCorrupted     = new JLabel(l10n.getString("DEMUX_CORRUPTED"));
+		GridBagConstraints gbConstraints_lblDemuxCorrupted = new GridBagConstraints();
+		gbConstraints_lblDemuxCorrupted.insets = new Insets(0, 0, 0, 5);
+		gbConstraints_lblDemuxCorrupted.gridx  = 0;
+		gbConstraints_lblDemuxCorrupted.gridy  = 2;
+		panel_1.add(lblDemuxCorrupted, gbConstraints_lblDemuxCorrupted);
 
-		lblDataDemuxCorrupted = new JLabel("" + CCTVPlayer.getPannelloMediaPlayer()
-		                                                           .getDemuxCorrupted());
-		GridBagConstraints gbc_label = new GridBagConstraints();
-		gbc_label.gridx = 2;
-		gbc_label.gridy = 2;
-		panel_1.add(lblDataDemuxCorrupted, gbc_label);
+		lblDataDemuxCorrupted = new JLabel("" + DataUtility.getDemuxCorrupted());
+		GridBagConstraints gbConstraintsonstraints_label = new GridBagConstraints();
+		gbConstraintsonstraints_label.gridx = 2;
+		gbConstraintsonstraints_label.gridy = 2;
+		panel_1.add(lblDataDemuxCorrupted, gbConstraintsonstraints_label);
 
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -135,10 +137,7 @@ public class FrameMetadata extends JFrame
 		{
 		try
 			{
-			updateLabels(CCTVPlayer.getPannelloMediaPlayer()
-			                       .getDemuxCorrupted(), CCTVPlayer.getPannelloMediaPlayer()
-			                                                       .getAudioBuffersLost(), CCTVPlayer.getPannelloMediaPlayer()
-			                                                                                         .getPicturesLost());
+			updateLabels(DataUtility.getDemuxCorrupted(), (int)DataUtility.getAudioBuffersLost(), (int)DataUtility.getPicturesLost());
 			}
 		catch (Exception e)
 			{
@@ -149,5 +148,11 @@ public class FrameMetadata extends JFrame
 		t.start();
 
 		}
+
+	public Dimension getPanelStatDimension()
+		{
+		return new Dimension(panelStatisticheConnessione.getHeight(), panelStatisticheConnessione.getWidth());
+		}
+
 
 	}
