@@ -1,11 +1,13 @@
+import javax.swing.*;
+
 /**
  * The panel to request data to establish a TCP connection with the server.
  */
-public class PannelloRichiestaDatiPerTCP extends javax.swing.JPanel
+public class PannelloRichiestaDatiPerTCP extends JPanel
 	{
 
-	private javax.swing.JTextField ipInput;
-	private javax.swing.JTextField portaInput;
+	private JTextField ipInput;
+	private JTextField portaInput;
 
 	/**
 	 * Instantiates the panel.
@@ -22,15 +24,15 @@ public class PannelloRichiestaDatiPerTCP extends javax.swing.JPanel
 		{
 		java.awt.GridBagConstraints gridBagConstraints;
 
-		javax.swing.JLabel titolo         = new javax.swing.JLabel();
-		javax.swing.JLabel indirizzoLabel = new javax.swing.JLabel();
-		javax.swing.JLabel portaLabel     = new javax.swing.JLabel();
-		ipInput        = new javax.swing.JTextField();
-		portaInput     = new javax.swing.JTextField();
+		JLabel titolo         = new JLabel();
+		JLabel indirizzoLabel = new JLabel();
+		JLabel portaLabel     = new JLabel();
+		ipInput        = new JTextField();
+		portaInput     = new JTextField();
 
 		setLayout(new java.awt.GridBagLayout());
 
-		titolo.setText(CCTVPlayer.bundle_lingua.getString("CREAZIONE_TCP"));
+		titolo.setText(l10n.getString("CREAZIONE_TCP"));
 		titolo.setForeground(new java.awt.Color(224, 98, 52));
 		gridBagConstraints        = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx  = 1;
@@ -38,7 +40,7 @@ public class PannelloRichiestaDatiPerTCP extends javax.swing.JPanel
 		gridBagConstraints.insets = new java.awt.Insets(9, 14, 9, 14);
 		add(titolo, gridBagConstraints);
 
-		indirizzoLabel.setText(CCTVPlayer.bundle_lingua.getString("INDIRIZZO_IP_SERVER"));
+		indirizzoLabel.setText(l10n.getString("INDIRIZZO_IP_SERVER"));
 		gridBagConstraints        = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx  = 0;
 		gridBagConstraints.gridy  = 2;
@@ -46,7 +48,7 @@ public class PannelloRichiestaDatiPerTCP extends javax.swing.JPanel
 		gridBagConstraints.insets = new java.awt.Insets(7, 18, 7, 19);
 		add(indirizzoLabel, gridBagConstraints);
 
-		portaLabel.setText(CCTVPlayer.bundle_lingua.getString("PORTA"));
+		portaLabel.setText(l10n.getString("PORTA"));
 		gridBagConstraints        = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx  = 0;
 		gridBagConstraints.gridy  = 3;
@@ -72,7 +74,7 @@ public class PannelloRichiestaDatiPerTCP extends javax.swing.JPanel
 		gridBagConstraints.fill   = java.awt.GridBagConstraints.BOTH;
 		gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
 		add(portaInput, gridBagConstraints);
-		}// </editor-fold>
+		}
 
 	/**
 	 * Gets the ip input from the user.

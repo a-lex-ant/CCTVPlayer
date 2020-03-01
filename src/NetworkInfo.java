@@ -60,7 +60,7 @@ public final class NetworkInfo
 	 *
 	 * @return the boolean that tells id the server is available
 	 */
-	public static boolean checkIfServerAvailable(String[] datiDaControllare)
+	public static boolean checkIfServerAvailable(String[] datiDaControllare) //TODO: Vedi client TCP class- host availabilty check
 		{
 		try (Socket clientSocketDiProva = new Socket(datiDaControllare[0], Integer.parseInt(datiDaControllare[1])))
 			{

@@ -17,10 +17,13 @@ public class SaveUtilities
 	/**
 	 * Saves the locale chosen on disk.
 	 *
-	 * @param newLocale the new locale to be written
+	 * @param lang the language of the new locale
+	 * @param country the country of the new locale
 	 */
-	public static void saveLocale(Locale newLocale)
+	public static void saveLocale(String lang, String country)
 		{
+		Locale newLocale = new Locale(lang,country);
+
 		checkForSaveDirectoryExistance();
 		try (
 				ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(userDir + "/savedData/localeSettings.bin"))

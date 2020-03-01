@@ -1,5 +1,5 @@
+
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 
@@ -12,90 +12,80 @@ public class FrameMetadata extends JFrame
 	private JLabel lblDataAudioBuffers;
 	private JLabel lblDataPicturesLost;
 	private JLabel lblDataDemuxCorrupted;
+	private JPanel panelStatisticheConnessione;
 
 	/**
 	 * Instantiates the new frame.
 	 */
 	public FrameMetadata()
 		{
-		setTitle(CCTVPlayer.bundle_lingua.getString("STATISTICHE"));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		
+		setTitle(l10n.getString("STATISTICHE"));
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		JPanel contentPanel = new JPanel();
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPanel.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPanel);
-
-		JPanel rootPanel = new JPanel();
-		contentPanel.add(rootPanel, BorderLayout.CENTER);
-		rootPanel.setLayout(new BorderLayout(0, 0));
-
-		JPanel panel = new JPanel();
-		panel.setBorder(
-				new TitledBorder(null, CCTVPlayer.bundle_lingua.getString("STAT_SULLA_CONNESSIONE"), TitledBorder.LEADING, TitledBorder.TOP, null,
-				                 null));
-		rootPanel.add(panel, BorderLayout.CENTER);
-		panel.add(new NetworkMonitorPanel());
-
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(
-				new TitledBorder(null, CCTVPlayer.bundle_lingua.getString("INFORMAZIONI_SUL_MEDIA"), TitledBorder.LEADING, TitledBorder.TOP, null,
-				                 null));
-		contentPanel.add(panel_1, BorderLayout.SOUTH);
-		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths  = new int[]{2, 0, 0, 0};
-		gbl_panel_1.rowHeights    = new int[]{2, 0, 0, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights    = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panel_1.setLayout(gbl_panel_1);
+		JLabel lbl_AUDIO_BUFFERS_LOST = new JLabel();
+		lblDataAudioBuffers = new JLabel();
+		JLabel lblPicturesLost = new JLabel();
+		lblDataPicturesLost = new JLabel();
+		JLabel lblDemuxCorrupted = new JLabel();
+		lblDataDemuxCorrupted = new JLabel();
 
-		JLabel             lbl_AUDIO_BUFFERS_LOST = new JLabel(CCTVPlayer.bundle_lingua.getString("AUDIO_BUFFERS_LOST"));
-		GridBagConstraints gbc_lblNewLabel        = new GridBagConstraints();
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx  = 0;
-		gbc_lblNewLabel.gridy  = 0;
-		panel_1.add(lbl_AUDIO_BUFFERS_LOST, gbc_lblNewLabel);
 
-		lblDataAudioBuffers = new JLabel("" + CCTVPlayer.getPannelloMediaPlayer()
-		                                                .getAudioBuffersLost());
-		GridBagConstraints gbc_lblAaa = new GridBagConstraints();
-		gbc_lblAaa.insets = new Insets(0, 0, 5, 0);
-		gbc_lblAaa.gridx  = 2;
-		gbc_lblAaa.gridy  = 0;
-		panel_1.add(lblDataAudioBuffers, gbc_lblAaa);
+		contentPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		contentPanel.setLayout(new BorderLayout());
 
-		JLabel             lblPicturesLost     = new JLabel(CCTVPlayer.bundle_lingua.getString("PICTURES_LOST"));
-		GridBagConstraints gbc_lblPicturesLost = new GridBagConstraints();
-		gbc_lblPicturesLost.insets = new Insets(0, 0, 5, 5);
-		gbc_lblPicturesLost.gridx  = 0;
-		gbc_lblPicturesLost.gridy  = 1;
-		panel_1.add(lblPicturesLost, gbc_lblPicturesLost);
+		TitledBorder titledBorder = BorderFactory.createTitledBorder(l10n.getString("INFORMAZIONI_SUL_MEDIA"));
+		titledBorder.setTitleJustification(TitledBorder.CENTER);
+		titledBorder.setTitlePosition(TitledBorder.DEFAULT_POSITION);
+		titledBorder.setTitleColor(new java.awt.Color(224, 98, 52));
+		panel_1.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5),titledBorder ));
+		panel_1.setLayout(new GridLayout(3, 2, 30, 5));
 
-		lblDataPicturesLost = new JLabel("" + CCTVPlayer.getPannelloMediaPlayer()
-		                                                .getPicturesLost());
-		GridBagConstraints gbc_lblAaa_1 = new GridBagConstraints();
-		gbc_lblAaa_1.insets = new Insets(0, 0, 5, 0);
-		gbc_lblAaa_1.gridx  = 2;
-		gbc_lblAaa_1.gridy  = 1;
-		panel_1.add(lblDataPicturesLost, gbc_lblAaa_1);
+		lbl_AUDIO_BUFFERS_LOST.setForeground(new Color(224, 98, 52));
+		lbl_AUDIO_BUFFERS_LOST.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_AUDIO_BUFFERS_LOST.setText(l10n.getString("AUDIO_BUFFERS_LOST"));
+		lbl_AUDIO_BUFFERS_LOST.setVerticalAlignment(SwingConstants.BOTTOM);
+		lbl_AUDIO_BUFFERS_LOST.setBorder(BorderFactory.createCompoundBorder(null, BorderFactory.createEmptyBorder(10, 10, 1, 10)));
+		panel_1.add(lbl_AUDIO_BUFFERS_LOST);
 
-		JLabel             lblDemuxCorrupted     = new JLabel(CCTVPlayer.bundle_lingua.getString("DEMUX_CORRUPTED"));
-		GridBagConstraints gbc_lblDemuxCorrupted = new GridBagConstraints();
-		gbc_lblDemuxCorrupted.insets = new Insets(0, 0, 0, 5);
-		gbc_lblDemuxCorrupted.gridx  = 0;
-		gbc_lblDemuxCorrupted.gridy  = 2;
-		panel_1.add(lblDemuxCorrupted, gbc_lblDemuxCorrupted);
+		lblDataAudioBuffers.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDataAudioBuffers.setText("0");
+		lblDataAudioBuffers.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblDataAudioBuffers.setBorder(BorderFactory.createCompoundBorder(null, BorderFactory.createEmptyBorder(10, 10, 1, 10)));
+		panel_1.add(lblDataAudioBuffers);
 
-		lblDataDemuxCorrupted = new JLabel("" + CCTVPlayer.getPannelloMediaPlayer()
-		                                                           .getDemuxCorrupted());
-		GridBagConstraints gbc_label = new GridBagConstraints();
-		gbc_label.gridx = 2;
-		gbc_label.gridy = 2;
-		panel_1.add(lblDataDemuxCorrupted, gbc_label);
+		lblPicturesLost.setForeground(new Color(224, 98, 52));
+		lblPicturesLost.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPicturesLost.setText(l10n.getString("PICTURES_LOST"));
+		lblPicturesLost.setBorder(BorderFactory.createCompoundBorder(null, BorderFactory.createEmptyBorder(1, 10, 1, 10)));
+		panel_1.add(lblPicturesLost);
+
+		lblDataPicturesLost.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDataPicturesLost.setText("0");
+		lblDataPicturesLost.setBorder(BorderFactory.createCompoundBorder(null, BorderFactory.createEmptyBorder(1, 10, 1, 10)));
+		panel_1.add(lblDataPicturesLost);
+
+		lblDemuxCorrupted.setForeground(new Color(224, 98, 52));
+		lblDemuxCorrupted.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDemuxCorrupted.setText(l10n.getString("DEMUX_CORRUPTED"));
+		lblDemuxCorrupted.setVerticalAlignment(SwingConstants.TOP);
+		lblDemuxCorrupted.setBorder(BorderFactory.createCompoundBorder(null, BorderFactory.createEmptyBorder(1, 10, 10, 10)));
+		panel_1.add(lblDemuxCorrupted);
+
+		lblDataDemuxCorrupted.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDataDemuxCorrupted.setText("0");
+		lblDataDemuxCorrupted.setVerticalAlignment(SwingConstants.TOP);
+		lblDataDemuxCorrupted.setBorder(BorderFactory.createCompoundBorder(null, BorderFactory.createEmptyBorder(1, 10, 10, 10)));
+		panel_1.add(lblDataDemuxCorrupted);
+
+		contentPanel.add(panel_1, BorderLayout.CENTER);
+
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+
+		pack();
 
 		this.setVisible(true);
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.requestFocus(true);
 
 		runTimer();
 
@@ -135,10 +125,7 @@ public class FrameMetadata extends JFrame
 		{
 		try
 			{
-			updateLabels(CCTVPlayer.getPannelloMediaPlayer()
-			                       .getDemuxCorrupted(), CCTVPlayer.getPannelloMediaPlayer()
-			                                                       .getAudioBuffersLost(), CCTVPlayer.getPannelloMediaPlayer()
-			                                                                                         .getPicturesLost());
+			updateLabels(DataUtility.getDemuxCorrupted(), (int)DataUtility.getAudioBuffersLost(), (int)DataUtility.getPicturesLost());
 			}
 		catch (Exception e)
 			{
@@ -149,5 +136,16 @@ public class FrameMetadata extends JFrame
 		t.start();
 
 		}
+
+
+
+	private void inizializza()
+		{
+		
+		}
+
+
+
+
 
 	}

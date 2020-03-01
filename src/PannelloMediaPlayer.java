@@ -22,7 +22,7 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 	/**
 	 * The embedded media player component.
 	 */
-	private EmbeddedMediaPlayerComponent epc;
+	private EmbeddedMediaPlayerComponent embeddedMediaPlayerComponent;
 
 	/**
 	 * Instantiates a new media player panel.
@@ -31,30 +31,30 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 		{
 		this.setLayout(new BorderLayout());
 		this.setPreferredSize(new Dimension(500, 500));
-		this.setMinimumSize(new Dimension(0, 0));
-		JButton apriFileBottone = new JButton(CCTVPlayer.bundle_lingua.getString("AVVIA_STREAM"));
+		this.setMinimumSize(new Dimension(100, 100));
+		JButton apriFileBottone = new JButton(l10n.getString("AVVIA_STREAM"));
 		apriFileBottone.setOpaque(true);
 		apriFileBottone.setIcon(new ImageIcon("resources/play.png"));
 		apriFileBottone.addActionListener(this);
-		this.epc = new EmbeddedMediaPlayerComponent();
-		this.add(epc, BorderLayout.CENTER);
+		this.embeddedMediaPlayerComponent = new EmbeddedMediaPlayerComponent();
+		this.add(embeddedMediaPlayerComponent, BorderLayout.CENTER);
 		this.add(apriFileBottone, BorderLayout.SOUTH);
 		this.setVisible(true);
 
-		epc.mediaPlayer()
-		   .events()
-		   .addMediaPlayerEventListener(new MediaPlayerEventAdapter()
+		embeddedMediaPlayerComponent.mediaPlayer()
+		                            .events()
+		                            .addMediaPlayerEventListener(new MediaPlayerEventAdapter()
 			   {
 			   @Override
 			   public void finished(MediaPlayer mediaPlayer)
 				   {
-				   JOptionPane.showMessageDialog(null, CCTVPlayer.bundle_lingua.getString("OUTPUT_TERMINATO"));
+				   JOptionPane.showMessageDialog(null, l10n.getString("OUTPUT_TERMINATO"));
 				   }
 
 			   @Override
 			   public void error(MediaPlayer mediaPlayer)
 				   {
-				   System.exit(1);
+				   System.exit(1); //TODO: Modificare in modo che magari faccia un'eccezione?
 				   }
 			   });
 
@@ -65,7 +65,7 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 	public void actionPerformed(ActionEvent actionEvent)
 		{
 		if (actionEvent.getActionCommand()
-		               .equals(CCTVPlayer.bundle_lingua.getString("AVVIA_STREAM")))
+		               .equals(l10n.getString("AVVIA_STREAM")))
 			{
 			ExecutorService executorServicePlayback = Executors.newFixedThreadPool(1);
 			executorServicePlayback.submit(() ->
@@ -75,16 +75,16 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 			                               PannelloRichiestaDatiPerStream pnlRch;
 
 			                               int choice = JOptionPane.showConfirmDialog(null, pnlRch = new PannelloRichiestaDatiPerStream(),
-			                                                                          CCTVPlayer.bundle_lingua.getString("INSERTING_DATA"), JOptionPane.OK_CANCEL_OPTION,
+			                                                                          l10n.getString("INSERTING_DATA"), JOptionPane.OK_CANCEL_OPTION,
 			                                                                          JOptionPane.PLAIN_MESSAGE);
 			                               if (choice == 0)
 				                               {
 				                               String[] dati = pnlRch.getDatiInseriti();
 				                               if (NetworkInfo.checkIfServerAvailable(dati))
 					                               {
-					                               epc.mediaPlayer()
-					                                  .media()
-					                                  .play("rtsp://" + dati[0] + ":" + dati[1] + "/");
+					                               embeddedMediaPlayerComponent.mediaPlayer()
+					                                                           .media()
+					                                                           .play("rtsp://" + dati[0] + ":" + dati[1] + "/");
 					                               }
 				                               }
 			                               });
@@ -101,7 +101,7 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:ss");
 		Date             d  = new Date();
 
-		MediaPlayer mp        = epc.mediaPlayer();
+		MediaPlayer mp        = embeddedMediaPlayerComponent.mediaPlayer();
 		SnapshotApi snapshots = mp.snapshots();
 		snapshots.save(new File("snapshot_" + df.format(d) + "_.png"));
 		}
@@ -113,17 +113,17 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 	 */
 	public int getAudioBuffersLost()
 		{
-		if (epc.mediaPlayer()
-		       .media()
-		       .info() == null | epc.mediaPlayer()
-		                            .media()
-		                            .info()
-		                            .statistics() == null) { return 0; }
-		return epc.mediaPlayer()
-		          .media()
-		          .info()
-		          .statistics()
-		          .audioBuffersLost();
+		if (embeddedMediaPlayerComponent.mediaPlayer()
+		                                .media()
+		                                .info() == null | embeddedMediaPlayerComponent.mediaPlayer()
+		                                                                              .media()
+		                                                                              .info()
+		                                                                              .statistics() == null) { return 0; }
+		return embeddedMediaPlayerComponent.mediaPlayer()
+		                                   .media()
+		                                   .info()
+		                                   .statistics()
+		                                   .audioBuffersLost();
 		}
 
 	/**
@@ -133,17 +133,17 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 	 */
 	public int getPicturesLost()
 		{
-		if (epc.mediaPlayer()
-		       .media()
-		       .info() == null | epc.mediaPlayer()
-		                            .media()
-		                            .info()
-		                            .statistics() == null) { return 0; }
-		return epc.mediaPlayer()
-		          .media()
-		          .info()
-		          .statistics()
-		          .picturesLost();
+		if (embeddedMediaPlayerComponent.mediaPlayer()
+		                                .media()
+		                                .info() == null | embeddedMediaPlayerComponent.mediaPlayer()
+		                                                                              .media()
+		                                                                              .info()
+		                                                                              .statistics() == null) { return 0; }
+		return embeddedMediaPlayerComponent.mediaPlayer()
+		                                   .media()
+		                                   .info()
+		                                   .statistics()
+		                                   .picturesLost();
 		}
 
 	/**
@@ -153,17 +153,17 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 	 */
 	public int getDemuxCorrupted()
 		{
-		if (epc.mediaPlayer()
-		       .media()
-		       .info() == null | epc.mediaPlayer()
-		                            .media()
-		                            .info()
-		                            .statistics() == null) { return 0; }
-		return epc.mediaPlayer()
-		          .media()
-		          .info()
-		          .statistics()
-		          .demuxCorrupted();
+		if (embeddedMediaPlayerComponent.mediaPlayer()
+		                                .media()
+		                                .info() == null | embeddedMediaPlayerComponent.mediaPlayer()
+		                                                                              .media()
+		                                                                              .info()
+		                                                                              .statistics() == null) { return 0; }
+		return embeddedMediaPlayerComponent.mediaPlayer()
+		                                   .media()
+		                                   .info()
+		                                   .statistics()
+		                                   .demuxCorrupted();
 		}
 
 	/**
@@ -173,14 +173,14 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 	 */
 	public double getInputBitrate()
 		{
-		if (epc.mediaPlayer()
-		       .media()
-		       .info() == null) { return 0.0; }
-		return epc.mediaPlayer()
-		          .media()
-		          .info()
-		          .statistics()
-		          .inputBitrate();
+		if (embeddedMediaPlayerComponent.mediaPlayer()
+		                                .media()
+		                                .info() == null) { return 0.0; }
+		return embeddedMediaPlayerComponent.mediaPlayer()
+		                                   .media()
+		                                   .info()
+		                                   .statistics()
+		                                   .inputBitrate();
 		}
 
 	/**
@@ -188,8 +188,8 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 	 */
 	protected void releaseMediaPlayer()
 		{
-		epc.mediaPlayer()
-		   .release();
+		embeddedMediaPlayerComponent.mediaPlayer()
+		                            .release();
 		}
 
 	//END OF CLASS

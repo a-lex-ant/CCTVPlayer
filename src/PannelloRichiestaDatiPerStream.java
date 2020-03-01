@@ -37,20 +37,20 @@ public class PannelloRichiestaDatiPerStream extends javax.swing.JPanel
 
 		titoloLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		titoloLabel.setForeground(new java.awt.Color(224, 98, 52));
-		titoloLabel.setText(CCTVPlayer.bundle_lingua.getString("INSERIRE_SERVER_TITOLO"));
+		titoloLabel.setText(l10n.getString("INSERIRE_SERVER_TITOLO"));
 		add(titoloLabel);
 		add(filler1);
 
-		labelIP.setText(CCTVPlayer.bundle_lingua.getString("SERVER_IP_ADDRESS"));
+		labelIP.setText(l10n.getString("SERVER_IP_ADDRESS"));
 		add(labelIP);
 
-		textfIP.setText("192.168.1.4");
+		textfIP.setText("127.0.0.1");
 		add(textfIP);
 
-		labelPorta.setText(CCTVPlayer.bundle_lingua.getString("PORTA"));
+		labelPorta.setText(l10n.getString("PORTA"));
 		add(labelPorta);
 
-		textfPorta.setText("8554");
+		textfPorta.setText("9999");
 		add(textfPorta);
 
 		}
@@ -68,7 +68,7 @@ public class PannelloRichiestaDatiPerStream extends javax.swing.JPanel
 			{
 			return new String[]{textfIP.getText(), textfPorta.getText()};
 			}
-		else { return new String[]{"192.168.1.4", "8554"}; }
+		else { return new String[]{"192.168.1.4", "9999"}; }  //TODO: pessima idea!!! Cambiare
 		}
 
 	}
