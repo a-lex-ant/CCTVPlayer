@@ -1,142 +1,122 @@
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Locale;
 
+/**
+ * The MenuBar class.
+ */
 public class MenuBarra extends JMenuBar
-    {
+	{
+
+	/**
+	 * Instantiates a new menu bar to be put north of the main frame.
+	 */
+	public MenuBarra()
+		{
 
 
-    public MenuBarra ()
-        {
+		JMenu menuFile = new JMenu(CCTVPlayer.bundle_lingua.getString("FILE"));
+		menuFile.setIcon(new ImageIcon("resources/file.png"));
+		JMenu menuHelp = new JMenu(CCTVPlayer.bundle_lingua.getString("HELP"));
+		menuHelp.setIcon(new ImageIcon("resources/help.png"));
+		this.add(menuFile);
+		this.add(menuHelp);
+		JMenuItem voceAbout           = new JMenuItem(CCTVPlayer.bundle_lingua.getString("ABOUT"));
+		JMenu     voceLocale          = new JMenu(CCTVPlayer.bundle_lingua.getString("SCEGLI_LINGUA"));
+		JMenuItem voceEsci            = new JMenuItem(CCTVPlayer.bundle_lingua.getString("ESCI"));
+		JMenuItem voceApriDiagnostics = new JMenuItem(CCTVPlayer.bundle_lingua.getString("APRI_DIAGNOSTICS"));
+		JMenuItem voceItaliano        = new JMenuItem("Italiano");
+		JMenuItem voceInglese         = new JMenuItem("English");
+		try
+			{
+			ImageIcon aboutIcon       = new ImageIcon("resources/info.png");
+			ImageIcon diagnosticsIcon = new ImageIcon("resources/activity.png");
+			ImageIcon esciIcon        = new ImageIcon("resources/x.png");
+			ImageIcon linguaIcon      = new ImageIcon("resources/globe.png");
+			ImageIcon italianoIcon    = new ImageIcon("resources/ita.png");
+			ImageIcon ingleseIcon     = new ImageIcon("resources/eng.png");
+			voceApriDiagnostics.setIcon(diagnosticsIcon);
+			voceEsci.setIcon(esciIcon);
+			voceLocale.setIcon(linguaIcon);
+			voceItaliano.setIcon(italianoIcon);
+			voceInglese.setIcon(ingleseIcon);
+			voceAbout.setIcon(aboutIcon);
 
- //       this.setBackground(new Color(255 , 255 , 255));
+			}
+		catch (Exception e)
+			{
+			e.printStackTrace();
+			}
 
-        JMenu menuFile = new JMenu(Principale.bundle_lingua.getString("FILE"));
-        menuFile.setIcon(new ImageIcon("resources/file.png"));
-        JMenu menuHelp = new JMenu(Principale.bundle_lingua.getString("HELP"));
-        menuHelp.setIcon(new ImageIcon("resources/help.png"));
-        this.add(menuFile);
-        this.add(menuHelp);
-        JMenuItem voceAbout = new JMenuItem(Principale.bundle_lingua.getString("ABOUT"));
-        JMenu voceLocale = new JMenu(Principale.bundle_lingua.getString("SCEGLI_LINGUA"));
-        JMenuItem voceEsci = new JMenuItem(Principale.bundle_lingua.getString("ESCI"));
-        JMenuItem voceApriDiagnostics = new JMenuItem(Principale.bundle_lingua.getString("APRI_DIAGNOSTICS"));
-        JMenuItem voceItaliano = new JMenuItem("Italiano");
-        JMenuItem voceInglese = new JMenuItem("English");
-        try
-            {
-            ImageIcon aboutIcon = new ImageIcon("resources/info.png");
-            ImageIcon diagnosticsIcon = new ImageIcon("resources/activity.png");
-            ImageIcon esciIcon = new ImageIcon("resources/x.png");
-            ImageIcon linguaIcon = new ImageIcon("resources/globe.png");
-            ImageIcon italianoIcon = new ImageIcon("resources/ita.png");
-            ImageIcon ingleseIcon = new ImageIcon("resources/eng.png");
-            voceApriDiagnostics.setIcon(diagnosticsIcon);
-            voceEsci.setIcon(esciIcon);
-            voceLocale.setIcon(linguaIcon);
-            voceItaliano.setIcon(italianoIcon);
-            voceInglese.setIcon(ingleseIcon);
-            voceAbout.setIcon(aboutIcon);
+		menuFile.add(voceEsci);
+		menuFile.add(voceApriDiagnostics);
+		voceLocale.add(voceItaliano);
+		voceLocale.add(voceInglese);
+		menuFile.add(voceLocale);
+		menuHelp.add(voceAbout);
 
-            } catch ( Exception e )
-            {
-            e.printStackTrace();
-            }
+		voceAbout.addActionListener((e) ->
+		                            {
+		                            new CreditsFrame().setVisible(true);
+		                            });
 
-        menuFile.add(voceEsci);
-        menuFile.add(voceApriDiagnostics);
-        voceLocale.add(voceItaliano);
-        voceLocale.add(voceInglese);
-        menuFile.add(voceLocale);
-        menuHelp.add(voceAbout);
-        
-        voceAbout.addActionListener(( e ) ->
-        {
-        new CreditsFrame().setVisible(true);
-        });
+		//aggiunta del comportamento della voce "esci" del menu principale
+		voceEsci.addActionListener(actionEvent ->
+		                           {
 
+		                           CCTVPlayer.getPannelloMediaPlayer()
+		                                     .releaseMediaPlayer();
+		                           System.exit(0);
 
-        //aggiunta del comportamento della voce "esci" del menu principale
-        voceEsci.addActionListener(new ActionListener()
-            {
-            @Override
-            public void actionPerformed ( ActionEvent actionEvent )
-                {
+		                           });
 
+		voceApriDiagnostics.addActionListener(actionEvent ->
+		                                      {
+		                                      try
+			                                      {
+			                                      FrameMetadata fm = new FrameMetadata();
+			                                      }
+		                                      catch (NullPointerException e)
+			                                      {
+			                                      JOptionPane.showMessageDialog(null, CCTVPlayer.bundle_lingua.getString("NESSUNO_STREAM_VIDEO_ATTIVO"),
+			                                                                    CCTVPlayer.bundle_lingua.getString("NESSUN_DATO_DI_DIAGNOSTICA_DISPONIBILE"),
+			                                                                    JOptionPane.ERROR_MESSAGE);
+			                                      }
 
-                Principale.getP().releaseMediaPlayer();
-                //Principale.getMenuBarLeft().closeCtg();
-                System.exit(0);
+		                                      });
 
+		voceItaliano.addActionListener(actionEvent ->
+		                               {
+		                               Locale newLocale = new Locale("it", "IT");
+		                               SaveUtilities.saveLocale(newLocale);
+		                               JOptionPane.showMessageDialog(null, CCTVPlayer.bundle_lingua.getString("CAMBIO_LOCALE"));
+		                               });
 
-                }
-            });
+		voceInglese.addActionListener(actionEvent ->
+		                              {
+		                              Locale newLocale = new Locale("en", "US");
+		                              SaveUtilities.saveLocale(newLocale);
+		                              JOptionPane.showMessageDialog(null, CCTVPlayer.bundle_lingua.getString("CAMBIO_LOCALE"));
 
-        voceApriDiagnostics.addActionListener(new ActionListener()
-            {
-            @Override
-            public void actionPerformed ( ActionEvent actionEvent )
-                {
-                try
-                    {
-                    FrameMetadata fm = new FrameMetadata();
-                    } catch ( NullPointerException e )
-                    {
-                    JOptionPane.showMessageDialog(null , Principale.bundle_lingua.getString(
-                            "NESSUNO_STREAM_VIDEO_ATTIVO") , Principale.bundle_lingua.getString(
-                                    "NESSUN_DATO_DI_DIAGNOSTICA_DISPONIBILE") , JOptionPane.ERROR_MESSAGE);
-                    }
+		                              });
 
-                }
-            });
+		this.add(Box.createHorizontalGlue());
 
+		JButton maximize = new JButton();
+		JButton minimize = new JButton();
+		maximize.setIcon(new ImageIcon("resources/maximize.png"));
+		maximize.setBorderPainted(false);
+		maximize.addActionListener(actionEvent -> CCTVPlayer.massimizzaFrame());
+		maximize.setToolTipText(CCTVPlayer.bundle_lingua.getString("MASSIMIZZA"));
+		minimize.setIcon(new ImageIcon("resources/minimize.png"));
+		minimize.setBackground(new Color(33, 37, 43));
+		maximize.setBackground(new Color(33, 37, 43));
+		minimize.setToolTipText(CCTVPlayer.bundle_lingua.getString("MINIMIZZA"));
+		minimize.addActionListener(actionEvent -> CCTVPlayer.rimpicciolisciFrame());
+		minimize.setBorderPainted(false);
+		this.add(maximize);
+		this.add(minimize);
 
-        voceItaliano.addActionListener(new ActionListener()
-            {
-            @Override
-            public void actionPerformed ( ActionEvent actionEvent )
-                {
-                Locale newLocale = new Locale("it" , "IT");
-                SaveUtilities.saveLocale(newLocale);
-                JOptionPane.showMessageDialog(null , Principale.bundle_lingua.getString("CAMBIO_LOCALE"));
-                }
-            });
+		}
 
-        voceInglese.addActionListener(new ActionListener()
-            {
-            @Override
-            public void actionPerformed ( ActionEvent actionEvent )
-                {
-                Locale newLocale = new Locale("en" , "US");
-                SaveUtilities.saveLocale(newLocale);
-                JOptionPane.showMessageDialog(null , Principale.bundle_lingua.getString("CAMBIO_LOCALE"));
-
-                }
-            });
-
-
-        this.add( Box.createHorizontalGlue());
-
-
-        JButton maximize = new JButton();
-        JButton minimize = new JButton();
-        maximize.setIcon(new ImageIcon("resources/maximize.png"));
-        maximize.setBorderPainted(false);
-        maximize.addActionListener(actionEvent -> Principale.massimizzaFrame());
-        maximize.setToolTipText(Principale.bundle_lingua.getString("MASSIMIZZA"));
-        minimize.setIcon(new ImageIcon("resources/minimize.png"));
-        minimize.setBackground(new Color(33,37,43));
-        maximize.setBackground(new Color(33,37,43));
-        minimize.setToolTipText(Principale.bundle_lingua.getString("MINIMIZZA"));
-        minimize.addActionListener(actionEvent -> Principale.rimpicciolisciFrame());
-        minimize.setBorderPainted(false);
-        this.add(maximize);
-        this.add(minimize);
-
-
-        }
-
-    }
+	}

@@ -6,37 +6,48 @@ import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * The Clock panel Class
+ */
 public class PannelloOrologio extends JPanel
-    {
-    private JLabel orologio;
+	{
 
-    public PannelloOrologio ()
-        {
-        this.setLayout(new BorderLayout());
-        this.orologio = new JLabel(new Date().toString());
-        this.add(orologio , BorderLayout.CENTER);
-        ExecutorService es = Executors.newFixedThreadPool(1);
-        es.submit(new AggiornaOrologio());
-        }
+	private JLabel clock;
 
-    private class AggiornaOrologio implements Runnable
-        {
+	/**
+	 * Instantiates a new clock panel.
+	 */
+	public PannelloOrologio()
+		{
+		this.setLayout(new BorderLayout());
+		this.clock = new JLabel(new Date().toString());
+		this.add(clock, BorderLayout.CENTER);
+		ExecutorService es = Executors.newFixedThreadPool(1);
+		es.submit(new AggiornaOrologio());
+		}
 
-        @Override
-        public void run ()
-            {
-            Timer timer = new Timer(1000 , new ActionListener()
-                {
-                @Override
-                public void actionPerformed ( ActionEvent actionEvent )
-                    {
-                    orologio.setText(( new Date().toString() ));
-                    }
-                });
+	/**
+	 * Utility class that implements the run method called by the timer.
+	 * Updates the time showed.
+	 */
+	private class AggiornaOrologio implements Runnable
+		{
 
-            timer.start();
-            }
-        }
+		@Override
+		public void run()
+			{
+			Timer timer = new Timer(1000, new ActionListener()
+				{
+				@Override
+				public void actionPerformed(ActionEvent actionEvent)
+					{
+					clock.setText((new Date().toString()));
+					}
+				});
 
+			timer.start();
+			}
 
-    }
+		}
+
+	}

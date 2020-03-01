@@ -1,83 +1,100 @@
+/**
+ * The panel to request data to establish a TCP connection with the server.
+ */
 public class PannelloRichiestaDatiPerTCP extends javax.swing.JPanel
-    {
+	{
 
+	private javax.swing.JLabel     indirizzoLabel;
+	private javax.swing.JTextField ipInput;
+	private javax.swing.JTextField portaInput;
+	private javax.swing.JLabel     portaLabel;
+	private javax.swing.JLabel     titolo;
 
-    private javax.swing.JLabel indirizzoLabel;
-    private javax.swing.JTextField ipInput;
-    private javax.swing.JTextField portaInput;
-    private javax.swing.JLabel portaLabel;
-    private javax.swing.JLabel titolo;
+	/**
+	 * Instantiates the panel.
+	 */
+	public PannelloRichiestaDatiPerTCP()
+		{
+		initComponents();
+		}
 
+	/**
+	 * Initializes components.
+	 */
+	private void initComponents()
+		{
+		java.awt.GridBagConstraints gridBagConstraints;
 
-    public PannelloRichiestaDatiPerTCP ()
-        {
-        initComponents();
-        }
+		titolo         = new javax.swing.JLabel();
+		indirizzoLabel = new javax.swing.JLabel();
+		portaLabel     = new javax.swing.JLabel();
+		ipInput        = new javax.swing.JTextField();
+		portaInput     = new javax.swing.JTextField();
 
-    private void initComponents ()
-        {
-        java.awt.GridBagConstraints gridBagConstraints;
+		setLayout(new java.awt.GridBagLayout());
 
-        titolo         = new javax.swing.JLabel();
-        indirizzoLabel = new javax.swing.JLabel();
-        portaLabel     = new javax.swing.JLabel();
-        ipInput        = new javax.swing.JTextField();
-        portaInput     = new javax.swing.JTextField();
+		titolo.setText(CCTVPlayer.bundle_lingua.getString("CREAZIONE_TCP"));
+		titolo.setForeground(new java.awt.Color(224, 98, 52));
+		gridBagConstraints        = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx  = 1;
+		gridBagConstraints.gridy  = 0;
+		gridBagConstraints.insets = new java.awt.Insets(9, 14, 9, 14);
+		add(titolo, gridBagConstraints);
 
-        setLayout(new java.awt.GridBagLayout());
+		indirizzoLabel.setText(CCTVPlayer.bundle_lingua.getString("INDIRIZZO_IP_SERVER"));
+		gridBagConstraints        = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx  = 0;
+		gridBagConstraints.gridy  = 2;
+		gridBagConstraints.fill   = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.insets = new java.awt.Insets(7, 18, 7, 19);
+		add(indirizzoLabel, gridBagConstraints);
 
-        titolo.setText(Principale.bundle_lingua.getString("CREAZIONE_TCP"));
-        titolo.setForeground(new java.awt.Color(224, 98, 52));
-        gridBagConstraints        = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx  = 1;
-        gridBagConstraints.gridy  = 0;
-        gridBagConstraints.insets = new java.awt.Insets(9 , 14 , 9 , 14);
-        add(titolo , gridBagConstraints);
+		portaLabel.setText(CCTVPlayer.bundle_lingua.getString("PORTA"));
+		gridBagConstraints        = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx  = 0;
+		gridBagConstraints.gridy  = 3;
+		gridBagConstraints.fill   = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.insets = new java.awt.Insets(7, 18, 7, 19);
+		add(portaLabel, gridBagConstraints);
 
-        indirizzoLabel.setText(Principale.bundle_lingua.getString("INDIRIZZO_IP_SERVER"));
-        gridBagConstraints        = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx  = 0;
-        gridBagConstraints.gridy  = 2;
-        gridBagConstraints.fill   = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(7 , 18 , 7 , 19);
-        add(indirizzoLabel , gridBagConstraints);
+		ipInput.setColumns(11);
+		ipInput.setText("127.0.0.1");
 
-        portaLabel.setText(Principale.bundle_lingua.getString("PORTA"));
-        gridBagConstraints        = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx  = 0;
-        gridBagConstraints.gridy  = 3;
-        gridBagConstraints.fill   = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(7 , 18 , 7 , 19);
-        add(portaLabel , gridBagConstraints);
+		gridBagConstraints        = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx  = 1;
+		gridBagConstraints.gridy  = 2;
+		gridBagConstraints.fill   = java.awt.GridBagConstraints.BOTH;
+		gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
+		add(ipInput, gridBagConstraints);
 
-        ipInput.setColumns(11);
-        ipInput.setText("127.0.0.1");
+		portaInput.setColumns(7);
+		portaInput.setText("9999");
+		gridBagConstraints        = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx  = 1;
+		gridBagConstraints.gridy  = 3;
+		gridBagConstraints.fill   = java.awt.GridBagConstraints.BOTH;
+		gridBagConstraints.insets = new java.awt.Insets(4, 0, 4, 0);
+		add(portaInput, gridBagConstraints);
+		}// </editor-fold>
 
-        gridBagConstraints        = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx  = 1;
-        gridBagConstraints.gridy  = 2;
-        gridBagConstraints.fill   = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(4 , 0 , 4 , 0);
-        add(ipInput , gridBagConstraints);
+	/**
+	 * Gets the ip input from the user.
+	 *
+	 * @return the ip input
+	 */
+	public String getIpInput()
+		{
+		return ipInput.getText();
+		}
 
-        portaInput.setColumns(7);
-        portaInput.setText("9999");
-        gridBagConstraints        = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx  = 1;
-        gridBagConstraints.gridy  = 3;
-        gridBagConstraints.fill   = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(4 , 0 , 4 , 0);
-        add(portaInput , gridBagConstraints);
-        }// </editor-fold>
+	/**
+	 * Gets the port input from the user.
+	 *
+	 * @return the port input
+	 */
+	public String getPortaInput()
+		{
+		return portaInput.getText();
+		}
 
-
-    public String getIpInput ()
-        {
-        return ipInput.getText();
-        }
-
-    public String getPortaInput ()
-        {
-        return portaInput.getText();
-        }
-    }
+	}

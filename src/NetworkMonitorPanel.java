@@ -9,83 +9,104 @@ import org.jfree.data.xy.XYDataset;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
+/**
+ * The Network monitor panel class.
+ */
 public class NetworkMonitorPanel extends JPanel
-    {
+	{
 
-    private TimeSeries series1;
-    private TimeSeriesCollection dataset;
+	private TimeSeries           series1;
+	private TimeSeriesCollection dataset;
 
-    public NetworkMonitorPanel () throws HeadlessException
-        {
-        this.setLayout(new BorderLayout());
-        this.series1 = new TimeSeries(Principale.bundle_lingua.getString("BYTE_SEC_INPUT"));
-        this.dataset = new TimeSeriesCollection();
-        ChartPanel grafico = (ChartPanel) creaPannelloGrafico();
-        this.add(grafico);
-        this.setVisible(true);
-        runTimer();
-        }
+	/**
+	 * Instantiates a new Network monitor panel.
+	 *
+	 * @throws HeadlessException
+	 */
+	public NetworkMonitorPanel() throws HeadlessException
+		{
+		this.setLayout(new BorderLayout());
+		this.series1 = new TimeSeries(CCTVPlayer.bundle_lingua.getString("BYTE_SEC_INPUT"));
+		this.dataset = new TimeSeriesCollection();
+		ChartPanel grafico = (ChartPanel) creaPannelloGrafico();
+		this.add(grafico);
+		this.setVisible(true);
+		runTimer();
+		}
 
-    public JPanel creaPannelloGrafico ()  //createDemoPanel
-    {
-    linkSeriesAndDataset();
-    JFreeChart grafico = creaGrafico(this.dataset);
-    ChartPanel panel = new ChartPanel(grafico , true);
-    return panel;
-    }
+	/**
+	 * Creates a panel that shows the chart
+	 *
+	 * @return the panel
+	 */
+	public JPanel creaPannelloGrafico()
+	{
+	linkSeriesAndDataset();
+	JFreeChart grafico = creaGrafico(this.dataset);
+	ChartPanel panel   = new ChartPanel(grafico, true);
+	return panel;
+	}
 
-    private JFreeChart creaGrafico ( XYDataset dataset )  //createChart
-    {
-    JFreeChart grafico = ChartFactory.createTimeSeriesChart(Principale.bundle_lingua.getString("NETWORK_MONITORING")
-            , "secs" , Principale.bundle_lingua.getString("DATA_RATE") , dataset);
+	/**
+	 * Creates a JFreeChart chart
+	 *
+	 * @param dataset the dataset
+	 *
+	 * @return the chart object
+	 */
+	private JFreeChart creaGrafico(XYDataset dataset)  //createChart
+	{
+	JFreeChart grafico = ChartFactory.createTimeSeriesChart(CCTVPlayer.bundle_lingua.getString("NETWORK_MONITORING"), "secs",
+	                                                        CCTVPlayer.bundle_lingua.getString("DATA_RATE"), dataset);
 
-    XYPlot plot = (XYPlot) grafico.getPlot();
-    plot.setDomainGridlinesVisible(false);
-    plot.setBackgroundPaint(Color.WHITE);
-    plot.setRangeGridlinePaint(Color.GRAY);
+	XYPlot plot = (XYPlot) grafico.getPlot();
+	plot.setDomainGridlinesVisible(false);
+	plot.setBackgroundPaint(Color.WHITE);
+	plot.setRangeGridlinePaint(Color.GRAY);
 
-    return grafico;
-    }
+	return grafico;
+	}
 
-    private void linkSeriesAndDataset ()  //createDataset
-    {
-    //series.add(new Second(), 1.0); //prima inizializzazione per prova
-    dataset.addSeries(series1);
+	/**
+	 * Link series and corresponding dataset.
+	 */
+	private void linkSeriesAndDataset()
+	{
+	dataset.addSeries(series1);
+	}
 
+	/**
+	 * Updates the chart
+	 *
+	 * @param value the new value to be painted
+	 */
+	private void aggiornaGrafico(double value)
+		{
+		if (series1.getItemCount() >= 60)
+			{
+			series1.clear();
+			}
+		Second s = new Second();
+		series1.add(s, value);
 
-    }
+		this.repaint();
+		}
 
-    private void aggiornaGrafico ( double value )
-        {
-        if ( series1.getItemCount() >= 60 )
-            {
-            series1.clear();
-            }
-        Second s = new Second();
-        series1.add(s , value);
+	/**
+	 * Runs the timer to regularly update the chart.
+	 */
+	private void runTimer()
+		{
+		Timer t = new Timer(1000, actionEvent ->
+		{
+		double d1 = CCTVPlayer.getPannelloMediaPlayer()
+		                      .getInputBitrate();
+		aggiornaGrafico(d1);
+		});
+		t.start();
 
-        this.repaint();
-        }
+		}
 
-    private void runTimer ()
-        {
-        Timer t = new Timer(1000 , new ActionListener()
-            {
-            @Override
-            public void actionPerformed ( ActionEvent actionEvent )
-                {
-                double d1 = Principale.getP().getInputBitrate();
-                aggiornaGrafico(d1);
-                }
-            });
-        t.start();
-
-
-        }
-
-
-    //***************************FINE CLASSE***************************************************************
-    }
+	//***************************END OF CLASS**************************************************************
+	}
