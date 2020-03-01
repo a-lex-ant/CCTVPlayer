@@ -137,14 +137,4 @@ public class FrameMetadata extends JFrame
 		}
 
 
-
-	private void inizializza()
-		{
-		
-		}
-
-
-
-
-
 	}
