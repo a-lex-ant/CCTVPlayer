@@ -12,7 +12,6 @@ public class FrameMetadata extends JFrame
 	private JLabel lblDataAudioBuffers;
 	private JLabel lblDataPicturesLost;
 	private JLabel lblDataDemuxCorrupted;
-	private JPanel panelStatisticheConnessione;
 
 	/**
 	 * Instantiates the new frame.
