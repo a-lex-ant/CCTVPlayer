@@ -2,6 +2,8 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.XYPlot;
+
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.time.Second;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
@@ -17,6 +19,8 @@ public class NetworkMonitorPanel extends JPanel
 	{
 
 	private TimeSeries           series1;
+	private TimeSeries           series2;
+	private TimeSeries           series3;
 	private TimeSeriesCollection dataset;
 
 
@@ -30,7 +34,9 @@ public class NetworkMonitorPanel extends JPanel
 		{
 
 		this.setLayout(new GridLayout());
-		this.series1 = new TimeSeries(l10n.getString("BYTE_SEC_INPUT"));
+		this.series1 = new TimeSeries(l10n.getString("AUDIO_BUFFERS_LOST"));
+		this.series2 = new TimeSeries(l10n.getString("DEMUX_CORRUPTED"));
+		this.series3 = new TimeSeries(l10n.getString("PICTURES_LOST"));
 		this.dataset = new TimeSeriesCollection();
 		ChartPanel graficoPanel = (ChartPanel) creaPannelloGrafico();
 		this.add(graficoPanel);
@@ -59,10 +65,10 @@ public class NetworkMonitorPanel extends JPanel
 	 */
 	private JFreeChart creaGrafico(XYDataset dataset)  //createChart
 	{
-	JFreeChart grafico = ChartFactory.createTimeSeriesChart(l10n.getString("NETWORK_MONITORING"), "secs",
+	JFreeChart grafico = ChartFactory.createTimeSeriesChart(l10n.getString("NETWORK_MONITORING"), "",
 	                                                        l10n.getString("DATA_RATE"), dataset);
-
 	XYPlot plot = (XYPlot) grafico.getPlot();
+
 	plot.setDomainGridlinesVisible(false);
 	plot.setBackgroundPaint(Color.WHITE);
 	plot.setRangeGridlinePaint(Color.GRAY);
@@ -76,21 +82,29 @@ public class NetworkMonitorPanel extends JPanel
 	private void linkSeriesAndDataset()
 	{
 	dataset.addSeries(series1);
+	dataset.addSeries(series2);
+	dataset.addSeries(series3);
 	}
 
 	/**
 	 * Updates the chart
 	 *
-	 * @param value the new value to be painted
+	 * @param value1 the new value to be painted (Audio Buffers Lost)
+	 * @param value2 the new value to be painted (Demux Corrupted)
+	 * @param value3 the new value to be painted (Pictures Lost)
 	 */
-	private void aggiornaGrafico(double value)
+	private void aggiornaGrafico(double value1, double value2, double value3)
 		{
-		if (series1.getItemCount() >= 10)
+		if (series1.getItemCount() >= 20 | series2.getItemCount() >= 20 | series3.getItemCount() >= 20)
 			{
 			series1.clear();
+			series2.clear();
+			series3.clear();
 			}
 		Second s = new Second();
-		series1.add(s, value);
+		series1.add(s, value1);
+		series2.add(s,value2);
+		series3.add(s,value3);
 
 		this.repaint();
 		}
@@ -102,9 +116,11 @@ public class NetworkMonitorPanel extends JPanel
 		{
 		Timer t = new Timer(1000, actionEvent ->
 		{
-		double d1 = DataUtility
-		                      .getInputBitrate();
-		aggiornaGrafico(d1);
+		double d1 = DataUtility.getAudioBuffersLost();
+		double d2 = DataUtility.getDemuxCorrupted();
+		double d3 = DataUtility.getPicturesLost();
+
+		aggiornaGrafico(d1,d2,d3);
 		});
 		t.start();
 

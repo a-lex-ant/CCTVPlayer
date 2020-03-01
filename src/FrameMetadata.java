@@ -19,8 +19,6 @@ public class FrameMetadata extends JFrame
 	 */
 	public FrameMetadata()
 		{
-		this.setMinimumSize(new Dimension(1058,940));
-
 		setTitle(l10n.getString("STATISTICHE"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -33,13 +31,14 @@ public class FrameMetadata extends JFrame
 		contentPanel.add(rootPanel, BorderLayout.CENTER);
 		rootPanel.setLayout(new BorderLayout(0, 0));
 
-		panelStatisticheConnessione = new JPanel();
+		/*panelStatisticheConnessione = new JPanel();
 		panelStatisticheConnessione.setBorder(
 				new TitledBorder(null, l10n.getString("STAT_SULLA_CONNESSIONE"), TitledBorder.LEADING, TitledBorder.TOP, null,
 				                 null));
 		rootPanel.add(panelStatisticheConnessione, BorderLayout.CENTER);
-		panelStatisticheConnessione.add(new NetworkMonitorPanel());
+		//panelStatisticheConnessione.add(new NetworkMonitorPanel());
 
+		 */
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(
 				new TitledBorder(null, l10n.getString("INFORMAZIONI_SUL_MEDIA"), TitledBorder.LEADING, TitledBorder.TOP, null,
@@ -51,6 +50,8 @@ public class FrameMetadata extends JFrame
 		gbLayout_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbLayout_panel_1.rowWeights    = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbLayout_panel_1);
+
+
 
 		JLabel             lbl_AUDIO_BUFFERS_LOST = new JLabel(l10n.getString("AUDIO_BUFFERS_LOST"));
 		GridBagConstraints gbConstraints_lblNewLabel        = new GridBagConstraints();
@@ -147,11 +148,6 @@ public class FrameMetadata extends JFrame
 
 		t.start();
 
-		}
-
-	public Dimension getPanelStatDimension()
-		{
-		return new Dimension(panelStatisticheConnessione.getHeight(), panelStatisticheConnessione.getWidth());
 		}
 
 
