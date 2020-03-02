@@ -1,4 +1,7 @@
+import com.google.common.net.InetAddresses;
+
 import javax.swing.*;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.Socket;
@@ -53,27 +56,20 @@ public final class NetworkInfo
 		return "---";
 		}
 
-	/**
-	 * Checks if the trasmission is up and running
-	 *
-	 * @param datiDaControllare the address and port to check
-	 *
-	 * @return the boolean that tells id the server is available
-	 */
-	public static boolean checkIfServerAvailable(String[] datiDaControllare) //TODO: Vedi client TCP class- host availabilty check
+
+	public static boolean isValidAddress(String ip)
 		{
-		try (Socket clientSocketDiProva = new Socket(datiDaControllare[0], Integer.parseInt(datiDaControllare[1])))
-			{
-			;
-			}
-		catch (Exception e)
-			{
-			JOptionPane.showMessageDialog(null, e.getMessage(), e.getLocalizedMessage(), JOptionPane.ERROR_MESSAGE);
-			System.out.println(e.getMessage());
-			if (e.getMessage()
-			     .contains("Server unreachable")) { return false; }
-			}
-		return true;
+		if (InetAddresses.isInetAddress(ip)) return true;
+		return false;
+		}
+
+	public static boolean hostAvailabilityCheck(String serverStringPassata) throws IOException
+		{
+		boolean reacheable = InetAddress.getByName(serverStringPassata)
+		                                .isReachable(2000);
+		boolean valid = NetworkInfo.isValidAddress(serverStringPassata);
+		if(reacheable && valid) return true;
+		return false;
 		}
 
 	}

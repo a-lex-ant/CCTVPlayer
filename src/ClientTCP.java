@@ -11,6 +11,8 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import static java.net.InetAddress.getByName;
+
 /**
  * The Client tcp class.
  * Implements the behaviour of the TCP client.
@@ -37,15 +39,15 @@ public class ClientTCP implements ActionListener
 	/**
 	 * The PrintWriter that will write the messages for the server
 	 */
-	private static PrintWriter    out; //TODO: togliere static ove possibile, qui e per socketConIlServer ed per in (vedi sotto)
+	private PrintWriter    out;
 	/**
 	 * The Socket used to talk to the server
 	 */
-	private static Socket         socketConIlServer;
+	private Socket         socketConIlServer;
 	/**
 	 * The BufferedReader used to read incoming messages from the server
 	 */
-	private static BufferedReader in;
+	private BufferedReader in;
 	/**
 	 * The parent component that started the tcp client.
 	 */
@@ -82,7 +84,7 @@ public class ClientTCP implements ActionListener
 		{
 		try
 			{
-			if (hostAvailabilityCheck(serverString))
+			if (NetworkInfo.hostAvailabilityCheck(serverString))
 				{
 				socketConIlServer = new Socket(serverString, portaInt);
 				out               = new PrintWriter(socketConIlServer.getOutputStream());
@@ -140,9 +142,6 @@ public class ClientTCP implements ActionListener
 				}
 
 			}
-		//TODO: forse togliere?
-		Thread.currentThread()
-		      .interrupt();
 
 		}
 
@@ -214,18 +213,6 @@ public class ClientTCP implements ActionListener
 
 		}
 
-	/**
-	 * Host availability check. Checks if the server's address is reacheable
-	 *
-	 * @return the boolean
-	 *
-	 * @throws IOException IOException
-	 */
-	public static boolean hostAvailabilityCheck(String serverStringPassata) throws IOException
-		{
-		return InetAddress.getByName(serverStringPassata)
-		                  .isReachable(2000);
-		}
 
 
 	} //end of ClientTCP class

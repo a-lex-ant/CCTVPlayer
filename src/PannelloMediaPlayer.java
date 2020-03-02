@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.ExecutorService;
@@ -54,7 +55,7 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 			   @Override
 			   public void error(MediaPlayer mediaPlayer)
 				   {
-				   System.exit(1); //TODO: Modificare in modo che magari faccia un'eccezione?
+				   releaseMediaPlayer();
 				   }
 			   });
 
@@ -80,11 +81,28 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 			                               if (choice == 0)
 				                               {
 				                               String[] dati = pnlRch.getDatiInseriti();
-				                               if (NetworkInfo.checkIfServerAvailable(dati))
+				                               if (dati != null)
 					                               {
-					                               embeddedMediaPlayerComponent.mediaPlayer()
-					                                                           .media()
-					                                                           .play("rtsp://" + dati[0] + ":" + dati[1] + "/");
+					                               try
+						                               {
+						                               if (NetworkInfo.hostAvailabilityCheck(dati[0]))
+							                               {
+							                               embeddedMediaPlayerComponent.mediaPlayer()
+							                                                           .media()
+							                                                           .play("rtsp://" + dati[0] + ":" + dati[1] + "/");
+							                               }
+						                               else
+							                               {
+							                               JOptionPane.showMessageDialog(this,
+							                                                             l10n.getString("SERVER_NON_RAGG"),
+							                                                             l10n.getString("SERVER_NON_RAGG_SHORT"),
+							                                                             JOptionPane.ERROR_MESSAGE);
+							                               }
+						                               }
+					                               catch (IOException e)
+						                               {
+						                               releaseMediaPlayer();
+						                               }
 					                               }
 				                               }
 			                               });

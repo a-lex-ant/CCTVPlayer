@@ -123,14 +123,24 @@ public class FrameConnessione extends javax.swing.JFrame
 				{
 				String indirizzo = pannelloInput.getIpInput();
 				int    port      = Integer.parseInt(pannelloInput.getPortaInput());
-				client = new ClientTCP(indirizzo, port, this);
-				aggiungiActionListeners();
+				if (NetworkInfo.hostAvailabilityCheck(indirizzo))
+					{
+					client = new ClientTCP(indirizzo, port, this);
+					aggiungiActionListeners();
+					}
+				else
+					{
+					JOptionPane.showMessageDialog(this,
+					                              l10n.getString("SERVER_NON_RAGG"),
+					                              l10n.getString("SERVER_NON_RAGG_SHORT"),
+					                              JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			catch (NumberFormatException e)
 				{
 				JOptionPane.showMessageDialog(null, l10n.getString("INPUT_NON_VALIDO_ERRORE") + e.getMessage(),
 				                              l10n.getString("INPUT_NON_VALIDO"), JOptionPane.ERROR_MESSAGE);
-				} //TODO: aggiungere ulteriore gestione dell'input, nel caso si mettano cose senza senso. Fare prove!
+				}
 			catch (Exception e)
 				{
 				e.printStackTrace();
