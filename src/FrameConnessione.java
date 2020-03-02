@@ -7,7 +7,6 @@ import javax.swing.Box.Filler;
 public class FrameConnessione extends javax.swing.JFrame
 	{
 
-	private JButton chiudiConnessioneBtn;
 	private JButton avviaBtn;
 	private JButton spegniBtn;
 	private JLabel statodata;
@@ -36,7 +35,7 @@ public class FrameConnessione extends javax.swing.JFrame
 		JTabbedPane jTabbedPane1 = new JTabbedPane();
 		JPanel connectionPanel = new JPanel();
 		avviaBtn             = new JButton();
-		chiudiConnessioneBtn = new JButton();
+
 		JLabel statotitolo = new JLabel();
 		statodata            = new JLabel();
 		JPanel remoteControlPanel = new JPanel();
@@ -68,12 +67,6 @@ public class FrameConnessione extends javax.swing.JFrame
 			                           }
 		                           });
 		connectionPanel.add(avviaBtn);
-
-		chiudiConnessioneBtn.setBackground(new java.awt.Color(255, 145, 145));
-		chiudiConnessioneBtn.setForeground(new java.awt.Color(64, 36, 36));
-		chiudiConnessioneBtn.setText(l10n.getString("ETICHETTA_CHIUDI_CONNESSIONE"));
-		chiudiConnessioneBtn.setEnabled(false);
-		connectionPanel.add(chiudiConnessioneBtn);
 
 		statotitolo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		statotitolo.setText(l10n.getString("STATO_CONNESSIONE"));
@@ -123,14 +116,24 @@ public class FrameConnessione extends javax.swing.JFrame
 				{
 				String indirizzo = pannelloInput.getIpInput();
 				int    port      = Integer.parseInt(pannelloInput.getPortaInput());
-				client = new ClientTCP(indirizzo, port, this);
-				aggiungiActionListeners();
+				if (NetworkInfo.hostAvailabilityCheck(indirizzo) && port!=8554) //port 8554 reserved for stream connection
+					{
+					client = new ClientTCP(indirizzo, port, this);
+					aggiungiActionListeners();
+					}
+				else
+					{
+					JOptionPane.showMessageDialog(this,
+					                              l10n.getString("SERVER_NON_RAGG"),
+					                              l10n.getString("SERVER_NON_RAGG_SHORT"),
+					                              JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			catch (NumberFormatException e)
 				{
 				JOptionPane.showMessageDialog(null, l10n.getString("INPUT_NON_VALIDO_ERRORE") + e.getMessage(),
 				                              l10n.getString("INPUT_NON_VALIDO"), JOptionPane.ERROR_MESSAGE);
-				} //TODO: aggiungere ulteriore gestione dell'input, nel caso si mettano cose senza senso. Fare prove!
+				}
 			catch (Exception e)
 				{
 				e.printStackTrace();
@@ -146,7 +149,6 @@ public class FrameConnessione extends javax.swing.JFrame
 	private void aggiungiActionListeners()
 		{
 		spegniBtn.addActionListener(client);
-		chiudiConnessioneBtn.addActionListener(client);
 		}
 
 	/**
@@ -154,7 +156,7 @@ public class FrameConnessione extends javax.swing.JFrame
 	 */
 	void avviaSetEnabled()
 		{
-		chiudiConnessioneBtn.setEnabled(false);
+
 		avviaBtn.setEnabled(true);
 		}
 
@@ -163,16 +165,16 @@ public class FrameConnessione extends javax.swing.JFrame
 	 */
 	void chiudiSetEnabled()
 		{
-		chiudiConnessioneBtn.setEnabled(true);
+
 		avviaBtn.setEnabled(false);
 		}
 
 	/**
 	 * Updates status label.
 	 */
-	public void updateStatusLabel()
+	public void updateStatusLabel(String status)
 		{
-		statodata.setText(client.getInArrivoDalServer());
+		statodata.setText(status);
 		}
 
 	}

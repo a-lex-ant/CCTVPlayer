@@ -11,6 +11,8 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import static java.net.InetAddress.getByName;
+
 /**
  * The Client tcp class.
  * Implements the behaviour of the TCP client.
@@ -26,7 +28,6 @@ public class ClientTCP implements ActionListener
 	 */
 	public static final String MESSAGGIO_ARRESTA_SISTEMA_REMOTO = "SPEGNI";
 
-	private String inArrivoDalServer = "...";
 	/**
 	 * Contains the Ip address of the server in String form.
 	 */
@@ -38,15 +39,15 @@ public class ClientTCP implements ActionListener
 	/**
 	 * The PrintWriter that will write the messages for the server
 	 */
-	private static PrintWriter    out; //TODO: togliere static ove possibile, qui e per socketConIlServer ed per in (vedi sotto)
+	private PrintWriter    out;
 	/**
 	 * The Socket used to talk to the server
 	 */
-	private static Socket         socketConIlServer;
+	private Socket         socketConIlServer;
 	/**
 	 * The BufferedReader used to read incoming messages from the server
 	 */
-	private static BufferedReader in;
+	private BufferedReader in;
 	/**
 	 * The parent component that started the tcp client.
 	 */
@@ -61,6 +62,7 @@ public class ClientTCP implements ActionListener
 	 */
 	public ClientTCP(String indirizzo, int port, FrameConnessione parentComp)
 		{
+
 		serverString    = indirizzo;
 		portaInt        = port;
 		parentComponent = parentComp;
@@ -82,7 +84,7 @@ public class ClientTCP implements ActionListener
 		{
 		try
 			{
-			if (hostAvailabilityCheck(serverString))
+			if (NetworkInfo.hostAvailabilityCheck(serverString))
 				{
 				socketConIlServer = new Socket(serverString, portaInt);
 				out               = new PrintWriter(socketConIlServer.getOutputStream());
@@ -134,16 +136,12 @@ public class ClientTCP implements ActionListener
 				byte[] b = inArrivo.getBytes();
 				if (!(b.length >= 1000))
 					{
-					inArrivoDalServer = inArrivo;
-					System.out.println(l10n.getString("INCOMING_FROM_SERVER") + " " + inArrivoDalServer);
-					parentComponent.updateStatusLabel();
+					System.out.println(l10n.getString("INCOMING_FROM_SERVER") + " " + inArrivo);
+					parentComponent.updateStatusLabel(inArrivo);
 					}
 				}
 
 			}
-		//TODO: forse togliere?
-		Thread.currentThread()
-		      .interrupt();
 
 		}
 
@@ -151,25 +149,12 @@ public class ClientTCP implements ActionListener
 	public void actionPerformed(ActionEvent actionEvent)
 		{
 		String textBtnClicked = ((JButton) actionEvent.getSource()).getText();
-		if (textBtnClicked.equals(l10n.getString("ETICHETTA_CHIUDI_CONNESSIONE")))
-			{
-			inviaMessaggioAlServer(MESSAGGIO_CHIUSURA_CONNESSIONE);
-			try
-				{
-				Thread.sleep(1000);
-				}
-			catch (InterruptedException e)
-				{
-				e.printStackTrace();
-				}
-			close();
-			}
 		if (textBtnClicked.equals(l10n.getString("ETICHETTA_ARRESTA_SISTEMA_REMOTO")))
 		{
 		inviaMessaggioAlServer(MESSAGGIO_ARRESTA_SISTEMA_REMOTO);
 		try
 			{
-			Thread.sleep(10000);
+			Thread.sleep(300);
 			}
 		catch (InterruptedException e)
 			{
@@ -187,8 +172,15 @@ public class ClientTCP implements ActionListener
 	 */
 	private void inviaMessaggioAlServer(String textBtnClicked)
 		{
-		out.println(textBtnClicked);
-		out.flush();
+		try
+			{
+			out.println(textBtnClicked);
+			out.flush();
+			}
+		catch (NullPointerException e)
+			{
+			close();
+			}
 		}
 
 	/**
@@ -215,22 +207,6 @@ public class ClientTCP implements ActionListener
 
 		}
 
-	/**
-	 * Host availability check. Checks if the server's address is reacheable
-	 *
-	 * @return the boolean
-	 *
-	 * @throws IOException IOException
-	 */
-	public static boolean hostAvailabilityCheck(String serverStringPassata) throws IOException
-		{
-		return InetAddress.getByName(serverStringPassata)
-		                  .isReachable(2000);
-		}
 
-	public String getInArrivoDalServer()
-		{
-		return inArrivoDalServer;
-		}
 
 	} //end of ClientTCP class

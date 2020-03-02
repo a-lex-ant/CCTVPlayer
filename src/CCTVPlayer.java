@@ -18,7 +18,7 @@ public class CCTVPlayer
 	/**
 	 * the media player panel
 	 */
-	private static PannelloMediaPlayer pannelloMediaPlayer; //TODO: possibilmente rendere non statico il pannello
+	private static PannelloMediaPlayer pannelloMediaPlayer;
 	/**
 	 * The main frame.
 	 */
@@ -154,7 +154,6 @@ public class CCTVPlayer
 		}
 
 
-//TODO: Possibilmente togliere questo metodo
 	public static PannelloMediaPlayer getPannelloMediaPlayer()
 		{
 		return pannelloMediaPlayer;

@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 
 /**
@@ -25,11 +26,11 @@ public class PannelloRichiestaDatiPerStream extends javax.swing.JPanel
 		{
 
 		javax.swing.JLabel     titoloLabel = new javax.swing.JLabel();
-		javax.swing.Box.Filler filler1 = new javax.swing.Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(32767, 0));
-		javax.swing.JLabel     labelIP = new javax.swing.JLabel();
-		textfIP     = new javax.swing.JTextField();
+		javax.swing.Box.Filler filler1     = new javax.swing.Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(32767, 0));
+		javax.swing.JLabel     labelIP     = new javax.swing.JLabel();
+		textfIP = new javax.swing.JTextField();
 		javax.swing.JLabel labelPorta = new javax.swing.JLabel();
-		textfPorta  = new javax.swing.JTextField();
+		textfPorta = new javax.swing.JTextField();
 
 		GridLayout layout = new java.awt.GridLayout(3, 2);
 		layout.setVgap(3);
@@ -50,7 +51,7 @@ public class PannelloRichiestaDatiPerStream extends javax.swing.JPanel
 		labelPorta.setText(l10n.getString("PORTA"));
 		add(labelPorta);
 
-		textfPorta.setText("9999");
+		textfPorta.setText("8554");
 		add(textfPorta);
 
 		}
@@ -62,13 +63,27 @@ public class PannelloRichiestaDatiPerStream extends javax.swing.JPanel
 	 */
 	public String[] getDatiInseriti()
 		{
-		if (!textfIP.getText()
-		            .isEmpty() && !textfPorta.getText()
-		                                     .isEmpty())
+		String ip    = textfIP.getText();
+		String    porta = textfPorta.getText();
+
+		if (!ip.isEmpty() && !ip.isEmpty())
 			{
-			return new String[]{textfIP.getText(), textfPorta.getText()};
+			if (NetworkInfo.isValidAddress(ip) && !porta.equals(9999)) //port 9999 reserved
+				{
+				return new String[]{ip, textfPorta.getText()};
+				}
 			}
-		else { return new String[]{"192.168.1.4", "9999"}; }  //TODO: pessima idea!!! Cambiare
+		int result = JOptionPane.showConfirmDialog(
+				this,l10n.getString("NO_VALID_DATA"), l10n.getString("NO_VALID_DATA_SHORT"), JOptionPane.YES_NO_OPTION);
+		if(result == JOptionPane.YES_OPTION)
+			{
+			 return new String[]{"127.0.0.1", "8554"};
+			}
+		else
+			{
+			return null;
+			}
+
 		}
 
 	}
