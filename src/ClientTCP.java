@@ -26,7 +26,6 @@ public class ClientTCP implements ActionListener
 	 */
 	public static final String MESSAGGIO_ARRESTA_SISTEMA_REMOTO = "SPEGNI";
 
-	private String inArrivoDalServer = "...";
 	/**
 	 * Contains the Ip address of the server in String form.
 	 */
@@ -61,6 +60,7 @@ public class ClientTCP implements ActionListener
 	 */
 	public ClientTCP(String indirizzo, int port, FrameConnessione parentComp)
 		{
+
 		serverString    = indirizzo;
 		portaInt        = port;
 		parentComponent = parentComp;
@@ -134,9 +134,8 @@ public class ClientTCP implements ActionListener
 				byte[] b = inArrivo.getBytes();
 				if (!(b.length >= 1000))
 					{
-					inArrivoDalServer = inArrivo;
-					System.out.println(l10n.getString("INCOMING_FROM_SERVER") + " " + inArrivoDalServer);
-					parentComponent.updateStatusLabel();
+					System.out.println(l10n.getString("INCOMING_FROM_SERVER") + " " + inArrivo);
+					parentComponent.updateStatusLabel(inArrivo);
 					}
 				}
 
@@ -228,9 +227,5 @@ public class ClientTCP implements ActionListener
 		                  .isReachable(2000);
 		}
 
-	public String getInArrivoDalServer()
-		{
-		return inArrivoDalServer;
-		}
 
 	} //end of ClientTCP class

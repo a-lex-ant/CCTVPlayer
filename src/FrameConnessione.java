@@ -170,9 +170,9 @@ public class FrameConnessione extends javax.swing.JFrame
 	/**
 	 * Updates status label.
 	 */
-	public void updateStatusLabel()
+	public void updateStatusLabel(String status)
 		{
-		statodata.setText(client.getInArrivoDalServer());
+		statodata.setText(status);
 		}
 
 	}
