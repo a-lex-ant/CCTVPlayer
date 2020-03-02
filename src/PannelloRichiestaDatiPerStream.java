@@ -51,7 +51,7 @@ public class PannelloRichiestaDatiPerStream extends javax.swing.JPanel
 		labelPorta.setText(l10n.getString("PORTA"));
 		add(labelPorta);
 
-		textfPorta.setText("9999");
+		textfPorta.setText("8554");
 		add(textfPorta);
 
 		}
@@ -68,7 +68,7 @@ public class PannelloRichiestaDatiPerStream extends javax.swing.JPanel
 
 		if (!ip.isEmpty() && !ip.isEmpty())
 			{
-			if (NetworkInfo.isValidAddress(ip))
+			if (NetworkInfo.isValidAddress(ip) && !porta.equals(9999)) //port 9999 reserved
 				{
 				return new String[]{ip, textfPorta.getText()};
 				}
@@ -77,7 +77,7 @@ public class PannelloRichiestaDatiPerStream extends javax.swing.JPanel
 				this,l10n.getString("NO_VALID_DATA"), l10n.getString("NO_VALID_DATA_SHORT"), JOptionPane.YES_NO_OPTION);
 		if(result == JOptionPane.YES_OPTION)
 			{
-			 return new String[]{"127.0.0.1", "9999"};
+			 return new String[]{"127.0.0.1", "8554"};
 			}
 		else
 			{

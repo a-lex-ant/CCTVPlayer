@@ -149,25 +149,12 @@ public class ClientTCP implements ActionListener
 	public void actionPerformed(ActionEvent actionEvent)
 		{
 		String textBtnClicked = ((JButton) actionEvent.getSource()).getText();
-		if (textBtnClicked.equals(l10n.getString("ETICHETTA_CHIUDI_CONNESSIONE")))
-			{
-			inviaMessaggioAlServer(MESSAGGIO_CHIUSURA_CONNESSIONE);
-			try
-				{
-				Thread.sleep(1000);
-				}
-			catch (InterruptedException e)
-				{
-				e.printStackTrace();
-				}
-			close();
-			}
 		if (textBtnClicked.equals(l10n.getString("ETICHETTA_ARRESTA_SISTEMA_REMOTO")))
 		{
 		inviaMessaggioAlServer(MESSAGGIO_ARRESTA_SISTEMA_REMOTO);
 		try
 			{
-			Thread.sleep(10000);
+			Thread.sleep(300);
 			}
 		catch (InterruptedException e)
 			{
@@ -185,8 +172,15 @@ public class ClientTCP implements ActionListener
 	 */
 	private void inviaMessaggioAlServer(String textBtnClicked)
 		{
-		out.println(textBtnClicked);
-		out.flush();
+		try
+			{
+			out.println(textBtnClicked);
+			out.flush();
+			}
+		catch (NullPointerException e)
+			{
+			close();
+			}
 		}
 
 	/**

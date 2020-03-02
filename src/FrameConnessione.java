@@ -7,7 +7,6 @@ import javax.swing.Box.Filler;
 public class FrameConnessione extends javax.swing.JFrame
 	{
 
-	private JButton chiudiConnessioneBtn;
 	private JButton avviaBtn;
 	private JButton spegniBtn;
 	private JLabel statodata;
@@ -36,7 +35,7 @@ public class FrameConnessione extends javax.swing.JFrame
 		JTabbedPane jTabbedPane1 = new JTabbedPane();
 		JPanel connectionPanel = new JPanel();
 		avviaBtn             = new JButton();
-		chiudiConnessioneBtn = new JButton();
+
 		JLabel statotitolo = new JLabel();
 		statodata            = new JLabel();
 		JPanel remoteControlPanel = new JPanel();
@@ -68,12 +67,6 @@ public class FrameConnessione extends javax.swing.JFrame
 			                           }
 		                           });
 		connectionPanel.add(avviaBtn);
-
-		chiudiConnessioneBtn.setBackground(new java.awt.Color(255, 145, 145));
-		chiudiConnessioneBtn.setForeground(new java.awt.Color(64, 36, 36));
-		chiudiConnessioneBtn.setText(l10n.getString("ETICHETTA_CHIUDI_CONNESSIONE"));
-		chiudiConnessioneBtn.setEnabled(false);
-		connectionPanel.add(chiudiConnessioneBtn);
 
 		statotitolo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		statotitolo.setText(l10n.getString("STATO_CONNESSIONE"));
@@ -123,7 +116,7 @@ public class FrameConnessione extends javax.swing.JFrame
 				{
 				String indirizzo = pannelloInput.getIpInput();
 				int    port      = Integer.parseInt(pannelloInput.getPortaInput());
-				if (NetworkInfo.hostAvailabilityCheck(indirizzo))
+				if (NetworkInfo.hostAvailabilityCheck(indirizzo) && port!=8554) //port 8554 reserved for stream connection
 					{
 					client = new ClientTCP(indirizzo, port, this);
 					aggiungiActionListeners();
@@ -156,7 +149,6 @@ public class FrameConnessione extends javax.swing.JFrame
 	private void aggiungiActionListeners()
 		{
 		spegniBtn.addActionListener(client);
-		chiudiConnessioneBtn.addActionListener(client);
 		}
 
 	/**
@@ -164,7 +156,7 @@ public class FrameConnessione extends javax.swing.JFrame
 	 */
 	void avviaSetEnabled()
 		{
-		chiudiConnessioneBtn.setEnabled(false);
+
 		avviaBtn.setEnabled(true);
 		}
 
@@ -173,7 +165,7 @@ public class FrameConnessione extends javax.swing.JFrame
 	 */
 	void chiudiSetEnabled()
 		{
-		chiudiConnessioneBtn.setEnabled(true);
+
 		avviaBtn.setEnabled(false);
 		}
 
