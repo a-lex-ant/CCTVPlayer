@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.Locale;
 
 /**
  * The MenuBar class.
@@ -13,7 +12,6 @@ public class MenuBarra extends JMenuBar
 	 */
 	public MenuBarra()
 		{
-
 
 		JMenu menuFile = new JMenu(l10n.getString("FILE"));
 		menuFile.setIcon(new ImageIcon("resources/file.png"));
@@ -83,13 +81,13 @@ public class MenuBarra extends JMenuBar
 
 		voceItaliano.addActionListener(actionEvent ->
 		                               {
-		                               SaveUtilities.saveLocale("it","IT");
+		                               SaveUtilities.saveLocale("it", "IT");
 		                               JOptionPane.showMessageDialog(null, l10n.getString("CAMBIO_LOCALE"));
 		                               });
 
 		voceInglese.addActionListener(actionEvent ->
 		                              {
-		                              SaveUtilities.saveLocale("en","US");
+		                              SaveUtilities.saveLocale("en", "US");
 		                              JOptionPane.showMessageDialog(null, l10n.getString("CAMBIO_LOCALE"));
 
 		                              });

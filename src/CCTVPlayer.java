@@ -22,8 +22,7 @@ public class CCTVPlayer
 	/**
 	 * The main frame.
 	 */
-	private static JFrame frame;
-
+	private static JFrame              frame;
 
 	/**
 	 * The entry point of the application.
@@ -143,6 +142,7 @@ public class CCTVPlayer
 
 	/**
 	 * Sets look and feel.
+	 *
 	 * @Warning do NOT change the smooth scrolling setting: there's a bug in Vlcj that causes an immediate crash of the JRE.
 	 */
 	private static void setLookAndFeel()
@@ -152,7 +152,6 @@ public class CCTVPlayer
 		IntelliJTheme.install(CCTVPlayer.class.getResourceAsStream("Temi/AtomOneDarkContrast.theme.json"));
 
 		}
-
 
 	public static PannelloMediaPlayer getPannelloMediaPlayer()
 		{

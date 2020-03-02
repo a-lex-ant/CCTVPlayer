@@ -64,7 +64,7 @@ public class PannelloRichiestaDatiPerStream extends javax.swing.JPanel
 	public String[] getDatiInseriti()
 		{
 		String ip    = textfIP.getText();
-		String    porta = textfPorta.getText();
+		String porta = textfPorta.getText();
 
 		if (!ip.isEmpty() && !ip.isEmpty())
 			{
@@ -73,11 +73,11 @@ public class PannelloRichiestaDatiPerStream extends javax.swing.JPanel
 				return new String[]{ip, textfPorta.getText()};
 				}
 			}
-		int result = JOptionPane.showConfirmDialog(
-				this,l10n.getString("NO_VALID_DATA"), l10n.getString("NO_VALID_DATA_SHORT"), JOptionPane.YES_NO_OPTION);
-		if(result == JOptionPane.YES_OPTION)
+		int result = JOptionPane.showConfirmDialog(this, l10n.getString("NO_VALID_DATA"), l10n.getString("NO_VALID_DATA_SHORT"),
+		                                           JOptionPane.YES_NO_OPTION);
+		if (result == JOptionPane.YES_OPTION)
 			{
-			 return new String[]{"127.0.0.1", "8554"};
+			return new String[]{"127.0.0.1", "8554"};
 			}
 		else
 			{

@@ -36,9 +36,9 @@ public class LeftMenuBar extends JPanel
 		screenshotMenu.addActionListener(arg0 -> CCTVPlayer.getPannelloMediaPlayer()
 		                                                   .SnapshotAndSave());
 
-		statusMenu.addActionListener(arg0 -> JOptionPane.showMessageDialog(null, l10n.getString("IP_DEL_CLIENT_CORRENTE") +
-		                                                                         NetworkInfo.fornisciIndirizziLocali(), l10n.getString("INFO_CLIENT"),
-		                                                                   JOptionPane.PLAIN_MESSAGE));
+		statusMenu.addActionListener(
+				arg0 -> JOptionPane.showMessageDialog(null, l10n.getString("IP_DEL_CLIENT_CORRENTE") + NetworkInfo.fornisciIndirizziLocali(),
+				                                      l10n.getString("INFO_CLIENT"), JOptionPane.PLAIN_MESSAGE));
 
 		this.setVisible(true);
 

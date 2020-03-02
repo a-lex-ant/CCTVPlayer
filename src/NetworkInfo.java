@@ -1,13 +1,10 @@
 import com.google.common.net.InetAddresses;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
-import java.net.Socket;
 import java.net.SocketException;
 import java.util.Enumeration;
-
 
 /**
  * The Network info class.
@@ -56,11 +53,9 @@ public final class NetworkInfo
 		return "---";
 		}
 
-
 	public static boolean isValidAddress(String ip)
 		{
-		if (InetAddresses.isInetAddress(ip)) return true;
-		return false;
+		return InetAddresses.isInetAddress(ip);
 		}
 
 	public static boolean hostAvailabilityCheck(String serverStringPassata) throws IOException
@@ -68,8 +63,7 @@ public final class NetworkInfo
 		boolean reacheable = InetAddress.getByName(serverStringPassata)
 		                                .isReachable(2000);
 		boolean valid = NetworkInfo.isValidAddress(serverStringPassata);
-		if(reacheable && valid) return true;
-		return false;
+		return reacheable && valid;
 		}
 
 	}

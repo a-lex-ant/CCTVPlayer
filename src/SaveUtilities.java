@@ -17,12 +17,12 @@ public class SaveUtilities
 	/**
 	 * Saves the locale chosen on disk.
 	 *
-	 * @param lang the language of the new locale
+	 * @param lang    the language of the new locale
 	 * @param country the country of the new locale
 	 */
 	public static void saveLocale(String lang, String country)
 		{
-		Locale newLocale = new Locale(lang,country);
+		Locale newLocale = new Locale(lang, country);
 
 		checkForSaveDirectoryExistance();
 		try (

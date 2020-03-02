@@ -45,19 +45,19 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 		embeddedMediaPlayerComponent.mediaPlayer()
 		                            .events()
 		                            .addMediaPlayerEventListener(new MediaPlayerEventAdapter()
-			   {
-			   @Override
-			   public void finished(MediaPlayer mediaPlayer)
-				   {
-				   JOptionPane.showMessageDialog(null, l10n.getString("OUTPUT_TERMINATO"));
-				   }
+			                            {
+			                            @Override
+			                            public void finished(MediaPlayer mediaPlayer)
+				                            {
+				                            JOptionPane.showMessageDialog(null, l10n.getString("OUTPUT_TERMINATO"));
+				                            }
 
-			   @Override
-			   public void error(MediaPlayer mediaPlayer)
-				   {
-				   releaseMediaPlayer();
-				   }
-			   });
+			                            @Override
+			                            public void error(MediaPlayer mediaPlayer)
+				                            {
+				                            releaseMediaPlayer();
+				                            }
+			                            });
 
 		//END CONSTRUCTOR
 		}
@@ -93,8 +93,7 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 							                               }
 						                               else
 							                               {
-							                               JOptionPane.showMessageDialog(this,
-							                                                             l10n.getString("SERVER_NON_RAGG"),
+							                               JOptionPane.showMessageDialog(this, l10n.getString("SERVER_NON_RAGG"),
 							                                                             l10n.getString("SERVER_NON_RAGG_SHORT"),
 							                                                             JOptionPane.ERROR_MESSAGE);
 							                               }

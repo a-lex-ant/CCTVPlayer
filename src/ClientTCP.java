@@ -6,12 +6,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ConnectException;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import static java.net.InetAddress.getByName;
 
 /**
  * The Client tcp class.
@@ -19,6 +16,7 @@ import static java.net.InetAddress.getByName;
  */
 public class ClientTCP implements ActionListener
 	{
+
 	/**
 	 * The constant MESSAGGIO_CHIUSURA_CONNESSIONE.
 	 */
@@ -31,23 +29,23 @@ public class ClientTCP implements ActionListener
 	/**
 	 * Contains the Ip address of the server in String form.
 	 */
-	private String serverString;
+	private String           serverString;
 	/**
 	 * The integer that stores the port number of the server
 	 */
-	private int portaInt;
+	private int              portaInt;
 	/**
 	 * The PrintWriter that will write the messages for the server
 	 */
-	private PrintWriter    out;
+	private PrintWriter      out;
 	/**
 	 * The Socket used to talk to the server
 	 */
-	private Socket         socketConIlServer;
+	private Socket           socketConIlServer;
 	/**
 	 * The BufferedReader used to read incoming messages from the server
 	 */
-	private BufferedReader in;
+	private BufferedReader   in;
 	/**
 	 * The parent component that started the tcp client.
 	 */
@@ -99,8 +97,8 @@ public class ClientTCP implements ActionListener
 		catch (ConnectException e)
 			{
 			System.out.println(l10n.getString("SERVER_NON_RAGGIUNGIBILE"));
-			JOptionPane.showMessageDialog(parentComponent, l10n.getString("SERVER_NON_RAGGIUNGIBILE"),
-			                              l10n.getString("SERVER_NON_RAGGIUNGIBILE"), JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(parentComponent, l10n.getString("SERVER_NON_RAGGIUNGIBILE"), l10n.getString("SERVER_NON_RAGGIUNGIBILE"),
+			                              JOptionPane.ERROR_MESSAGE);
 			return false;
 			}
 		catch (IOException e)
@@ -150,18 +148,18 @@ public class ClientTCP implements ActionListener
 		{
 		String textBtnClicked = ((JButton) actionEvent.getSource()).getText();
 		if (textBtnClicked.equals(l10n.getString("ETICHETTA_ARRESTA_SISTEMA_REMOTO")))
-		{
-		inviaMessaggioAlServer(MESSAGGIO_ARRESTA_SISTEMA_REMOTO);
-		try
 			{
-			Thread.sleep(300);
+			inviaMessaggioAlServer(MESSAGGIO_ARRESTA_SISTEMA_REMOTO);
+			try
+				{
+				Thread.sleep(300);
+				}
+			catch (InterruptedException e)
+				{
+				e.printStackTrace();
+				}
+			close();
 			}
-		catch (InterruptedException e)
-			{
-			e.printStackTrace();
-			}
-		close();
-		}
 
 		}
 
@@ -206,7 +204,5 @@ public class ClientTCP implements ActionListener
 			}
 
 		}
-
-
 
 	} //end of ClientTCP class

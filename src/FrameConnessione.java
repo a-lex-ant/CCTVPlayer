@@ -1,5 +1,5 @@
-import javax.swing.*;
 import javax.swing.Box.Filler;
+import javax.swing.*;
 
 /**
  * The type Frame connessione.
@@ -9,12 +9,12 @@ public class FrameConnessione extends javax.swing.JFrame
 
 	private JButton avviaBtn;
 	private JButton spegniBtn;
-	private JLabel statodata;
+	private JLabel  statodata;
 
 	/**
 	 * The TCP client created after clicking on the avviaBtn.
 	 */
-	private ClientTCP      client;
+	private ClientTCP client;
 
 	/**
 	 * Instantiates a new Connection Frame.
@@ -32,21 +32,20 @@ public class FrameConnessione extends javax.swing.JFrame
 	private void initComponents()
 		{
 
-		JTabbedPane jTabbedPane1 = new JTabbedPane();
-		JPanel connectionPanel = new JPanel();
-		avviaBtn             = new JButton();
+		JTabbedPane jTabbedPane1    = new JTabbedPane();
+		JPanel      connectionPanel = new JPanel();
+		avviaBtn = new JButton();
 
 		JLabel statotitolo = new JLabel();
-		statodata            = new JLabel();
+		statodata = new JLabel();
 		JPanel remoteControlPanel = new JPanel();
 		JLabel spegnimentoLabel   = new JLabel();
-		spegniBtn            = new JButton();
+		spegniBtn = new JButton();
 		Filler filler1 = new Filler(new java.awt.Dimension(0, 300), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
 		Filler filler2 = new Filler(new java.awt.Dimension(0, 300), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 32767));
 
 		setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 		setTitle(l10n.getString("STATUS"));
-
 
 		connectionPanel.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEmptyBorder(40, 1, 10, 1),
 		                                                                         javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20)));
@@ -101,14 +100,13 @@ public class FrameConnessione extends javax.swing.JFrame
 
 	/**
 	 * Mehod called after the click of the avviaBtn
-	 *
 	 */
 	private void avviaActionPerformed()
 		{
 		PannelloRichiestaDatiPerTCP pannelloInput;
 		int risp = JOptionPane.showConfirmDialog(this, pannelloInput = new PannelloRichiestaDatiPerTCP(),
-		                                         l10n.getString("INSERIMENTO") + l10n.getString("INDIRIZZO_SERVER"),
-		                                         JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+		                                         l10n.getString("INSERIMENTO") + l10n.getString("INDIRIZZO_SERVER"), JOptionPane.OK_CANCEL_OPTION,
+		                                         JOptionPane.PLAIN_MESSAGE);
 		if (risp == JOptionPane.OK_OPTION)
 			{
 
@@ -116,23 +114,21 @@ public class FrameConnessione extends javax.swing.JFrame
 				{
 				String indirizzo = pannelloInput.getIpInput();
 				int    port      = Integer.parseInt(pannelloInput.getPortaInput());
-				if (NetworkInfo.hostAvailabilityCheck(indirizzo) && port!=8554) //port 8554 reserved for stream connection
+				if (NetworkInfo.hostAvailabilityCheck(indirizzo) && port != 8554) //port 8554 reserved for stream connection
 					{
 					client = new ClientTCP(indirizzo, port, this);
 					aggiungiActionListeners();
 					}
 				else
 					{
-					JOptionPane.showMessageDialog(this,
-					                              l10n.getString("SERVER_NON_RAGG"),
-					                              l10n.getString("SERVER_NON_RAGG_SHORT"),
+					JOptionPane.showMessageDialog(this, l10n.getString("SERVER_NON_RAGG"), l10n.getString("SERVER_NON_RAGG_SHORT"),
 					                              JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			catch (NumberFormatException e)
 				{
-				JOptionPane.showMessageDialog(null, l10n.getString("INPUT_NON_VALIDO_ERRORE") + e.getMessage(),
-				                              l10n.getString("INPUT_NON_VALIDO"), JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, l10n.getString("INPUT_NON_VALIDO_ERRORE") + e.getMessage(), l10n.getString("INPUT_NON_VALIDO"),
+				                              JOptionPane.ERROR_MESSAGE);
 				}
 			catch (Exception e)
 				{

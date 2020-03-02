@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
@@ -18,18 +17,17 @@ public class FrameMetadata extends JFrame
 	 */
 	public FrameMetadata()
 		{
-		
+
 		setTitle(l10n.getString("STATISTICHE"));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		JPanel contentPanel = new JPanel();
-		JPanel panel_1 = new JPanel();
+		JPanel contentPanel           = new JPanel();
+		JPanel panel_1                = new JPanel();
 		JLabel lbl_AUDIO_BUFFERS_LOST = new JLabel();
 		lblDataAudioBuffers = new JLabel();
 		JLabel lblPicturesLost = new JLabel();
 		lblDataPicturesLost = new JLabel();
 		JLabel lblDemuxCorrupted = new JLabel();
 		lblDataDemuxCorrupted = new JLabel();
-
 
 		contentPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		contentPanel.setLayout(new BorderLayout());
@@ -38,7 +36,7 @@ public class FrameMetadata extends JFrame
 		titledBorder.setTitleJustification(TitledBorder.CENTER);
 		titledBorder.setTitlePosition(TitledBorder.DEFAULT_POSITION);
 		titledBorder.setTitleColor(new java.awt.Color(224, 98, 52));
-		panel_1.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5),titledBorder ));
+		panel_1.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5), titledBorder));
 		panel_1.setLayout(new GridLayout(3, 2, 30, 5));
 
 		lbl_AUDIO_BUFFERS_LOST.setForeground(new Color(224, 98, 52));
@@ -124,7 +122,7 @@ public class FrameMetadata extends JFrame
 		{
 		try
 			{
-			updateLabels(DataUtility.getDemuxCorrupted(), (int)DataUtility.getAudioBuffersLost(), (int)DataUtility.getPicturesLost());
+			updateLabels(DataUtility.getDemuxCorrupted(), (int) DataUtility.getAudioBuffersLost(), (int) DataUtility.getPicturesLost());
 			}
 		catch (Exception e)
 			{
@@ -135,6 +133,5 @@ public class FrameMetadata extends JFrame
 		t.start();
 
 		}
-
 
 	}

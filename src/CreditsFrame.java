@@ -7,7 +7,7 @@ import java.awt.*;
  */
 public class CreditsFrame extends javax.swing.JFrame
 	{
-	
+
 	/**
 	 * Instantiates a new Credits frame.
 	 */
@@ -26,36 +26,35 @@ public class CreditsFrame extends javax.swing.JFrame
 
 		LinkListener linkListener = new LinkListener();
 
-		JPanel      contenitore                = new JPanel();
-		JPanel      panelAbout                = new JPanel();
+		JPanel      contenitore            = new JPanel();
+		JPanel      panelAbout             = new JPanel();
 		ScrollPane  scrollPane1            = new ScrollPane();
 		JScrollPane jScrollPane1           = new JScrollPane();
 		JEditorPane editorPaneAbout        = new JEditorPane();
-		JPanel      panelExtLib                = new JPanel();
+		JPanel      panelExtLib            = new JPanel();
 		ScrollPane  scrollPane4            = new ScrollPane();
 		JScrollPane jScrollPane4           = new JScrollPane();
 		JEditorPane editorPaneExtLibraries = new JEditorPane();
-		JPanel      panelIcons                = new JPanel();
+		JPanel      panelIcons             = new JPanel();
 		Label       iconCreditsLabel       = new Label();
-		ScrollPane scrollPane2    = new ScrollPane();
-		JScrollPane jScrollPane2          = new JScrollPane();
-		JEditorPane editorPaneIconsCredit = new JEditorPane();
-		JPanel      spacerPanel               = new JPanel();
+		ScrollPane  scrollPane2            = new ScrollPane();
+		JScrollPane jScrollPane2           = new JScrollPane();
+		JEditorPane editorPaneIconsCredit  = new JEditorPane();
+		JPanel      spacerPanel            = new JPanel();
 
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
 		contenitore.setLayout(new GridLayout(3, 1));
 
-		TitledBorder borderAbout = BorderFactory.createTitledBorder("About");
-		TitledBorder borderExtLib =  BorderFactory.createTitledBorder("External Library Credits");
-		TitledBorder borderIcon = BorderFactory.createTitledBorder("Icon Credits");
+		TitledBorder borderAbout  = BorderFactory.createTitledBorder("About");
+		TitledBorder borderExtLib = BorderFactory.createTitledBorder("External Library Credits");
+		TitledBorder borderIcon   = BorderFactory.createTitledBorder("Icon Credits");
 		borderAbout.setTitleColor(arancio);
 		borderExtLib.setTitleColor(arancio);
 		borderIcon.setTitleColor(arancio);
 
 		panelAbout.setBorder(javax.swing.BorderFactory.createCompoundBorder(borderAbout, javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 		panelAbout.setLayout(new BorderLayout());
-
 
 		editorPaneAbout.setContentType("text/html");
 		editorPaneAbout.setText("<html>\n  <head>\n<style>\n</style>\n  </head>\n  <body>\n<p style=\"text-align: center;\">Developed " +
@@ -85,7 +84,6 @@ public class CreditsFrame extends javax.swing.JFrame
 
 		panelExtLib.setBorder(javax.swing.BorderFactory.createCompoundBorder(borderExtLib, javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 		panelExtLib.setLayout(new BorderLayout());
-
 
 		editorPaneExtLibraries.setContentType("text/html");
 		editorPaneExtLibraries.setText("<html>\n  <head>\n<style>\n</style>\n  </head>\n  <body>\n<p style=\"text-align: center;\">This " +
@@ -147,9 +145,9 @@ public class CreditsFrame extends javax.swing.JFrame
 		javax.swing.GroupLayout spacerPanelLayout = new javax.swing.GroupLayout(spacerPanel);
 		spacerPanel.setLayout(spacerPanelLayout);
 		spacerPanelLayout.setHorizontalGroup(spacerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                                              .addGap(0, 524, Short.MAX_VALUE));
+		                                                      .addGap(0, 524, Short.MAX_VALUE));
 		spacerPanelLayout.setVerticalGroup(spacerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-		                                            .addGap(0, 100, Short.MAX_VALUE));
+		                                                    .addGap(0, 100, Short.MAX_VALUE));
 
 		panelIcons.add(spacerPanel, BorderLayout.PAGE_END);
 

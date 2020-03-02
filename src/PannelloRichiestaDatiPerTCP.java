@@ -27,8 +27,8 @@ public class PannelloRichiestaDatiPerTCP extends JPanel
 		JLabel titolo         = new JLabel();
 		JLabel indirizzoLabel = new JLabel();
 		JLabel portaLabel     = new JLabel();
-		ipInput        = new JTextField();
-		portaInput     = new JTextField();
+		ipInput    = new JTextField();
+		portaInput = new JTextField();
 
 		setLayout(new java.awt.GridBagLayout());
 

@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
  */
 public class l10n
 	{
+
 	/**
 	 * The language bundle for localization.
 	 */

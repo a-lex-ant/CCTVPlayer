@@ -1,5 +1,3 @@
-import java.net.NetworkInterface;
-
 public class DataUtility
 	{
 
@@ -10,11 +8,11 @@ public class DataUtility
 		pannelloMediaPlayer = pannelloMediaPlayerPassato;
 		}
 
-
 	public static double getAudioBuffersLost()
 		{
 		return pannelloMediaPlayer.getAudioBuffersLost();
 		}
+
 	public static double getPicturesLost()
 		{
 		return pannelloMediaPlayer.getPicturesLost();
