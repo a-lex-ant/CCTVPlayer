@@ -3,10 +3,12 @@ import uk.co.caprica.vlcj.player.base.MediaPlayerEventAdapter;
 import uk.co.caprica.vlcj.player.base.SnapshotApi;
 import uk.co.caprica.vlcj.player.component.EmbeddedMediaPlayerComponent;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -35,7 +37,7 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 		this.setMinimumSize(new Dimension(100, 100));
 		JButton apriFileBottone = new JButton(l10n.getString("AVVIA_STREAM"));
 		apriFileBottone.setOpaque(true);
-		apriFileBottone.setIcon(new ImageIcon("resources/play.png"));
+
 		apriFileBottone.addActionListener(this);
 		this.embeddedMediaPlayerComponent = new EmbeddedMediaPlayerComponent();
 		this.add(embeddedMediaPlayerComponent, BorderLayout.CENTER);
@@ -58,6 +60,16 @@ public class PannelloMediaPlayer extends JPanel implements ActionListener
 				                            releaseMediaPlayer();
 				                            }
 			                            });
+
+		try
+			{
+			BufferedImage playIcon = ImageIO.read(PannelloMediaPlayer.class.getResource("resources/play.png"));
+			apriFileBottone.setIcon(new ImageIcon(playIcon));
+			}
+		catch (IOException e)
+			{
+			e.printStackTrace();
+			}
 
 		//END CONSTRUCTOR
 		}
