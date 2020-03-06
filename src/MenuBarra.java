@@ -1,5 +1,8 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 /**
  * The MenuBar class.
@@ -14,9 +17,9 @@ public class MenuBarra extends JMenuBar
 		{
 
 		JMenu menuFile = new JMenu(l10n.getString("FILE"));
-		menuFile.setIcon(new ImageIcon("resources/file.png"));
+
 		JMenu menuHelp = new JMenu(l10n.getString("HELP"));
-		menuHelp.setIcon(new ImageIcon("resources/help.png"));
+
 		this.add(menuFile);
 		this.add(menuHelp);
 		JMenuItem voceAbout           = new JMenuItem(l10n.getString("ABOUT"));
@@ -27,18 +30,23 @@ public class MenuBarra extends JMenuBar
 		JMenuItem voceInglese         = new JMenuItem("English");
 		try
 			{
-			ImageIcon aboutIcon       = new ImageIcon("resources/info.png");
-			ImageIcon diagnosticsIcon = new ImageIcon("resources/activity.png");
-			ImageIcon esciIcon        = new ImageIcon("resources/x.png");
-			ImageIcon linguaIcon      = new ImageIcon("resources/globe.png");
-			ImageIcon italianoIcon    = new ImageIcon("resources/ita.png");
-			ImageIcon ingleseIcon     = new ImageIcon("resources/eng.png");
-			voceApriDiagnostics.setIcon(diagnosticsIcon);
-			voceEsci.setIcon(esciIcon);
-			voceLocale.setIcon(linguaIcon);
-			voceItaliano.setIcon(italianoIcon);
-			voceInglese.setIcon(ingleseIcon);
-			voceAbout.setIcon(aboutIcon);
+			BufferedImage aboutIcon       = ImageIO.read(MenuBarra.class.getResource("resources/info.png"));
+			BufferedImage diagnosticsIcon = ImageIO.read(MenuBarra.class.getResource("resources/activity.png"));
+			BufferedImage esciIcon        = ImageIO.read(MenuBarra.class.getResource("resources/x.png"));
+			BufferedImage linguaIcon      = ImageIO.read(MenuBarra.class.getResource("resources/globe.png"));
+			BufferedImage italianoIcon    = ImageIO.read(MenuBarra.class.getResource("resources/ita.png"));
+			BufferedImage ingleseIcon     = ImageIO.read(MenuBarra.class.getResource("resources/eng.png"));
+			BufferedImage fileIcon     = ImageIO.read(MenuBarra.class.getResource("resources/file.png"));
+			BufferedImage helpIcon     = ImageIO.read(MenuBarra.class.getResource("resources/help.png"));
+
+			menuFile.setIcon(new ImageIcon(fileIcon));
+			menuHelp.setIcon(new ImageIcon(helpIcon));
+			voceApriDiagnostics.setIcon(new ImageIcon(diagnosticsIcon));
+			voceEsci.setIcon(new ImageIcon(esciIcon));
+			voceLocale.setIcon(new ImageIcon(linguaIcon));
+			voceItaliano.setIcon(new ImageIcon(italianoIcon));
+			voceInglese.setIcon(new ImageIcon(ingleseIcon));
+			voceAbout.setIcon(new ImageIcon(aboutIcon));
 
 			}
 		catch (Exception e)
@@ -96,16 +104,30 @@ public class MenuBarra extends JMenuBar
 
 		JButton maximize = new JButton();
 		JButton minimize = new JButton();
-		maximize.setIcon(new ImageIcon("resources/maximize.png"));
+
 		maximize.setBorderPainted(false);
 		maximize.addActionListener(actionEvent -> CCTVPlayer.massimizzaFrame());
 		maximize.setToolTipText(l10n.getString("MASSIMIZZA"));
-		minimize.setIcon(new ImageIcon("resources/minimize.png"));
+
 		minimize.setBackground(new Color(33, 37, 43));
 		maximize.setBackground(new Color(33, 37, 43));
 		minimize.setToolTipText(l10n.getString("MINIMIZZA"));
 		minimize.addActionListener(actionEvent -> CCTVPlayer.rimpicciolisciFrame());
 		minimize.setBorderPainted(false);
+
+		try
+			{
+			BufferedImage massimizzaIcon = ImageIO.read(MenuBarra.class.getResource("resources/minimize.png"));
+			BufferedImage minimizzaIcon = ImageIO.read(MenuBarra.class.getResource("resources/maximize.png"));
+
+			maximize.setIcon(new ImageIcon(massimizzaIcon));
+			minimize.setIcon(new ImageIcon(minimizzaIcon));
+			}
+		catch (IOException e)
+			{
+			e.printStackTrace();
+			}
+
 		this.add(maximize);
 		this.add(minimize);
 
