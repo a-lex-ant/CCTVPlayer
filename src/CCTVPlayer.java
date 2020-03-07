@@ -1,13 +1,12 @@
 import com.formdev.flatlaf.IntelliJTheme;
+import com.sun.jdi.PathSearchingVirtualMachine;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -113,16 +112,21 @@ public class CCTVPlayer
 		try
 			{
 
-			Font roboto = Font.createFont(Font.TRUETYPE_FONT, new File("src/Fonts/Roboto-Regular.ttf"))
+			InputStream fontResourceAsStream                    = CCTVPlayer.class.getResourceAsStream("Fonts/Roboto-Regular.ttf");
+			File fontFile = new File("roboto.ttf");
+			FileOutputStream fontFileOutputStream = new FileOutputStream("roboto.ttf");
+			fontResourceAsStream.transferTo(fontFileOutputStream);
+
+			Font roboto = Font.createFont(Font.TRUETYPE_FONT, fontFile)
 			                  .deriveFont(15f);
 			graphicsEnvironment.registerFont(roboto);
 
 			putUIManagerSettings(roboto);
 
 			}
-		catch (FontFormatException | IOException e)
+		catch (FontFormatException | IOException | NullPointerException e)
 			{
-			e.printStackTrace();
+			System.out.println(l10n.getString("NO_FILE_FONT") + " " + e.getMessage());
 			}
 		}
 
