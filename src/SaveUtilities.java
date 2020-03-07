@@ -9,6 +9,7 @@ import java.util.Locale;
 public class SaveUtilities
 	{
 
+	public static final String SAVE_DIRECTORY = "/savedData";
 	/**
 	 * The user directory.
 	 */
@@ -20,11 +21,11 @@ public class SaveUtilities
 	 * @param lang    the language of the new locale
 	 * @param country the country of the new locale
 	 */
-	public static void saveLocale(String lang, String country)
+	 static void saveLocale(String lang, String country)
 		{
 		Locale newLocale = new Locale(lang, country);
 
-		checkForSaveDirectoryExistance();
+		checkForDirectoryExistance(SAVE_DIRECTORY);
 		try (
 				ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(userDir + "/savedData/localeSettings.bin"))
 		)
@@ -39,15 +40,15 @@ public class SaveUtilities
 		}
 
 	/**
-	 * Checks for save directory existance.
+	 * Checks for save directory existance, and if it doesn't exist, creates it.
 	 */
-	private static void checkForSaveDirectoryExistance()
+	static void checkForDirectoryExistance(String nameOfSaveDirectory)
 		{
-		if (!Files.exists(Paths.get(System.getProperty("user.dir") + "/savedData")))
+		if (!Files.exists(Paths.get(System.getProperty("user.dir") + nameOfSaveDirectory)))
 			{
 			try
 				{
-				Files.createDirectory(Paths.get(userDir + "/savedData"));
+				Files.createDirectory(Paths.get(userDir + nameOfSaveDirectory));
 				}
 			catch (IOException e)
 				{
@@ -61,9 +62,9 @@ public class SaveUtilities
 	 *
 	 * @return the locale
 	 */
-	public static Locale loadLocale()
+	 static Locale loadLocale()
 		{
-		checkForSaveDirectoryExistance();
+		checkForDirectoryExistance(SAVE_DIRECTORY);
 		Locale letto;
 		try (
 				ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(userDir + "/savedData" + "/localeSettings.bin"))

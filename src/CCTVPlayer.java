@@ -104,17 +104,17 @@ public class CCTVPlayer
 		}
 
 	/**
-	 * Install and set custom font.
+	 * Load, install and set custom font.
 	 */
 	private static void registerAndSetFont()
 		{
 		GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		try
 			{
-
+			SaveUtilities.checkForDirectoryExistance("/FontResources");
 			InputStream fontResourceAsStream                    = CCTVPlayer.class.getResourceAsStream("Fonts/Roboto-Regular.ttf");
-			File fontFile = new File("roboto.ttf");
-			FileOutputStream fontFileOutputStream = new FileOutputStream("roboto.ttf");
+			File fontFile = new File("FontResources/roboto.ttf");
+			FileOutputStream fontFileOutputStream = new FileOutputStream("FontResources/roboto.ttf");
 			fontResourceAsStream.transferTo(fontFileOutputStream);
 
 			Font roboto = Font.createFont(Font.TRUETYPE_FONT, fontFile)
